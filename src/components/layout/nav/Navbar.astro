@@ -23,6 +23,11 @@ const navItems = [
         ))
       }
     </div>
+    <div class="nav-group-contribute">
+      <a href="/contribute" class="ec-button ec-button-primary">
+        Contribute a Project
+      </a>
+    </div>
   </div>
 </nav>
 <style>
@@ -35,10 +40,14 @@ const navItems = [
   .nav-container {
     display: flex;
     justify-content: space-between;
+    align-items: center;
     max-width: var(--size-page-width);
     padding: 1rem 0;
     width: 100%;
     font-size: var(--font-size-navitems);
+  }
+  .nav-group-main {
+    display: flex;
   }
   .nav-item {
     padding: 1rem 1.5rem;

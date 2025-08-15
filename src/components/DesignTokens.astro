@@ -9,7 +9,7 @@ import "@fontsource-variable/lexend";
     --color-background-card: #38313e;
     --color-text: #28232c;
     --color-accent-a: #26417b;
-    --color-accent-b: ##ffb155;
+    --color-accent-b: #ffb155;
     --color-category-a: #26417b;
     --color-category-b: #177b51;
     --color-category-c: #28232c;
@@ -27,5 +27,28 @@ import "@fontsource-variable/lexend";
     font-size: 16px;
   }
   html {
+  }
+</style>
+<style is:global>
+  .ec-button {
+    padding: 0.75rem 1.5rem;
+    border-radius: 6px;
+    background-color: var(--color-button-bg);
+    border: 2px solid var(--color-button-bg);
+    color: var(--color-button-text);
+    text-decoration: none;
+  }
+  .ec-button:hover,
+  .ec-button:focus {
+    background-color: var(--color-button-text);
+    color: var(--color-button-bg);
+  }
+  .ec-button-primary {
+    --color-button-bg: var(--color-accent-a);
+    --color-button-text: var(--color-background);
+  }
+  .ec-button-secondary {
+    --color-button-bg: var(--color-accent-b);
+    --color-button-text: var(--color-text);
   }
 </style>
