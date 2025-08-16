@@ -1,5 +1,6 @@
 ---
 import Accordion from "../components/content-blocks/Accordion.astro";
+import Banner from "../components/content-blocks/Banner.astro";
 import PageBody from "../components/layout/page/PageBody.astro";
 import Layout from "../layouts/Layout.astro";
 ---
@@ -60,5 +61,14 @@ import Layout from "../layouts/Layout.astro";
     >
       <p>This is another accordion content.</p>
     </Accordion>
+
+    <h2>Alert Banners</h2>
+    <Banner color="a">Here is some content inside a banner</Banner>
+    <Banner color="b" icon="b">
+      <h3>here's a header in a banner</h3><p>
+        here's a paragraph in a banner
+      </p><p>This banner has color <code>b</code></p></Banner
+    >
+    <Banner color="b" icon="x">Here's a banner with the X icon</Banner>
   </PageBody>
 </Layout>

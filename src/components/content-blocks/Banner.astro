@@ -1,0 +1,44 @@
+---
+const { color, icon } = Astro.props;
+import Icon1 from "../../assets/banner/banner-icon-1.svg";
+import Icon2 from "../../assets/banner/banner-icon-2.svg";
+import IconX from "../../assets/banner/banner-icon-x.svg";
+
+const iconTable = {
+  a: Icon1,
+  b: Icon2,
+  x: IconX,
+};
+const Icon = iconTable[icon] || Icon1;
+---
+
+<div class:list={["alert-banner", "alert-banner-" + color]}>
+  <div class="alert-banner-icon">
+    <Icon />
+  </div>
+  <div class="alert-banner-content"><slot /></div>
+</div>
+
+<style>
+  .alert-banner {
+    --color-banner-bg: var(--color-accent-a);
+    --color-banner-text: var(--color-background);
+    display: flex;
+    align-items: center;
+    font-weight: 500;
+    background-color: var(--color-banner-bg);
+    color: var(--color-banner-text);
+    border-radius: 0.3rem;
+    padding: 1.5rem;
+    gap: 1rem;
+    margin-top: 2rem;
+  }
+  .alert-banner-a {
+    --color-banner-bg: var(--color-accent-a);
+    --color-banner-text: var(--color-background);
+  }
+  .alert-banner-b {
+    --color-banner-bg: var(--color-accent-b);
+    --color-banner-text: var(--color-text);
+  }
+</style>
