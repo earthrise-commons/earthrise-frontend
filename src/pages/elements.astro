@@ -1,0 +1,52 @@
+---
+import Accordion from "../components/content-blocks/Accordion.astro";
+import PageBody from "../components/layout/page/PageBody.astro";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout>
+  <PageBody>
+    <h1>Elements</h1>
+    <h2>This is an H2</h2>
+    <h3>This is an H3</h3>
+    <h4>This is an H4</h4>
+    <p>
+      This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Neque voluptatum, maiores cupiditate tenetur consequatur quo tempora
+      maxime provident accusamus distinctio esse odio sequi ipsa? Praesentium
+      consequuntur iste illo ipsam voluptas? Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Repudiandae id placeat doloribus quasi
+      soluta, quod architecto adipisci nobis magni cumque. Saepe pariatur
+      distinctio veritatis est quia quaerat perspiciatis vitae delectus. Lorem
+      ipsum, dolor sit amet consectetur adipisicing elit. Provident saepe, vel
+      assumenda ipsam ullam laudantium quia placeat omnis obcaecati, repellat
+      cupiditate, quo minus accusamus ipsa dolorem consequatur? Omnis, sunt
+      nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, iure
+      excepturi minima consequuntur voluptate dolore facere? Sit, consequuntur
+      voluptatibus reprehenderit, et saepe voluptates quam accusantium provident
+      voluptas omnis non reiciendis.
+    </p>
+    <p>
+      This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing
+      elit. Neque voluptatum, maiores cupiditate tenetur consequatur quo tempora
+      maxime provident accusamus distinctio esse odio sequi ipsa? Praesentium
+      consequuntur iste illo ipsam voluptas? Lorem ipsum, dolor sit amet
+      consectetur adipisicing elit. Repudiandae id placeat doloribus quasi
+      soluta, quod architecto adipisci nobis magni cumque. Saepe pariatur
+      distinctio veritatis est quia quaerat perspiciatis vitae delectus. Lorem
+      ipsum, dolor sit amet consectetur adipisicing elit. Provident saepe, vel
+      assumenda ipsam ullam laudantium quia placeat omnis obcaecati, repellat
+      cupiditate, quo minus accusamus ipsa dolorem consequatur? Omnis, sunt
+      nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, iure
+      excepturi minima consequuntur voluptate dolore facere? Sit, consequuntur
+      voluptatibus reprehenderit, et saepe voluptates quam accusantium provident
+      voluptas omnis non reiciendis.
+    </p>
+    <Accordion title="An Accordion">
+      <p>This is the content of the accordion.</p>
+      <Accordion title="Nested Accordion">
+        <p>This is the content of the nested accordion.</p>
+      </Accordion>
+    </Accordion>
+  </PageBody>
+</Layout>
