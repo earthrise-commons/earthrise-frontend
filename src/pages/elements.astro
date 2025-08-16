@@ -1,74 +1,78 @@
 ---
 import Accordion from "../components/content-blocks/Accordion.astro";
 import Banner from "../components/content-blocks/Banner.astro";
+import BGBlock from "../components/content-blocks/BGBlock.astro";
 import PageBody from "../components/layout/page/PageBody.astro";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout>
-  <PageBody>
-    <h1>Elements</h1>
-    <h2>This is an H2</h2>
-    <h3>This is an H3</h3>
-    <h4>This is an H4</h4>
-    <p>
-      This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Neque voluptatum, maiores cupiditate tenetur consequatur quo tempora
-      maxime provident accusamus distinctio esse odio sequi ipsa? Praesentium
-      consequuntur iste illo ipsam voluptas? Lorem ipsum, dolor sit amet
-      consectetur adipisicing elit. Repudiandae id placeat doloribus quasi
-      soluta, quod architecto adipisci nobis magni cumque. Saepe pariatur
-      distinctio veritatis est quia quaerat perspiciatis vitae delectus. Lorem
-      ipsum, dolor sit amet consectetur adipisicing elit. Provident saepe, vel
-      assumenda ipsam ullam laudantium quia placeat omnis obcaecati, repellat
-      cupiditate, quo minus accusamus ipsa dolorem consequatur? Omnis, sunt
-      nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, iure
-      excepturi minima consequuntur voluptate dolore facere? Sit, consequuntur
-      voluptatibus reprehenderit, et saepe voluptates quam accusantium provident
-      voluptas omnis non reiciendis.
-    </p>
-    <p>
-      This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing
-      elit. Neque voluptatum, maiores cupiditate tenetur consequatur quo tempora
-      maxime provident accusamus distinctio esse odio sequi ipsa? Praesentium
-      consequuntur iste illo ipsam voluptas? Lorem ipsum, dolor sit amet
-      consectetur adipisicing elit. Repudiandae id placeat doloribus quasi
-      soluta, quod architecto adipisci nobis magni cumque. Saepe pariatur
-      distinctio veritatis est quia quaerat perspiciatis vitae delectus. Lorem
-      ipsum, dolor sit amet consectetur adipisicing elit. Provident saepe, vel
-      assumenda ipsam ullam laudantium quia placeat omnis obcaecati, repellat
-      cupiditate, quo minus accusamus ipsa dolorem consequatur? Omnis, sunt
-      nisi? Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, iure
-      excepturi minima consequuntur voluptate dolore facere? Sit, consequuntur
-      voluptatibus reprehenderit, et saepe voluptates quam accusantium provident
-      voluptas omnis non reiciendis.
-    </p>
-    <h2>Accordions</h2>
-    <Accordion title="An Accordion" group="group1">
-      <p>This is the content of the accordion.</p>
-      <Accordion title="Nested Accordion">
-        <p>This is the content of the nested accordion.</p>
-      </Accordion>
+  <h1>Elements</h1>
+  <h2>This is an H2</h2>
+  <h3>This is an H3</h3>
+  <h4>This is an H4</h4>
+  <p>
+    This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing
+    elit. Neque voluptatum, maiores cupiditate tenetur consequatur quo tempora
+    maxime provident accusamus distinctio esse odio sequi ipsa? Praesentium
+    consequuntur iste illo ipsam voluptas? Lorem ipsum, dolor sit amet
+    consectetur adipisicing elit. Repudiandae id placeat doloribus quasi soluta,
+    quod architecto adipisci nobis magni cumque. Saepe pariatur distinctio
+    veritatis est quia quaerat perspiciatis vitae delectus. Lorem ipsum, dolor
+    sit amet consectetur adipisicing elit. Provident saepe, vel assumenda ipsam
+    ullam laudantium quia placeat omnis obcaecati, repellat cupiditate, quo
+    minus accusamus ipsa dolorem consequatur? Omnis, sunt nisi? Lorem ipsum
+    dolor sit amet consectetur adipisicing elit. Vero, iure excepturi minima
+    consequuntur voluptate dolore facere? Sit, consequuntur voluptatibus
+    reprehenderit, et saepe voluptates quam accusantium provident voluptas omnis
+    non reiciendis.
+  </p>
+  <p>
+    This is a paragraph. Lorem ipsum dolor sit amet consectetur adipisicing
+    elit. Neque voluptatum, maiores cupiditate tenetur consequatur quo tempora
+    maxime provident accusamus distinctio esse odio sequi ipsa? Praesentium
+    consequuntur iste illo ipsam voluptas? Lorem ipsum, dolor sit amet
+    consectetur adipisicing elit. Repudiandae id placeat doloribus quasi soluta,
+    quod architecto adipisci nobis magni cumque. Saepe pariatur distinctio
+    veritatis est quia quaerat perspiciatis vitae delectus. Lorem ipsum, dolor
+    sit amet consectetur adipisicing elit. Provident saepe, vel assumenda ipsam
+    ullam laudantium quia placeat omnis obcaecati, repellat cupiditate, quo
+    minus accusamus ipsa dolorem consequatur? Omnis, sunt nisi? Lorem ipsum
+    dolor sit amet consectetur adipisicing elit. Vero, iure excepturi minima
+    consequuntur voluptate dolore facere? Sit, consequuntur voluptatibus
+    reprehenderit, et saepe voluptates quam accusantium provident voluptas omnis
+    non reiciendis.
+  </p>
+  <h2>Accordions</h2>
+  <Accordion title="An Accordion" group="group1">
+    <p>This is the content of the accordion.</p>
+    <Accordion title="Nested Accordion">
+      <p>This is the content of the nested accordion.</p>
     </Accordion>
-    <Accordion title="Another Accordion in a Group" group="group1">
-      <p>This is the content of another accordion.</p>
-    </Accordion>
-    <Accordion title="An ungrouped Accordion">
-      <p>This is another accordion content.</p>
-    </Accordion>
-    <Accordion
-      title="Another ungrouped accordion, with a really long title that will wrap onto multiple lines"
-    >
-      <p>This is another accordion content.</p>
-    </Accordion>
+  </Accordion>
+  <Accordion title="Another Accordion in a Group" group="group1">
+    <p>This is the content of another accordion.</p>
+  </Accordion>
+  <Accordion title="An ungrouped Accordion">
+    <p>This is another accordion content.</p>
+  </Accordion>
+  <Accordion
+    title="Another ungrouped accordion, with a really long title that will wrap onto multiple lines"
+  >
+    <p>This is another accordion content.</p>
+  </Accordion>
 
-    <h2>Alert Banners</h2>
-    <Banner color="a">Here is some content inside a banner</Banner>
-    <Banner color="b" icon="b">
-      <h3>here's a header in a banner</h3><p>
-        here's a paragraph in a banner
-      </p><p>This banner has color <code>b</code></p></Banner
-    >
-    <Banner color="b" icon="x">Here's a banner with the X icon</Banner>
-  </PageBody>
+  <h2>Alert Banners</h2>
+  <Banner color="a">Here is some content inside a banner</Banner>
+  <Banner color="b" icon="b">
+    <h3>here's a header in a banner</h3><p>here's a paragraph in a banner</p><p>
+      This banner has color <code>b</code>
+    </p></Banner
+  >
+  <Banner color="b" icon="x">Here's a banner with the X icon</Banner>
+  <h2>Background Block</h2>
+  <BGBlock>
+    <h3>here's a header in a background block</h3>
+    <p>here's a paragraph in a background block</p>
+  </BGBlock>
 </Layout>

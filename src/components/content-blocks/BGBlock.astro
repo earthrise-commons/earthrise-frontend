@@ -1,0 +1,29 @@
+---
+
+---
+
+<div class="bg-block">
+  <div class="bg-block-content padded-content-container">
+    <slot />
+  </div>
+</div>
+
+<style>
+  .bg-block {
+    background-color: var(--color-text);
+    color: var(--color-background);
+    font-weight: 400;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    max-width: 100vw;
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .bg-block-content {
+    position: relative;
+    border: 1px solid white;
+    max-width: var(--size-padded-content);
+    margin: 0 auto;
+  }
+</style>
