@@ -1,5 +1,7 @@
 ---
+import DesignTokens from "../components/DesignTokens.astro";
 import Navbar from "../components/layout/nav/Navbar.astro";
+import PageBody from "../components/layout/page/PageBody.astro";
 ---
 
 <!doctype html>
@@ -10,10 +12,14 @@ import Navbar from "../components/layout/nav/Navbar.astro";
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="generator" content={Astro.generator} />
     <title>Astro Basics</title>
+    <DesignTokens />
   </head>
+
   <body>
     <Navbar />
-    <slot />
+    <PageBody>
+      <slot />
+    </PageBody>
   </body>
 </html>
 

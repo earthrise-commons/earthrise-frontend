@@ -1,0 +1,14 @@
+<main>
+  <slot />
+</main>
+
+<style>
+  main {
+  }
+
+  main > :global(*) {
+    max-width: var(--size-content-width);
+    margin: 0 auto;
+    padding: 0 var(--size-page-padding);
+  }
+</style>
