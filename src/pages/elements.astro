@@ -42,11 +42,23 @@ import Layout from "../layouts/Layout.astro";
       voluptatibus reprehenderit, et saepe voluptates quam accusantium provident
       voluptas omnis non reiciendis.
     </p>
-    <Accordion title="An Accordion">
+    <h2>Accordions</h2>
+    <Accordion title="An Accordion" group="group1">
       <p>This is the content of the accordion.</p>
       <Accordion title="Nested Accordion">
         <p>This is the content of the nested accordion.</p>
       </Accordion>
+    </Accordion>
+    <Accordion title="Another Accordion in a Group" group="group1">
+      <p>This is the content of another accordion.</p>
+    </Accordion>
+    <Accordion title="An ungrouped Accordion">
+      <p>This is another accordion content.</p>
+    </Accordion>
+    <Accordion
+      title="Another ungrouped accordion, with a really long title that will wrap onto multiple lines"
+    >
+      <p>This is another accordion content.</p>
     </Accordion>
   </PageBody>
 </Layout>
