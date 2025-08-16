@@ -1,0 +1,72 @@
+---
+const { title } = Astro.props;
+---
+
+<details>
+  <summary
+    ><div class="summary">
+      <span>{title}</span>
+      <div class="accordion-toggle"></div>
+    </div></summary
+  >
+  <div class="accordion-content">
+    <slot />
+  </div>
+</details>
+
+<style>
+  details {
+    border: 1px solid var(--color-borders);
+    border-radius: 0.6rem;
+    position: relative;
+  }
+  summary {
+    padding: 1.5rem 3rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-accent-a);
+  }
+
+  summary::marker {
+    content: "";
+  }
+
+  summary::-webkit-details-marker {
+    display: none;
+    color: transparent;
+  }
+
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  .accordion-toggle {
+    width: 1.5rem;
+    height: 1.5rem;
+    /* background-color: red; */
+    position: relative;
+  }
+  .accordion-toggle::before,
+  .accordion-toggle::after {
+    content: "";
+    background-color: var(--color-accent-a);
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 2px);
+    height: 4px;
+    transition: all 0.1s;
+  }
+  .accordion-toggle::after {
+    transform: rotate(90deg);
+  }
+
+  details[open] .accordion-toggle::before,
+  details[open] .accordion-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    padding: 1.5rem 3rem;
+  }
+</style>
