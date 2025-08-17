@@ -1,0 +1,51 @@
+---
+const navItems = [
+  { label: "Explore", href: "#explore" },
+  { label: "About", href: "#about" },
+  { label: "Code of Conduct", href: "#conduct" },
+  { label: "Call for Submissions", href: "#submissions" },
+  { label: "Table of Contents", href: "#toc" },
+];
+---
+
+<nav>
+  <div class="nav-group-main">
+    {
+      navItems.map((item) => (
+        <a href={item.href} class="nav-item">
+          {item.label}
+        </a>
+      ))
+    }
+  </div>
+</nav>
+
+<style>
+  nav {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 var(--size-page-padding);
+    background-color: var(--color-text);
+    color: var(--color-background);
+    font-weight: 500;
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .nav-group-main {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    max-width: var(--size-content-width);
+    width: 100%;
+  }
+  .nav-item {
+    padding: 1rem 1.5rem;
+    text-decoration: none;
+    font-size: 1rem;
+  }
+  .nav-item:first-child {
+    padding-left: 0;
+  }
+</style>

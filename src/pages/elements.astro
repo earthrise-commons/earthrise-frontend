@@ -5,7 +5,7 @@ import BGBlock from "../components/content-blocks/BGBlock.astro";
 import PageBody from "../components/layout/page/PageBody.astro";
 import GraphicHero from "../components/special-blocks/GraphicHero.astro";
 import Layout from "../layouts/Layout.astro";
-
+import InPageNav from "../components/layout/nav/InPageNav.astro";
 import CFSHero from "../assets/graphic-hero/cfs-hero.svg";
 import TOCHero from "../assets/graphic-hero/toc-hero.svg";
 import COCHero from "../assets/graphic-hero/coc-hero.svg";
@@ -17,10 +17,6 @@ import COCHero from "../assets/graphic-hero/coc-hero.svg";
   <GraphicHero title="Table of Contents" imgSrc={TOCHero.src} />
   <GraphicHero title="Code of Conduct" imgSrc={COCHero.src} />
   <GraphicHero title="Call for Submissions" imgSrc={CFSHero.src} />
-  <GraphicHero
-    title="Hero Block with a breakingly long piece of text on it"
-    imgSrc={CFSHero.src}
-  />
 
   <p>something after the hero block</p>
   <h1>Elements</h1>
@@ -59,6 +55,8 @@ import COCHero from "../assets/graphic-hero/coc-hero.svg";
     reprehenderit, et saepe voluptates quam accusantium provident voluptas omnis
     non reiciendis.
   </p>
+  <h2>In Page Navigation</h2>
+  <InPageNav />
   <h2>Accordions</h2>
   <Accordion title="An Accordion" group="group1">
     <p>This is the content of the accordion.</p>
