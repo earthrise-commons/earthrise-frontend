@@ -5,7 +5,23 @@ import Navbar from "../nav/Navbar.astro";
 <footer class="theme-dark">
   <Navbar />
   <div class="footer-content-wrapper">
-    <h1>askdjalksjdkl</h1>
+    <div class="footer-col">
+      <h2>Contact Us</h2>
+      <p>
+        Earthrise Commons invites educators, community leaders, and
+        sustainability practitioners to contribute to our sustainability
+        education and community engagement learning commons. We are not just a
+        collection of lesson plans, but a community of educators!
+      </p>
+    </div>
+    <div class="footer-col">
+      <h2>Creative Commons License</h2>
+      <p>
+        All new content on Earthrise Commons is licensed under CC BY 4.0. You
+        can adapt it for your own community with attribution. Existing material
+        can be licensed by CC-BY-NC.
+      </p>
+    </div>
   </div>
 </footer>
 
@@ -18,5 +34,12 @@ import Navbar from "../nav/Navbar.astro";
     max-width: var(--size-page-width);
     margin: 0 auto;
     padding: 2rem 1rem;
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+  }
+  .footer-col {
+    flex-basis: 300px;
+    flex-grow: 1;
   }
 </style>
