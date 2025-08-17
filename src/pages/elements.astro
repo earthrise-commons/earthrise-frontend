@@ -5,12 +5,23 @@ import BGBlock from "../components/content-blocks/BGBlock.astro";
 import PageBody from "../components/layout/page/PageBody.astro";
 import GraphicHero from "../components/special-blocks/GraphicHero.astro";
 import Layout from "../layouts/Layout.astro";
+
+import CFSHero from "../assets/graphic-hero/cfs-hero.svg";
+import TOCHero from "../assets/graphic-hero/toc-hero.svg";
+import COCHero from "../assets/graphic-hero/coc-hero.svg";
 ---
 
 <Layout>
   <h2>Hero Blocks</h2>
   <p>These are custom graphic hero blocks for certain content pages.</p>
-  <GraphicHero title="Table of Contents" />
+  <GraphicHero title="Table of Contents" imgSrc={TOCHero.src} />
+  <GraphicHero title="Code of Conduct" imgSrc={COCHero.src} />
+  <GraphicHero title="Call for Submissions" imgSrc={CFSHero.src} />
+  <GraphicHero
+    title="Hero Block with a breakingly long piece of text on it"
+    imgSrc={CFSHero.src}
+  />
+
   <p>something after the hero block</p>
   <h1>Elements</h1>
   <h2>This is an H2</h2>
