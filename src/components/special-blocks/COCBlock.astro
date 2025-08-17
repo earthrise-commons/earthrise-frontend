@@ -1,0 +1,44 @@
+---
+import EarthriseIllustration from "../../assets/illustrations/coc-earthrise.svg";
+---
+
+<section class="coc-block theme-dark">
+  <div class="coc-content-wrapper">
+    <div class="coc-col text-block"><slot /></div>
+  </div>
+  <div
+    class="coc-graphic"
+    style={`background-image: url(${EarthriseIllustration.src});`}
+  >
+  </div>
+</section>
+
+<style>
+  .coc-block {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    max-width: 100%;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    position: relative;
+  }
+  .coc-content-wrapper {
+    margin: 0 auto;
+    max-width: var(--size-padded-page);
+    width: 100%;
+    margin: 0 auto;
+  }
+  .coc-col {
+    max-width: 550px;
+  }
+  .coc-graphic {
+    background-size: cover;
+    background-position: left;
+    position: absolute;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    max-width: 500px;
+    width: 100%;
+  }
+</style>

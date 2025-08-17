@@ -1,0 +1,25 @@
+---
+import GraphicHero from "../components/special-blocks/GraphicHero.astro";
+import Layout from "../layouts/Layout.astro";
+import COCHero from "../assets/graphic-hero/coc-hero.svg";
+import COCBlock from "../components/special-blocks/COCBlock.astro";
+---
+
+<Layout>
+  <GraphicHero title="Code of Conduct" imgSrc={COCHero.src} />
+  <COCBlock>
+    <h2>Our Code of Conduct</h2>
+    <p>All content you share here becomes part of the commons:</p>
+    <dl>
+      <dt>New work you create:</dt>
+      <dd>Licensed under CC BY (anyone can use with attribution)</dd>
+
+      <dt>Existing work you adapt:</dt>
+      <dd>Licensed under CC BY-NC (free for education, not commercial use)</dd>
+      <dt>Why this matters:</dt>
+      <dd>
+        Your knowledge stays accessible to educators and learners worldwide
+      </dd>
+    </dl>
+  </COCBlock>
+</Layout>
