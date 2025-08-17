@@ -2,14 +2,16 @@
 import GraphicHero from "../components/special-blocks/GraphicHero.astro";
 import Layout from "../layouts/Layout.astro";
 import COCHero from "../assets/graphic-hero/coc-hero.svg";
-import COCBlock from "../components/special-blocks/COCBlock.astro";
+import Conduct1 from "../components/special-blocks/Conduct1.astro";
+import Conduct2 from "../components/special-blocks/Conduct2.astro";
 import InPageNav from "../components/layout/nav/InPageNav.astro";
 import Banner from "../components/content-blocks/Banner.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout>
   <GraphicHero title="Code of Conduct" imgSrc={COCHero.src} />
-  <COCBlock class="no-margin-after">
+  <Conduct1 class="no-margin-after">
     <h2>Our Code of Conduct</h2>
     <p>All content you share here becomes part of the commons:</p>
     <dl>
@@ -23,7 +25,12 @@ import Banner from "../components/content-blocks/Banner.astro";
         Your knowledge stays accessible to educators and learners worldwide
       </dd>
     </dl>
-  </COCBlock>
+    <a
+      href="https://creativecommons.org/share-your-work/cclicenses/"
+      class="ec-button"
+      ><Icon name="fa7-solid:link" />Creative Commons License Information</a
+    >
+  </Conduct1>
   <InPageNav
     class="no-margin-before"
     items={[
@@ -105,4 +112,58 @@ import Banner from "../components/content-blocks/Banner.astro";
     <dt>Serious Violations:</dt>
     <dd>Removal from the community after team review</dd>
   </dl>
+  <Conduct2
+    ><h2 id="your-rights-and-responsibilities">
+      Your Rights and Responsibilities
+    </h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access all community resources freely</li>
+      <li>Receive proper attribution for your contributions</li>
+      <li>Appeal decisions you think are wrong</li>
+      <li>Participate in community discussions about platform changes</li>
+    </ul>
+    <p>You're responsible for:</p>
+    <ul>
+      <li>Following copyright and licensing rules</li>
+      <li>Being respectful in all interactions</li>
+      <li>Contributing positively to the community</li>
+      <li>Helping maintain the commons for everyone</li>
+    </ul>
+  </Conduct2>
+  <h2 id="getting-started">Getting Started</h2>
+
+  <p><strong>Getting started is easy:</strong></p>
+  <p>Share your first resource with proper licensing.</p>
+  <p>
+    The difference: <strong>CC BY</strong> allows anyone (including companies) to
+    use your work for any purpose, while
+    <strong>CC BY-NC</strong> restricts commercial use, which is important when you’re
+    working with content that originally belonged to someone else.
+  </p>
+  <p>Introduce yourself to the community.</p>
+  <p>Connect with the Gardener if you need help.</p>
+  <p>Explore what others have shared and provide feedback.</p>
+  <p>
+    <a href="/contribute" class="ec-button contribute-button"
+      >Contribute a Project</a
+    >
+  </p>
 </Layout>
+
+<style>
+  h3 {
+    color: var(--color-theme-accent-a);
+  }
+  dt {
+    font-weight: 400;
+  }
+  dl,
+  li {
+    font-weight: 300;
+  }
+  .contribute-button {
+    margin: 0 auto;
+    text-align: center;
+  }
+</style>
