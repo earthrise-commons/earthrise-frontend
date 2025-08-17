@@ -1,8 +1,9 @@
 ---
 import EarthriseIllustration from "../../assets/illustrations/coc-earthrise.svg";
+const { class: className } = Astro.props;
 ---
 
-<section class="coc-block theme-dark">
+<section class:list={["coc-block", "theme-dark", className]}>
   <div class="coc-content-wrapper">
     <div class="coc-col text-block"><slot /></div>
   </div>

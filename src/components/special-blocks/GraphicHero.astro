@@ -1,12 +1,12 @@
 ---
-const { title, imgSrc } = Astro.props;
+const { title, imgSrc, class: className } = Astro.props;
 
 import TOCHero from "../../assets/graphic-hero/toc-hero.svg";
 const defaultImgSrc = TOCHero.src;
 ---
 
 <div
-  class="graphic-hero-frame"
+  class:list={["graphic-hero-frame", className]}
   style={`background-image: url(${imgSrc || defaultImgSrc});`}
 >
   <h1>{title}</h1>

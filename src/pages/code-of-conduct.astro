@@ -3,11 +3,12 @@ import GraphicHero from "../components/special-blocks/GraphicHero.astro";
 import Layout from "../layouts/Layout.astro";
 import COCHero from "../assets/graphic-hero/coc-hero.svg";
 import COCBlock from "../components/special-blocks/COCBlock.astro";
+import InPageNav from "../components/layout/nav/InPageNav.astro";
 ---
 
 <Layout>
   <GraphicHero title="Code of Conduct" imgSrc={COCHero.src} />
-  <COCBlock>
+  <COCBlock class="no-margin-after">
     <h2>Our Code of Conduct</h2>
     <p>All content you share here becomes part of the commons:</p>
     <dl>
@@ -22,4 +23,5 @@ import COCBlock from "../components/special-blocks/COCBlock.astro";
       </dd>
     </dl>
   </COCBlock>
+  <InPageNav class="no-margin-before" />
 </Layout>

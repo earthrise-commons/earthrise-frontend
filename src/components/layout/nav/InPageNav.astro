@@ -1,6 +1,7 @@
 ---
 /* TODO: decide if the href for these should be a real URL or just the anchor part, and if it should include the pound sign */
-const navItems = [
+const { items, class: className } = Astro.props;
+const navItems = items || [
   { label: "Explore", href: "#explore" },
   { label: "About", href: "#about" },
   { label: "Code of Conduct", href: "#conduct" },
@@ -9,8 +10,8 @@ const navItems = [
 ];
 ---
 
-<nav>
-  <div class="nav-group-main">
+<nav class={className}>
+  <div class:list={["nav-group-main"]}>
     {
       navItems.map((item) => (
         <a href={item.href} class="nav-item">
