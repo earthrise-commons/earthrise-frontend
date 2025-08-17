@@ -1,4 +1,5 @@
 ---
+/* TODO: decide if the href for these should be a real URL or just the anchor part, and if it should include the pound sign */
 const navItems = [
   { label: "Explore", href: "#explore" },
   { label: "About", href: "#about" },
@@ -25,7 +26,7 @@ const navItems = [
     display: flex;
     align-items: center;
     justify-content: center;
-    padding: 0 var(--size-page-padding);
+    padding: 1rem var(--size-page-padding);
     background-color: var(--color-text);
     color: var(--color-background);
     font-weight: 500;
@@ -37,7 +38,8 @@ const navItems = [
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
-    max-width: var(--size-content-width);
+    /* TODO: fix the width of this on smaller screens */
+    max-width: calc(var(--size-padded-content) + 2rem);
     width: 100%;
   }
   .nav-item {
@@ -46,6 +48,11 @@ const navItems = [
     font-size: 1rem;
   }
   .nav-item:first-child {
-    padding-left: 0;
+    /* padding-left: 0; */
+  }
+  .nav-item:hover,
+  .nav-item:focus {
+    background-color: var(--color-background);
+    color: var(--color-text);
   }
 </style>
