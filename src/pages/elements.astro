@@ -6,9 +6,12 @@ import BGBlockAlt from "../components/content-blocks/BGBlockAlt.astro";
 import GraphicHero from "../components/special-blocks/GraphicHero.astro";
 import Layout from "../layouts/Layout.astro";
 import InPageNav from "../components/layout/nav/InPageNav.astro";
+
+import ImageGroup from "../components/content-blocks/ImageGroup.astro";
 import CFSHero from "../assets/graphic-hero/cfs-hero.svg";
 import TOCHero from "../assets/graphic-hero/toc-hero.svg";
 import COCHero from "../assets/graphic-hero/coc-hero.svg";
+import SampleImage from "../assets/images/art-andrea-kantrowitz.jpg";
 ---
 
 <Layout>
@@ -55,6 +58,13 @@ import COCHero from "../assets/graphic-hero/coc-hero.svg";
     reprehenderit, et saepe voluptates quam accusantium provident voluptas omnis
     non reiciendis.
   </p>
+  <h2>Image Group</h2>
+  <ImageGroup
+    src={SampleImage}
+    alt="Painting of a person standing on a cliff looking out over a valley"
+    caption="Art by Andrea Kantrowitz"
+  />
+
   <h2>In Page Navigation</h2>
   <InPageNav />
   <h2>Accordions</h2>
@@ -88,6 +98,11 @@ import COCHero from "../assets/graphic-hero/coc-hero.svg";
   <BGBlock>
     <h3>here's a header in a background block</h3>
     <p>here's a paragraph in a background block</p>
+    <ImageGroup
+      src={SampleImage}
+      alt="Painting of a person standing on a cliff looking out over a valley"
+      caption="Art by Andrea Kantrowitz"
+    />
   </BGBlock>
   <p>
     Here's the 'alternate version' with a slightly different algorithm for star
