@@ -12,7 +12,7 @@ import "@fontsource/poppins";
 
     --color-theme-text: #28232c;
     --color-text: var(--color-theme-text);
-
+    --color-headings: var(--color-theme-accent-b);
     --color-theme-accent-a: #26417b;
     --color-theme-accent-b: #ffb155;
     --color-cta: var(--color-theme-accent-a);
@@ -41,6 +41,8 @@ import "@fontsource/poppins";
     --font-main: "Lexend", sans-serif;
     --font-headline: "Poppins", sans-serif;
     --size-page-width: 1200px;
+    --size-padded-page: min(var(--size-page-width), calc(100vw - 2rem));
+
     --size-content-width: 960px;
     --size-padded-content: min(var(--size-content-width), calc(100vw - 2rem));
     --size-page-padding: 1rem;
@@ -52,8 +54,6 @@ import "@fontsource/poppins";
     background-color: var(--color-background);
 
     font-size: 16px;
-  }
-  html {
   }
 </style>
 <style is:global>

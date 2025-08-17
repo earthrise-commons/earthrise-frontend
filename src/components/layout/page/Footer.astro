@@ -13,6 +13,15 @@ import Navbar from "../nav/Navbar.astro";
         education and community engagement learning commons. We are not just a
         collection of lesson plans, but a community of educators!
       </p>
+      <p>
+        We look forward to your submissions of innovative approaches to
+        sustainability education and community engagement!
+      </p>
+      <p>
+        For questions or more information, please contact Joshua Korenblat at
+        korenblj@newpaltz.edu.
+      </p>
+      <a class="ec-button" href="mailto:korenblj@newpaltz.edu">Contact Us</a>
     </div>
     <div class="footer-col">
       <h2>Creative Commons License</h2>
@@ -21,6 +30,9 @@ import Navbar from "../nav/Navbar.astro";
         can adapt it for your own community with attribution. Existing material
         can be licensed by CC-BY-NC.
       </p>
+      <a href="https://creativecommons.org/licenses/by-nc/4.0/"
+        >Creative Commons License</a
+      >
     </div>
   </div>
 </footer>
@@ -31,7 +43,7 @@ import Navbar from "../nav/Navbar.astro";
     color: var(--color-text);
   }
   .footer-content-wrapper {
-    max-width: var(--size-page-width);
+    max-width: var(--size-page-width-padded);
     margin: 0 auto;
     padding: 2rem 1rem;
     display: flex;
@@ -41,5 +53,10 @@ import Navbar from "../nav/Navbar.astro";
   .footer-col {
     flex-basis: 300px;
     flex-grow: 1;
+  }
+  .footer-col h1,
+  .footer-col h2,
+  .footer-col h3 {
+    color: var(--color-theme-accent-b);
   }
 </style>

@@ -2,7 +2,7 @@
 const { title, group } = Astro.props;
 ---
 
-<details name={group || undefined}>
+<details class="ec-accordion theme-light" name={group || undefined}>
   <summary
     ><div class="summary">
       <span>{title}</span>
@@ -13,18 +13,24 @@ const { title, group } = Astro.props;
     <slot />
   </div>
 </details>
-
+<style>
+  .ec-accordion {
+    --color-background: var(--color-theme-background);
+    --color-text: var(--color-theme-text);
+  }
+</style>
 <style>
   details {
     border: 1px solid var(--color-borders);
     border-radius: 0.6rem;
     position: relative;
+    background-color: var(--color-theme-background);
   }
   summary {
     padding: 1.5rem 3rem;
     font-weight: 700;
     font-size: 1.5rem;
-    color: var(--color-accent-a);
+    color: var(--color-theme-accent-a);
     list-style: none;
   }
 
@@ -52,7 +58,7 @@ const { title, group } = Astro.props;
   .accordion-toggle::before,
   .accordion-toggle::after {
     content: "";
-    background-color: var(--color-accent-a);
+    background-color: var(--color-theme-accent-a);
     width: 100%;
     position: absolute;
     top: calc(50% - 2px);
