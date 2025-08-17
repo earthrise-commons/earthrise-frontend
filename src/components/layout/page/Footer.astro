@@ -1,5 +1,6 @@
 ---
 import Navbar from "../nav/Navbar.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <footer class="theme-dark">
@@ -21,7 +22,9 @@ import Navbar from "../nav/Navbar.astro";
         For questions or more information, please contact Joshua Korenblat at
         korenblj@newpaltz.edu.
       </p>
-      <a class="ec-button" href="mailto:korenblj@newpaltz.edu">Contact Us</a>
+      <a class="ec-button" href="mailto:korenblj@newpaltz.edu"
+        ><Icon name="fa7-solid:envelope" />Contact Us</a
+      >
     </div>
     <div class="footer-col">
       <h2>Creative Commons License</h2>
@@ -30,8 +33,10 @@ import Navbar from "../nav/Navbar.astro";
         can adapt it for your own community with attribution. Existing material
         can be licensed by CC-BY-NC.
       </p>
-      <a href="https://creativecommons.org/licenses/by-nc/4.0/"
-        >Creative Commons License</a
+      <a
+        class="ec-button"
+        href="https://creativecommons.org/licenses/by-nc/4.0/"
+        ><Icon name="fa7-solid:link" />Creative Commons License</a
       >
     </div>
   </div>
