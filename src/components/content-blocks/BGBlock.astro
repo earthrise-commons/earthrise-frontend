@@ -23,7 +23,11 @@ for (let i = 0; i < 6; i++) {
 }
 ---
 
-<div class="bg-block">
+<div
+  class="bg-block"
+  style="--color-background: var(--color-theme-text);
+    --color-text: var(--color-theme-background);"
+>
   <div class="bg-block-content padded-content-container">
     <slot />
     {
@@ -33,12 +37,12 @@ for (let i = 0; i < 6; i++) {
     }
   </div>
 </div>
-<style is:global>
+<!-- <style is:global>
   .bg-block {
     --color-background: var(--color-theme-text);
     --color-text: var(--color-theme-background);
   }
-</style>
+</style> -->
 <style>
   .bg-block {
     background-color: var(--color-background);

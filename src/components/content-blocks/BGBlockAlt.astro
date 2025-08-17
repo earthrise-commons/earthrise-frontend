@@ -1,0 +1,121 @@
+---
+/* Version 2 of the BG Block component, using CSS Grid for positioning */
+import StarIcon from "../../assets/icons/icon-star.svg";
+
+const getRandomSign = () => {
+  return Math.random() < 0.5 ? 1 : -1;
+};
+
+const starGroups = [];
+// TODO: better algorithmically generated star placements
+for (let i = 0; i < 4; i++) {
+  const starGroup = [];
+  const groupSize = Math.random() * 4 + 1;
+  for (let i = 0; i < groupSize; i++) {
+    const curStar = {};
+    curStar["--star-rotation"] = `${Math.floor(Math.random() * 360)}deg`;
+    curStar["--star-width"] = `${Math.floor(Math.random() * 20 + 20)}px`;
+    curStar["--star-left"] = `${Math.floor(Math.random() * 60 + 20)}%`;
+    curStar["--star-top"] = `${Math.floor(Math.random() * 60 + 20)}%`;
+    starGroup.push(curStar);
+  }
+  starGroups.push(starGroup);
+}
+---
+
+<div
+  class="bg-block"
+  style="--color-background: var(--color-theme-text);
+    --color-text: var(--color-theme-background);"
+>
+  <div class="bg-block-content padded-content-container">
+    <slot />
+  </div>
+  <div class="star-group star-group-1">
+    {
+      starGroups[0].map((star) => {
+        return <StarIcon class="star" style={star} />;
+      })
+    }
+  </div>
+  <div class="star-group star-group-2">
+    {
+      starGroups[1].map((star) => {
+        return <StarIcon class="star" style={star} />;
+      })
+    }
+  </div>
+  <div class="star-group star-group-3">
+    {
+      starGroups[2].map((star) => {
+        return <StarIcon class="star" style={star} />;
+      })
+    }
+  </div>
+  <div class="star-group star-group-4">
+    {
+      starGroups[3].map((star) => {
+        return <StarIcon class="star" style={star} />;
+      })
+    }
+  </div>
+</div>
+
+<style>
+  .bg-block {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-weight: 400;
+    display: grid;
+    grid-template-columns: 1fr var(--size-padded-content) 1fr;
+    grid-template-rows: 8rem min-content 8rem;
+    max-width: 100vw;
+    width: 100vw;
+    margin-left: 0;
+    margin-right: 0;
+  }
+  .bg-block-content {
+    position: relative;
+
+    grid-column: 2;
+    grid-row: 2;
+  }
+
+  .star {
+    position: absolute;
+    transform: translate(-50%, -50%) rotate(var(--star-rotation));
+    top: var(--star-top);
+    left: var(--star-left);
+  }
+  .star-group {
+    position: relative;
+  }
+  .star-group-1 {
+    grid-row: 1;
+    grid-column: 2;
+  }
+  .star-group-1 .star {
+    top: calc(var(--star-top) - 2rem);
+  }
+  .star-group-2 {
+    grid-row: 1 / 3;
+    grid-column: 1;
+  }
+  .star-group-2 .star {
+    left: calc(var(--star-left) - 2rem);
+  }
+  .star-group-3 {
+    grid-row: 1 / 3;
+    grid-column: 3;
+  }
+  .star-group-3 .star {
+    left: calc(var(--star-left) + 2rem);
+  }
+  .star-group-4 {
+    grid-row: 3;
+    grid-column: 2;
+  }
+  .star-group-4 .star {
+    top: calc(var(--star-top) + 2rem);
+  }
+</style>
