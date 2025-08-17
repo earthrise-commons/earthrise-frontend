@@ -4,6 +4,7 @@ import Layout from "../layouts/Layout.astro";
 import COCHero from "../assets/graphic-hero/coc-hero.svg";
 import COCBlock from "../components/special-blocks/COCBlock.astro";
 import InPageNav from "../components/layout/nav/InPageNav.astro";
+import Banner from "../components/content-blocks/Banner.astro";
 ---
 
 <Layout>
@@ -23,5 +24,35 @@ import InPageNav from "../components/layout/nav/InPageNav.astro";
       </dd>
     </dl>
   </COCBlock>
-  <InPageNav class="no-margin-before" />
+  <InPageNav
+    class="no-margin-before"
+    items={[
+      { label: "How Our Commons Works", href: "#how-our-commons-works" },
+      {
+        label: "Your Rights and Responsibilities",
+        href: "#your-rights-and-responsibilities",
+      },
+      { label: "Getting Started", href: "#getting-started" },
+    ]}
+  />
+  <h2 id="how-our-commons-works">How Our Commons Works</h2>
+  <h3>1. Clear Boundaries</h3>
+  <dl>
+    <dt>Who Belongs:</dt>
+    <dd>
+      Teachers, students, researchers, and sustainability practitioners at all
+      grade levels anywhere in the world.
+    </dd>
+    <dt>What We Share:</dt>
+    <dd>
+      Educational resources, lesson plans, resources, multimedia, and other
+      learning tools. If you are comfortable sharing your location and/or
+      contact information, we can pinpoint you on our interactive map and allow
+      others to reach out to you.
+    </dd>
+  </dl>
+  <Banner icon="x" color="a"
+    >What we don't allow: Commercial promotion, spam, harmful content, or
+    copyright violations</Banner
+  >
 </Layout>
