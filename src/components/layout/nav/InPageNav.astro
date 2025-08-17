@@ -1,6 +1,6 @@
 ---
 /* TODO: decide if the href for these should be a real URL or just the anchor part, and if it should include the pound sign */
-const { items, class: className } = Astro.props;
+const { items, class: className, width = "content" } = Astro.props;
 const navItems = items || [
   { label: "Explore", href: "#explore" },
   { label: "About", href: "#about" },
@@ -11,7 +11,7 @@ const navItems = items || [
 ---
 
 <nav class={className}>
-  <div class:list={["nav-group-main"]}>
+  <div class:list={["nav-group-main", "nav-width-" + width]}>
     {
       navItems.map((item) => (
         <a href={item.href} class="nav-item">
@@ -36,13 +36,18 @@ const navItems = items || [
     position: sticky;
     top: 0;
   }
+  .nav-width-page {
+    max-width: calc(var(--size-padded-page) + 2rem);
+  }
+  .nav-width-content {
+    max-width: calc(var(--size-padded-content) + 2rem);
+  }
 
   .nav-group-main {
     display: flex;
     flex-wrap: wrap;
     justify-content: flex-start;
     /* TODO: fix the width of this on smaller screens */
-    max-width: calc(var(--size-padded-content) + 2rem);
     width: 100%;
   }
   .nav-item {

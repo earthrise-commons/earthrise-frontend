@@ -1,0 +1,37 @@
+---
+const { class: className } = Astro.props;
+---
+
+<section class:list={["theme-dark", className]}>
+  <div class="two-col-container">
+    <div class="col text-block text-block-tight">
+      <slot name="left" />
+    </div>
+    <div class="col text-block text-block-tight">
+      <slot name="right" />
+    </div>
+  </div>
+</section>
+
+<style>
+  section {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    width: 100%;
+    max-width: 100%;
+    padding-top: 6rem;
+    padding-bottom: 6rem;
+  }
+  .two-col-container {
+    max-width: var(--size-padded-page);
+    width: 100%;
+    margin: 0 auto;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .col {
+    flex-basis: 400px;
+    flex-grow: 1;
+  }
+</style>

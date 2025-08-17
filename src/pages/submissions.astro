@@ -1,0 +1,52 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CFSHero from "../assets/graphic-hero/cfs-hero.svg";
+import GraphicHero from "../components/special-blocks/GraphicHero.astro";
+import TwoCol from "../components/content-blocks/TwoCol.astro";
+import ImageGroup from "../components/content-blocks/ImageGroup.astro";
+import InPageNav from "../components/layout/nav/InPageNav.astro";
+import KantrowitzPainting from "../assets/images/art-andrea-kantrowitz.jpg";
+---
+
+<Layout>
+  <GraphicHero title="Call for Submissions" imgSrc={CFSHero.src} />
+  <TwoCol class="no-margin-after">
+    <Fragment slot="left">
+      <h2>About Earthrise Commons</h2>
+      <p>
+        Earthrise Commons will serve as a digital resource companion to our Open
+        Access book, featuring projects that highlight how sustainability
+        education and community engagement are being integrated into courses,
+        programs, and community initiatives worldwide. These submissions will
+        celebrate diverse approaches to sustainability education and offer
+        actionable insights and models that can be adapted by other institutions
+        and communities to enhance learner engagement, equity, and impact.
+      </p><p>
+        Selected submissions are a form of publishing that you can use to build
+        community, advance ideas, and sprinkle some sustainability learning and
+        community engagement into your teaching, no matter your field of study.
+      </p>
+    </Fragment>
+    <Fragment slot="right">
+      <ImageGroup
+        src={KantrowitzPainting}
+        alt="Painting of a person standing on a cliff looking out over a valley"
+        caption="Art by Andrea Kantrowitz"
+      />
+    </Fragment>
+  </TwoCol>
+  <InPageNav
+    class="no-margin-before"
+    width="page"
+    items={[
+      { label: "Why Contribute", href: "#why-contribute" },
+      { label: "How to Contribute", href: "#how-to-contribute" },
+      { label: "Submission Guidelines", href: "#submission-guidelines" },
+      {
+        label: "Lesson Plan Format Options",
+        href: "#lesson-plan-format-options",
+      },
+      { label: "Call for Submissions", href: "#call-for-submissions" },
+    ]}
+  />
+</Layout>
