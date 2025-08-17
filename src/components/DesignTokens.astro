@@ -12,8 +12,11 @@ import "@fontsource/poppins";
 
     --color-theme-text: #28232c;
     --color-text: var(--color-theme-text);
-    --color-accent-a: #26417b;
-    --color-accent-b: #ffb155;
+
+    --color-theme-accent-a: #26417b;
+    --color-theme-accent-b: #ffb155;
+    --color-cta: var(--color-theme-accent-a);
+    --color-cta-text: var(--color-theme-background);
     --color-category-a: #26417b;
     --color-category-b: #177b51;
     --color-category-c: #28232c;
@@ -57,24 +60,23 @@ import "@fontsource/poppins";
   .ec-button {
     padding: 0.75rem 1.5rem;
     border-radius: 6px;
-    background-color: var(--color-button-bg);
-    border: 2px solid var(--color-button-bg);
-    color: var(--color-button-text);
+    background-color: var(--color-cta);
+    border: 2px solid var(--color-cta);
+    color: var(--color-cta-text);
     text-decoration: none;
     display: inline-block;
     font-weight: 500;
   }
   .ec-button:hover,
   .ec-button:focus {
-    background-color: var(--color-button-text);
-    color: var(--color-button-bg);
+    background-color: var(--color-cta-text);
+    color: var(--color-cta);
   }
-  .ec-button-primary {
-    --color-button-bg: var(--color-accent-a);
-    --color-button-text: var(--color-background);
-  }
-  .ec-button-secondary {
-    --color-button-bg: var(--color-accent-b);
-    --color-button-text: var(--color-text);
+
+  .theme-dark {
+    --color-background: var(--color-theme-text);
+    --color-text: var(--color-theme-background);
+    --color-cta: var(--color-theme-accent-b);
+    --color-cta-text: var(--color-theme-text);
   }
 </style>
