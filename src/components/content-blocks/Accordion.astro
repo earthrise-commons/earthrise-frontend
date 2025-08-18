@@ -1,0 +1,82 @@
+---
+const { title, group } = Astro.props;
+---
+
+<details class="ec-accordion theme-light" name={group || undefined}>
+  <summary
+    ><div class="summary">
+      <span>{title}</span>
+      <div class="accordion-toggle"></div>
+    </div></summary
+  >
+  <div class="accordion-content text-block text-block-tight">
+    <slot />
+  </div>
+</details>
+<style>
+  .ec-accordion {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+  }
+</style>
+<style>
+  details {
+    border: 1px solid var(--color-borders);
+    border-radius: 0.6rem;
+    position: relative;
+    background-color: var(--color-theme-background);
+  }
+  summary {
+    padding: 1.5rem 3rem;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--color-theme-accent-a);
+    list-style: none;
+  }
+
+  summary::marker {
+    content: "";
+  }
+
+  summary::-webkit-details-marker {
+    display: none !important;
+  }
+
+  .summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 1rem;
+    align-items: center;
+  }
+  .accordion-toggle {
+    flex-shrink: 0;
+    width: 1.5rem;
+    height: 1.5rem;
+    /* background-color: red; */
+    position: relative;
+  }
+  .accordion-toggle::before,
+  .accordion-toggle::after {
+    content: "";
+    background-color: var(--color-theme-accent-a);
+    width: 100%;
+    position: absolute;
+    top: calc(50% - 2px);
+    height: 4px;
+    transition: all 0.1s;
+  }
+  .accordion-toggle::after {
+    transform: rotate(90deg);
+  }
+
+  details[open] > * > * > .accordion-toggle::before,
+  details[open] > * > * > .accordion-toggle::after {
+    transform: rotate(180deg);
+  }
+
+  .accordion-content {
+    padding: 1.5rem 3rem;
+  }
+</style>

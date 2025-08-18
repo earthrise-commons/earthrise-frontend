@@ -1,0 +1,55 @@
+---
+import DesignTokens from "../components/DesignTokens.astro";
+import Navbar from "../components/layout/nav/Navbar.astro";
+import Footer from "../components/layout/page/Footer.astro";
+import PageBody from "../components/layout/page/PageBody.astro";
+import { Icon } from "astro-icon/components";
+
+const { title } = Astro.props;
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href="/ec-favicon.svg" />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} {title && "|"} Earthrise Commons</title>
+    <DesignTokens />
+  </head>
+
+  <body>
+    <div class="under-construction">
+      <Icon name="fa7-solid:hammer" />
+      <span
+        >This site is under construction. Please pardon our appearance while we
+        build Earthrise Commons, and feel free to follow along on GitHub!</span
+      >
+      <Icon name="fa7-solid:hammer" />
+    </div>
+    <Navbar />
+    <PageBody>
+      <slot />
+    </PageBody>
+    <Footer />
+  </body>
+</html>
+
+<style>
+  html,
+  body {
+    margin: 0;
+    width: 100%;
+    height: 100%;
+  }
+  div.under-construction {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    gap: 0.5rem;
+    padding: 0.5rem;
+    text-align: center;
+    background-color: var(--color-theme-accent-b);
+  }
+</style>

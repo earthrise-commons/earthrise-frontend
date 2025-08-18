@@ -1,0 +1,68 @@
+---
+import Navbar from "../nav/Navbar.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<footer class="theme-dark">
+  <Navbar />
+  <div class="footer-content-wrapper">
+    <div class="footer-col text-block">
+      <h2>Contact Us</h2>
+      <p>
+        Earthrise Commons invites educators, community leaders, and
+        sustainability practitioners to contribute to our sustainability
+        education and community engagement learning commons. We are not just a
+        collection of lesson plans, but a community of educators!
+      </p>
+      <p>
+        We look forward to your submissions of innovative approaches to
+        sustainability education and community engagement!
+      </p>
+      <p>
+        For questions or more information, please contact Joshua Korenblat at
+        korenblj@newpaltz.edu.
+      </p>
+      <a class="ec-button" href="mailto:korenblj@newpaltz.edu"
+        ><Icon name="fa7-solid:envelope" />Contact Us</a
+      >
+    </div>
+    <div class="footer-col text-block">
+      <h2>Creative Commons License</h2>
+      <p>
+        All new content on Earthrise Commons is licensed under CC BY 4.0. You
+        can adapt it for your own community with attribution. Existing material
+        can be licensed by CC-BY-NC.
+      </p>
+      <a
+        class="ec-button"
+        href="https://creativecommons.org/licenses/by-nc/4.0/"
+        ><Icon name="fa7-solid:link" />Creative Commons License</a
+      >
+    </div>
+  </div>
+</footer>
+
+<style>
+  footer {
+    background-color: var(--color-background);
+    color: var(--color-text);
+  }
+  .footer-content-wrapper {
+    max-width: var(--size-padded-page);
+    width: 100%;
+    margin: 0 auto;
+    padding: 0;
+    display: flex;
+    gap: 3rem;
+    flex-wrap: wrap;
+  }
+  .footer-col {
+    flex-basis: 300px;
+    flex-grow: 1;
+  }
+  .footer-col h1,
+  .footer-col h2,
+  .footer-col h3 {
+    color: var(--color-theme-accent-b);
+  }
+</style>

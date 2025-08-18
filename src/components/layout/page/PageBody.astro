@@ -1,0 +1,24 @@
+<main class="padded-content-container">
+  <slot />
+</main>
+
+<style>
+  main {
+  }
+
+  main > :global(*) {
+    max-width: var(--size-padded-content);
+    margin-left: auto;
+    margin-right: auto;
+  }
+</style>
+
+<style is:global>
+  .padded-content-container > * {
+    margin-top: 1em;
+    margin-bottom: 1em;
+  }
+  .padded-content-container > *:last-child {
+    margin-bottom: 3rem;
+  }
+</style>

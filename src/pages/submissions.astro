@@ -1,0 +1,170 @@
+---
+import Layout from "../layouts/Layout.astro";
+import CFSHero from "../assets/graphic-hero/cfs-hero.svg";
+import GraphicHero from "../components/special-blocks/GraphicHero.astro";
+import TwoCol from "../components/content-blocks/TwoCol.astro";
+import ImageGroup from "../components/content-blocks/ImageGroup.astro";
+import InPageNav from "../components/layout/nav/InPageNav.astro";
+import KantrowitzPainting from "../assets/images/art-andrea-kantrowitz.jpg";
+import CFS1 from "../content/call-for-submissions/cfs-1.md";
+import CFS2 from "../content/call-for-submissions/cfs-2.md";
+import CFS3 from "../content/call-for-submissions/cfs-3.md";
+import Banner from "../components/content-blocks/Banner.astro";
+import Accordion from "../components/content-blocks/Accordion.astro";
+import Img1 from "../assets/images/cfs-img-1.jpg";
+import Img2 from "../assets/images/cfs-img-2.jpg";
+import Img3 from "../assets/images/cfs-img-3.jpg";
+import BGBlock from "../components/content-blocks/BGBlock.astro";
+import BGBlockAlt from "../components/content-blocks/BGBlockAlt.astro";
+import { Icon } from "astro-icon/components";
+import CFSTable1 from "../content/call-for-submissions/CFSTable1.astro";
+import CFSTable2 from "../content/call-for-submissions/CFSTable2.astro";
+import CFSTable3 from "../content/call-for-submissions/CFSTable3.astro";
+---
+
+<Layout title="Call for Submissions">
+  <GraphicHero title="Call for Submissions" imgSrc={CFSHero.src} />
+  <TwoCol class="no-margin-after">
+    <Fragment slot="left">
+      <h2>About Earthrise Commons</h2>
+      <p>
+        Earthrise Commons will serve as a digital resource companion to our Open
+        Access book, featuring projects that highlight how sustainability
+        education and community engagement are being integrated into courses,
+        programs, and community initiatives worldwide. These submissions will
+        celebrate diverse approaches to sustainability education and offer
+        actionable insights and models that can be adapted by other institutions
+        and communities to enhance learner engagement, equity, and impact.
+      </p><p>
+        Selected submissions are a form of publishing that you can use to build
+        community, advance ideas, and sprinkle some sustainability learning and
+        community engagement into your teaching, no matter your field of study.
+      </p>
+    </Fragment>
+    <Fragment slot="right">
+      <ImageGroup
+        src={KantrowitzPainting}
+        alt="Painting of a person standing on a cliff looking out over a valley"
+        caption="Art by Andrea Kantrowitz"
+      />
+    </Fragment>
+  </TwoCol>
+  <InPageNav
+    class="no-margin-before"
+    width="page"
+    items={[
+      { label: "Why Contribute", href: "#why-contribute" },
+      { label: "How to Contribute", href: "#how-to-contribute" },
+      { label: "Submission Guidelines", href: "#submission-guidelines" },
+      {
+        label: "Lesson Plan Format Options",
+        href: "#lesson-plan-format-options",
+      },
+    ]}
+  />
+  <CFS1 />
+  <Banner icon="a" color="a"
+    >At Earthrise Commons, you are credited for your project contributions!
+    Learn more about Creative Commons attributions.</Banner
+  >
+  <ImageGroup
+    src={Img1}
+    alt="Fishermen sitting on the beach praying for a benevolent sea"
+    caption="Fishermen pray for a benevolent sea. Dublar Island, Bangladesh. Photo Credit: Rodney Dekker / Climate Visuals"
+  />
+  <BGBlock>
+    <h2 id="how-to-contribute">How to Contribute</h2>
+    <h3>Option 1: Complete the Google Form</h3>
+    <p>
+      Please fill out as much of the provided form as you can to submit your
+      contribution.
+    </p>
+    <a href="/submissions/google-form" class="ec-button"
+      >Google Form Submission</a
+    >
+    <h3>Option 2: Submit a Google Doc</h3>
+    <p>
+      If you prefer, you may submit your response via a Google Doc. You can
+      simply upload whatever materials you already have without needing to
+      reformat them or answer new questions.
+    </p>
+    <p>Createh</p>
+    <ol>
+      <li>Create your document</li>
+      <li>
+        Upload it to the Earthrise Commons Submissions Google Drive folder.
+      </li>
+    </ol>
+    <a
+      href="https://drive.google.com/drive/folders/1Xm3iZBU-2a8DDFABqHW4mfe3_s7y4OtX"
+      class="ec-button"
+      ><Icon name="fa7-brands:google-drive" />Google Drive Submission Folder</a
+    >
+
+    <Banner icon="a" color="b"
+      >Each submission should be concise (500-700 words) and include all
+      required sections. We look forward to receiving your submission!</Banner
+    >
+  </BGBlock>
+  <CFS2 />
+  <Accordion title="Suggested Topics"><CFS3 /></Accordion>
+  <ImageGroup
+    src={Img2}
+    alt="Mauritanian woman cleaning the solar panels that provide power for her cooperative's water supply"
+    caption="In the Fulani village of Hore Mondji, located in southern Mauritania, a women's cooperative uses solar energy to operate the borehole that supplies water to the market garden. Photo credit: Raphael Pouget / Climate Visuals Countdown"
+  />
+  <BGBlockAlt
+    ><h2 id="lesson-plan-format-options">Lesson Plan Format Options</h2>
+    <p>
+      You may submit your Lesson Plan and Resources in whatever format you
+      created them, to minimize the amount of work you need to do and to show a
+      diversity of approaches to our community.
+    </p><p>
+      However, if feasible, viable, and desirable, we encourage including a
+      lesson plan using the Understanding by Design (UbD) framework. Please use
+      the following format, based on this template that you can copy from Google
+      Docs.
+    </p>
+    <a
+      href="https://docs.google.com/document/u/0/d/1SNQaxVSDL_O1--zB-RZtHD68jRVfeq7dFQ8rN_bn5mA/"
+      class="ec-button"
+      ><Icon name="fa7-brands:google-drive" />Google Docs Template</a
+    >
+    <Accordion title="Stage 1 - Big Ideas & Essential Questions" group="udl">
+      <CFSTable1 />
+    </Accordion>
+    <Accordion title="Stage 2 - Learning Activities" group="udl">
+      <CFSTable2 />
+    </Accordion>
+    <Accordion
+      title="Stage 3 - Performance Tasks & Evidence of Learning"
+      group="udl"
+    >
+      <CFSTable3 />
+    </Accordion>
+  </BGBlockAlt>
+  <TwoCol theme="light">
+    <Fragment slot="left"
+      ><h2>
+        Call for Submissions: SUNY FACT2 Experiential Learning Playbook
+      </h2><p>
+        This project call for proposals was adapted from the Experiential
+        Learning Playbook by the Faculty Advisory Council on Teaching and
+        Technology (FACT2) which was shared with a Creative Commons Attribution
+        License (CC-BY-NC). Please find the Call for Submissions for the SUNY
+        FACT2 Experiential Playbook below.
+      </p>
+      <a
+        href="https://docs.google.com/document/u/0/d/1lLkew6TTXBqBoBiLWzYw2sHU44T18xI4kIZI3IwfGYw"
+        class="ec-button">SUNY FACT2 Call for Submissions</a
+      ></Fragment
+    >
+    <Fragment slot="right">
+      <ImageGroup
+        alt="A young man helps take care of plants in a greenhouse"
+        caption="Educational event at Plantation Park Heights Urban Farm in Baltimore, MD, organized by University of Maryland Extension Urban Farmer Field School. USDA/FPAC Photo by Preston Keres"
+        src={Img3}
+      />
+    </Fragment>
+  </TwoCol>
+</Layout>

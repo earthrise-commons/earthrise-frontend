@@ -1,0 +1,169 @@
+---
+import GraphicHero from "../components/special-blocks/GraphicHero.astro";
+import Layout from "../layouts/Layout.astro";
+import COCHero from "../assets/graphic-hero/coc-hero.svg";
+import Conduct1 from "../components/special-blocks/Conduct1.astro";
+import Conduct2 from "../components/special-blocks/Conduct2.astro";
+import InPageNav from "../components/layout/nav/InPageNav.astro";
+import Banner from "../components/content-blocks/Banner.astro";
+import { Icon } from "astro-icon/components";
+---
+
+<Layout title="Code of Conduct">
+  <GraphicHero title="Code of Conduct" imgSrc={COCHero.src} />
+  <Conduct1 class="no-margin-after">
+    <h2>Our Code of Conduct</h2>
+    <p>All content you share here becomes part of the commons:</p>
+    <dl>
+      <dt>New work you create:</dt>
+      <dd>Licensed under CC BY (anyone can use with attribution)</dd>
+
+      <dt>Existing work you adapt:</dt>
+      <dd>Licensed under CC BY-NC (free for education, not commercial use)</dd>
+      <dt>Why this matters:</dt>
+      <dd>
+        Your knowledge stays accessible to educators and learners worldwide
+      </dd>
+    </dl>
+    <a
+      href="https://creativecommons.org/share-your-work/cclicenses/"
+      class="ec-button"
+      ><Icon name="fa7-solid:link" />Creative Commons License Information</a
+    >
+  </Conduct1>
+  <InPageNav
+    class="no-margin-before"
+    items={[
+      { label: "How Our Commons Works", href: "#how-our-commons-works" },
+      {
+        label: "Your Rights and Responsibilities",
+        href: "#your-rights-and-responsibilities",
+      },
+      { label: "Getting Started", href: "#getting-started" },
+    ]}
+  />
+  <h2 id="how-our-commons-works">How Our Commons Works</h2>
+  <h3>1. Clear Boundaries</h3>
+  <dl>
+    <dt>Who Belongs:</dt>
+    <dd>
+      Teachers, students, researchers, and sustainability practitioners at all
+      grade levels anywhere in the world.
+    </dd>
+    <dt>What We Share:</dt>
+    <dd>
+      Educational resources, lesson plans, resources, multimedia, and other
+      learning tools. If you are comfortable sharing your location and/or
+      contact information, we can pinpoint you on our interactive map and allow
+      others to reach out to you.
+    </dd>
+  </dl>
+  <Banner icon="x" color="a"
+    >What we don't allow: Commercial promotion, spam, harmful content, or
+    copyright violations</Banner
+  >
+  <h3>Shared Rules We All Follow:</h3>
+  <dl>
+    <dt>Give Credit:</dt>
+    <dd>Always attribute others’ work properly</dd>
+
+    <dt>Share Freely:</dt>
+    <dd>Contribute knowledge that helps others learn</dd>
+
+    <dt>Be Respectful:</dt>
+    <dd>Treat everyone with kindness and professionalism</dd>
+
+    <dt>Stay on Topic:</dt>
+    <dd>Focus on sustainability education and action</dd>
+  </dl>
+  <h3>3. Community Self-Governance</h3>
+  <p>Every person who contributes to the commons has a voice in:</p>
+  <ul>
+    <li>Suggesting improvements to the platform</li>
+    <li>Reporting problems or inappropriate content</li>
+    <li>Helping newcomers learn how to participate</li>
+    <li>Sharing feedback about what works and what doesn't</li>
+  </ul>
+  <h3>Our Gardener System</h3>
+  <p>
+    We have a Gardener, a supervised student intern, who will curate content on
+    this platform. The gardener will:
+  </p>
+  <ul>
+    <li>Organize and tag content so it’s manageable and easy to find</li>
+    <li>Review new submissions for quality and relevance</li>
+    <li>Help users with questions about sharing and attribution</li>
+    <li>Maintain our resource library and remove outdated content</li>
+    <li>Connect related resources and suggest improvements</li>
+  </ul>
+  <p>How to work with the Gardener:</p>
+  <ul>
+    <li>They may suggest better tags or categories for your content</li>
+    <li>They'll help you fix attribution or licensing issues</li>
+    <li>Contact them if you can't find what you're looking for</li>
+    <li>They're learning too—be patient and helpful</li>
+  </ul>
+  <h3>5. Fair Consequences</h3>
+  <dl>
+    <dt>Minor Issues (like forgetting attribution):</dt>
+    <dd>Friendly reminder and help fixing it</dd>
+    <dt>Repeated Problems:</dt>
+    <dd>Temporary restrictions on posting new content</dd>
+    <dt>Serious Violations:</dt>
+    <dd>Removal from the community after team review</dd>
+  </dl>
+  <Conduct2
+    ><h2 id="your-rights-and-responsibilities">
+      Your Rights and Responsibilities
+    </h2>
+    <p>You have the right to:</p>
+    <ul>
+      <li>Access all community resources freely</li>
+      <li>Receive proper attribution for your contributions</li>
+      <li>Appeal decisions you think are wrong</li>
+      <li>Participate in community discussions about platform changes</li>
+    </ul>
+    <p>You're responsible for:</p>
+    <ul>
+      <li>Following copyright and licensing rules</li>
+      <li>Being respectful in all interactions</li>
+      <li>Contributing positively to the community</li>
+      <li>Helping maintain the commons for everyone</li>
+    </ul>
+  </Conduct2>
+  <h2 id="getting-started">Getting Started</h2>
+
+  <p><strong>Getting started is easy:</strong></p>
+  <p>Share your first resource with proper licensing.</p>
+  <p>
+    The difference: <strong>CC BY</strong> allows anyone (including companies) to
+    use your work for any purpose, while
+    <strong>CC BY-NC</strong> restricts commercial use, which is important when you’re
+    working with content that originally belonged to someone else.
+  </p>
+  <p>Introduce yourself to the community.</p>
+  <p>Connect with the Gardener if you need help.</p>
+  <p>Explore what others have shared and provide feedback.</p>
+  <p>
+    <a href="/contribute" class="ec-button contribute-button"
+      >Contribute a Project</a
+    >
+  </p>
+</Layout>
+
+<style>
+  h3 {
+    color: var(--color-theme-accent-a);
+  }
+  dt {
+    font-weight: 400;
+  }
+  dl,
+  li {
+    font-weight: 300;
+  }
+  .contribute-button {
+    margin: 0 auto;
+    text-align: center;
+  }
+</style>

@@ -1,0 +1,64 @@
+---
+import StarIcon from "../../assets/icons/icon-star.svg";
+
+const getRandomSign = () => {
+  return Math.random() < 0.5 ? 1 : -1;
+};
+
+const stars = [];
+// TODO: better algorithmically generated star placements
+for (let i = 0; i < 6; i++) {
+  const curStar = {};
+  const side = getRandomSign();
+  const xPosKeyword = side == 1 ? "left" : "right";
+  const xPosValue = -1 * Math.floor(Math.random() * 160 + 40);
+  const yPosPercent = Math.floor(Math.random() * 120 - 10);
+  const width = Math.floor(Math.random() * 20 + 20);
+  const rotation = Math.floor(Math.random() * 360);
+  curStar[xPosKeyword] = xPosValue + "px";
+  curStar.top = yPosPercent + "%";
+  curStar.width = width + "px";
+  curStar.transform = `rotate(${rotation}deg)`;
+  stars.push(curStar);
+}
+---
+
+<div class="bg-block theme-dark">
+  <div class="bg-block-content padded-content-container">
+    <slot />
+    {
+      stars.map((star) => {
+        return <StarIcon class="star" style={star} />;
+      })
+    }
+  </div>
+</div>
+<style>
+  .bg-block {
+    --color-background: var(--color-theme-text);
+    --color-text: var(--color-theme-background);
+  }
+</style>
+<style>
+  .bg-block {
+    background-color: var(--color-background);
+    color: var(--color-text);
+    font-weight: 400;
+    padding-top: 8rem;
+    padding-bottom: 8rem;
+    max-width: 100%;
+    width: 100%;
+    margin-left: 0;
+    margin-right: 0;
+    overflow: hidden;
+  }
+  .bg-block-content {
+    position: relative;
+    max-width: var(--size-padded-content);
+    margin: 0 auto;
+  }
+
+  .star {
+    position: absolute;
+  }
+</style>

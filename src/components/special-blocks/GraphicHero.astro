@@ -1,0 +1,48 @@
+---
+const { title, imgSrc, class: className } = Astro.props;
+
+import TOCHero from "../../assets/graphic-hero/toc-hero.svg";
+const defaultImgSrc = TOCHero.src;
+---
+
+<div
+  class:list={["graphic-hero-frame", className]}
+  style={`background-image: url(${imgSrc || defaultImgSrc});`}
+>
+  <h1>{title}</h1>
+</div>
+<style>
+  .graphic-hero-frame {
+    max-width: var(--size-page-width);
+    background-size: cover;
+    background-position: center;
+    height: 350px;
+    border-radius: 0.5rem;
+    overflow: hidden;
+    position: relative;
+    margin-bottom: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    margin-top: 4rem;
+    margin-bottom: 6rem;
+  }
+
+  h1 {
+    font-family: var(--font-headline);
+    z-index: 10;
+    text-transform: lowercase;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    display: inline;
+    width: fit-content;
+    max-width: 380px;
+    border-radius: 3rem;
+    padding: 1rem;
+    text-align: center;
+    text-wrap: balance;
+    color: var(--color-background);
+    background-color: var(--color-text);
+  }
+</style>
