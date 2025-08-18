@@ -22,7 +22,11 @@ import SampleImage from "../assets/images/art-andrea-kantrowitz.jpg";
   <GraphicHero title="Call for Submissions" imgSrc={CFSHero.src} />
 
   <p>something after the hero block</p>
-  <h1>Elements</h1>
+  <h1>This is an h1</h1>
+  <p>
+    note: the default h1 style is rarely used, since most pages have a custom h1
+    built into the layout
+  </p>
   <h2>This is an H2</h2>
   <h3>This is an H3</h3>
   <h4>This is an H4</h4>
@@ -69,66 +73,89 @@ import SampleImage from "../assets/images/art-andrea-kantrowitz.jpg";
     <div slot="left">
       <h3>Left Column</h3>
       <p>This is the left column content.</p>
+      <Accordion title="An Accordion">
+        <p>You can put an accordion inside a column!</p>
+        <p>
+          lorem ipsum dolor sit amet, consectetur adipiscing elit. Nulla quis
+          lorem ut libero malesuada feugiat.
+        </p>
+      </Accordion>
     </div>
     <div slot="right">
       <h3>Right Column</h3>
       <p>This is the right column content.</p>
-    </div>
-
-    <h2>In Page Navigation</h2>
-    <InPageNav />
-    <h2>Accordions</h2>
-    <Accordion title="An Accordion" group="group1">
-      <p>This is the content of the accordion.</p>
-      <Accordion title="Nested Accordion">
-        <p>This is the content of the nested accordion.</p>
-      </Accordion>
-    </Accordion>
-    <Accordion title="Another Accordion in a Group" group="group1">
-      <p>This is the content of another accordion.</p>
-    </Accordion>
-    <Accordion title="An ungrouped Accordion">
-      <p>This is another accordion content.</p>
-    </Accordion>
-    <Accordion
-      title="Another ungrouped accordion, with a really long title that will wrap onto multiple lines"
-    >
-      <p>This is another accordion content.</p>
-    </Accordion>
-
-    <h2>Alert Banners</h2>
-    <Banner color="a">Here is some content inside a banner</Banner>
-    <Banner color="b" icon="b">
-      <h3>here's a header in a banner</h3><p>
-        here's a paragraph in a banner
-      </p><p>
-        This banner has color <code>b</code>
-      </p></Banner
-    >
-    <Banner color="b" icon="x">Here's a banner with the X icon</Banner>
-    <h2>Background Block</h2>
-    <BGBlock>
-      <h3>here's a header in a background block</h3>
-      <p>here's a paragraph in a background block</p>
       <ImageGroup
         src={SampleImage}
         alt="Painting of a person standing on a cliff looking out over a valley"
         caption="Art by Andrea Kantrowitz"
       />
-    </BGBlock>
-    <p>
-      Here's the 'alternate version' with a slightly different algorithm for
-      star placement, plus the rainbow bottom border
-    </p>
-    <BGBlockAlt>
-      <h3>here's a header in a background block</h3>
-      <p>here's a paragraph in a background block</p>
-    </BGBlockAlt>
-    <BGBlock>
-      <h2>Here's a background block with some other elements inside it</h2>
-      <Accordion title="An Accordion">
-        <p>This is the content of the accordion.</p>
-      </Accordion>
-    </BGBlock>
+    </div>
   </TwoCol>
+  <h2>In Page Navigation</h2>
+  <p>
+    The In Page Navigation component provides jump links to a list of sections.
+    It will eventually add an 'active' state that tracks the user's scroll
+    position. It currently can be set to either 'page' or 'content' width.
+  </p>
+  <h3>Page Width In Page Nav</h3>
+  <InPageNav width="page" />
+  <h3>Content Width In Page Nav</h3>
+  <InPageNav width="content" />
+
+  <h2>Accordions</h2>
+  <Accordion title="An Accordion" group="group1">
+    <p>This is the content of the accordion.</p>
+    <Accordion title="Nested Accordion">
+      <p>This is the content of the nested accordion.</p>
+    </Accordion>
+  </Accordion>
+  <Accordion title="Another Accordion in a Group" group="group1">
+    <p>This is the content of another accordion.</p>
+  </Accordion>
+  <Accordion title="An ungrouped Accordion">
+    <p>This is another accordion content.</p>
+  </Accordion>
+  <Accordion
+    title="Another ungrouped accordion, with a really long title that will wrap onto multiple lines"
+  >
+    <p>This is another accordion content.</p>
+  </Accordion>
+
+  <h2>Alert Banners</h2>
+  <Banner color="a">Here is some content inside a banner</Banner>
+  <Banner color="b" icon="b">
+    <h3>here's a header in a banner</h3><p>here's a paragraph in a banner</p><p>
+      This banner has color <code>b</code>
+    </p></Banner
+  >
+  <Banner color="b" icon="x">Here's a banner with the X icon</Banner>
+  <h2>Background Block</h2>
+  <p>
+    This component generates a full-width dark background with a content-width
+    container area. It programmatically adds a random number of stars to the
+    margin area.
+  </p>
+  <BGBlock>
+    <h3>here's a header in a background block</h3>
+    <p>here's a paragraph in a background block</p>
+    <ImageGroup
+      src={SampleImage}
+      alt="Painting of a person standing on a cliff looking out over a valley"
+      caption="Art by Andrea Kantrowitz"
+    />
+  </BGBlock>
+  <p>
+    Here's the 'alternate version' with a slightly different algorithm for star
+    placement, plus the rainbow bottom border
+  </p>
+  <BGBlockAlt>
+    <h3>here's a header in a background block</h3>
+    <p>here's a paragraph in a background block</p>
+  </BGBlockAlt>
+  <BGBlock>
+    <h2>Here's a background block with some other elements inside it</h2>
+    <Accordion title="An Accordion">
+      <p>This is the content of the accordion.</p>
+    </Accordion>
+  </BGBlock>
 </Layout>
