@@ -1,0 +1,3 @@
+Our website, earthrisecommons.org, is more than a place to get the book. It’s a living space where teachers find resources, lesson plans, videos, and activities that wouldn’t fit or feel alive in a book. The best part? You can change what you find here just along as you acknowledge the heritage of your work. Take someone’s lesson plan or resource, remix it, and make it work for your students and your community. Then share your remix.
+
+But most importantly, credit those who worked on this before and with you! Our platform will allow you to see the different versions of the same teaching material.

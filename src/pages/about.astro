@@ -1,0 +1,66 @@
+---
+import Layout from "../layouts/Layout.astro";
+import AboutHero from "../content/about/about-header.svg";
+import TwoCol from "../components/content-blocks/TwoCol.astro";
+import BGBlockAlt from "../components/content-blocks/BGBlockAlt.astro";
+import OurStory from "../content/about/our-story.md";
+import InPageNav from "../components/layout/nav/InPageNav.astro";
+import WhatWereBuilding from "../content/about/what-were-building.md";
+import FreeBook from "../content/about/free-book.md";
+import LearningWebsite from "../content/about/learning-website.md";
+import APlaceToShare from "../content/about/a-place-to-share.md";
+import OurTeam from "../content/about/our-team.md";
+import WhyThisWorkMatters from "../content/about/why-this-work-matters.md";
+import WhatWeHopeToDo from "../content/about/what-we-hope-to-do.md";
+import OurImpact from "../content/about/our-impact.md";
+import Accordion from "../components/content-blocks/Accordion.astro";
+---
+
+<Layout title="About Us">
+  <AboutHero
+    class="page-hero"
+    role="heading"
+    aria-level={1}
+    aria-label="About Earthrise Commons"
+  />
+  <TwoCol class="no-margin-after"
+    ><Fragment slot="left">
+      <OurStory />
+      <Fragment slot="right"> asdasd</Fragment>
+    </Fragment>
+    <style>
+      .page-hero {
+        max-width: var(--size-padded-page);
+        width: 100%;
+      }
+    </style>
+  </TwoCol>
+  <InPageNav
+    class="no-margin-before"
+    width="page"
+    items={[{ label: "item", href: "#" }]}
+  />
+  <WhatWereBuilding />
+  <Accordion title="Free Book" group="what-were-building">
+    <FreeBook />
+  </Accordion>
+  <Accordion title="Learning Website" group="what-were-building">
+    <LearningWebsite />
+  </Accordion>
+  <APlaceToShare />
+  <BGBlockAlt
+    ><h2>Our Foundation & Growth</h2><p>
+      We believe in SUNY’s commitment to the pillars of student success,
+      research, diversity, inclusion, and sustainable development. But we hope
+      to reach beyond any single school system.
+    </p></BGBlockAlt
+  >
+  <OurTeam />
+  <BGBlock>
+    <WhyThisWorkMatters />
+    <Accordion title="What We Hope to Do" group="why-this-work-matters">
+      <WhatWeHopeToDo />
+    </Accordion>
+  </BGBlock>
+  <OurImpact />
+</Layout>
