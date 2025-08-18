@@ -6,6 +6,12 @@ import TwoCol from "../components/content-blocks/TwoCol.astro";
 import ImageGroup from "../components/content-blocks/ImageGroup.astro";
 import InPageNav from "../components/layout/nav/InPageNav.astro";
 import KantrowitzPainting from "../assets/images/art-andrea-kantrowitz.jpg";
+import CFS1 from "../markdown/call-for-submissions/cfs-1.md";
+import Banner from "../components/content-blocks/Banner.astro";
+
+import Img1 from "../assets/images/cfs-img-1.jpg";
+import BGBlock from "../components/content-blocks/BGBlock.astro";
+import { Icon } from "astro-icon/components";
 ---
 
 <Layout>
@@ -49,4 +55,48 @@ import KantrowitzPainting from "../assets/images/art-andrea-kantrowitz.jpg";
       { label: "Call for Submissions", href: "#call-for-submissions" },
     ]}
   />
+  <CFS1 />
+  <Banner icon="a" color="a"
+    >At Earthrise Commons, you are credited for your project contributions!
+    Learn more about Creative Commons attributions.</Banner
+  >
+  <ImageGroup
+    src={Img1}
+    alt="Fishermen sitting on the beach praying for a benevolent sea"
+    caption="Fishermen pray for a benevolent sea. Dublar Island, Bangladesh. Photo Credit: Rodney Dekker / Climate Visuals"
+  />
+  <BGBlock>
+    <h2>How to Contribute</h2>
+    <h3>Option 1: Complete the Google Form</h3>
+    <p>
+      Please fill out as much of the provided form as you can to submit your
+      contribution.
+    </p>
+    <a href="/submissions/google-form" class="ec-button"
+      >Google Form Submission</a
+    >
+    <h3>Option 2: Submit a Google Doc</h3>
+    <p>
+      If you prefer, you may submit your response via a Google Doc. You can
+      simply upload whatever materials you already have without needing to
+      reformat them or answer new questions.
+    </p>
+    <p>Createh</p>
+    <ol>
+      <li>Create your document</li>
+      <li>
+        Upload it to the Earthrise Commons Submissions Google Drive folder.
+      </li>
+    </ol>
+    <a
+      href="https://drive.google.com/drive/folders/1Xm3iZBU-2a8DDFABqHW4mfe3_s7y4OtX"
+      class="ec-button"
+      ><Icon name="fa7-brands:google-drive" />Google Drive Submission Folder</a
+    >
+
+    <Banner icon="a" color="b"
+      >Each submission should be concise (500-700 words) and include all
+      required sections. We look forward to receiving your submission!</Banner
+    >
+  </BGBlock>
 </Layout>
