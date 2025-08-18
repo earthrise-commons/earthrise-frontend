@@ -12,8 +12,14 @@ import CFS3 from "../markdown/call-for-submissions/cfs-3.md";
 import Banner from "../components/content-blocks/Banner.astro";
 import Accordion from "../components/content-blocks/Accordion.astro";
 import Img1 from "../assets/images/cfs-img-1.jpg";
+import Img2 from "../assets/images/cfs-img-2.jpg";
+import Img3 from "../assets/images/cfs-img-3.jpg";
 import BGBlock from "../components/content-blocks/BGBlock.astro";
+import BGBlockAlt from "../components/content-blocks/BGBlockAlt.astro";
 import { Icon } from "astro-icon/components";
+import CFSTable1 from "../content/call-for-submissions/CFSTable1.astro";
+import CFSTable2 from "../content/call-for-submissions/CFSTable2.astro";
+import CFSTable3 from "../content/call-for-submissions/CFSTable3.astro";
 ---
 
 <Layout title="Call for Submissions">
@@ -54,7 +60,6 @@ import { Icon } from "astro-icon/components";
         label: "Lesson Plan Format Options",
         href: "#lesson-plan-format-options",
       },
-      { label: "Call for Submissions", href: "#call-for-submissions" },
     ]}
   />
   <CFS1 />
@@ -68,7 +73,7 @@ import { Icon } from "astro-icon/components";
     caption="Fishermen pray for a benevolent sea. Dublar Island, Bangladesh. Photo Credit: Rodney Dekker / Climate Visuals"
   />
   <BGBlock>
-    <h2>How to Contribute</h2>
+    <h2 id="how-to-contribute">How to Contribute</h2>
     <h3>Option 1: Complete the Google Form</h3>
     <p>
       Please fill out as much of the provided form as you can to submit your
@@ -103,4 +108,63 @@ import { Icon } from "astro-icon/components";
   </BGBlock>
   <CFS2 />
   <Accordion title="Suggested Topics"><CFS3 /></Accordion>
+  <ImageGroup
+    src={Img2}
+    alt="Mauritanian woman cleaning the solar panels that provide power for her cooperative's water supply"
+    caption="In the Fulani village of Hore Mondji, located in southern Mauritania, a women's cooperative uses solar energy to operate the borehole that supplies water to the market garden. Photo credit: Raphael Pouget / Climate Visuals Countdown"
+  />
+  <BGBlockAlt
+    ><h2 id="lesson-plan-format-options">Lesson Plan Format Options</h2>
+    <p>
+      You may submit your Lesson Plan and Resources in whatever format you
+      created them, to minimize the amount of work you need to do and to show a
+      diversity of approaches to our community.
+    </p><p>
+      However, if feasible, viable, and desirable, we encourage including a
+      lesson plan using the Understanding by Design (UbD) framework. Please use
+      the following format, based on this template that you can copy from Google
+      Docs.
+    </p>
+    <a
+      href="https://docs.google.com/document/u/0/d/1SNQaxVSDL_O1--zB-RZtHD68jRVfeq7dFQ8rN_bn5mA/"
+      class="ec-button"
+      ><Icon name="fa7-brands:google-drive" />Google Docs Template</a
+    >
+    <Accordion title="Stage 1 - Big Ideas & Essential Questions" group="udl">
+      <CFSTable1 />
+    </Accordion>
+    <Accordion title="Stage 2 - Learning Activities" group="udl">
+      <CFSTable2 />
+    </Accordion>
+    <Accordion
+      title="Stage 3 - Performance Tasks & Evidence of Learning"
+      group="udl"
+    >
+      <CFSTable3 />
+    </Accordion>
+  </BGBlockAlt>
+  <TwoCol theme="light">
+    <Fragment slot="left"
+      ><h2>
+        Call for Submissions: SUNY FACT2 Experiential Learning Playbook
+      </h2><p>
+        This project call for proposals was adapted from the Experiential
+        Learning Playbook by the Faculty Advisory Council on Teaching and
+        Technology (FACT2) which was shared with a Creative Commons Attribution
+        License (CC-BY-NC). Please find the Call for Submissions for the SUNY
+        FACT2 Experiential Playbook below.
+      </p>
+      <a
+        href="https://docs.google.com/document/u/0/d/1lLkew6TTXBqBoBiLWzYw2sHU44T18xI4kIZI3IwfGYw"
+        class="ec-button">SUNY FACT2 Call for Submissions</a
+      ></Fragment
+    >
+    <Fragment slot="right">
+      <ImageGroup
+        alt="A young man helps take care of plants in a greenhouse"
+        caption="Educational event at Plantation Park Heights Urban Farm in Baltimore, MD, organized by University of Maryland Extension Urban Farmer Field School. USDA/FPAC Photo by Preston Keres"
+        src={Img3}
+      />
+    </Fragment>
+  </TwoCol>
 </Layout>

@@ -22,6 +22,7 @@ import "@fontsource/poppins";
     --color-category-c: #28232c;
     --color-category-d: #fd5d36;
     --color-borders: #a9a9a9;
+    --color-border: var(--color-borders);
 
     --gradient-stepped-rainbow: linear-gradient(
       90deg,
@@ -151,4 +152,28 @@ import "@fontsource/poppins";
   /*   * {
     border: 1px solid red !important;
   } */
+</style>
+
+<style is:global>
+  /* Table Styles */
+  table {
+    color: var(--color-text);
+    border-collapse: collapse;
+    border-radius: 0.5rem;
+  }
+  table caption {
+    font-size: 1.25rem;
+    font-weight: 600;
+    margin-bottom: 0.5rem;
+  }
+  td,
+  th {
+    border: 1px solid var(--color-border);
+    padding: 1.5rem;
+  }
+  thead {
+    background-color: var(--color-theme-accent-a);
+    color: var(--color-theme-background);
+    border-radius: 0.5rem 0.5rem 0 0;
+  }
 </style>

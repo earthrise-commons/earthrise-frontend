@@ -1,4 +1,4 @@
-## Submission Guidelines
+<h2 id="submission-guidelines">Submission Guidelines</h2>
 
 We welcome submissions that address innovative and impactful sustainability initiatives across social, environmental, and economic dimensions.
 

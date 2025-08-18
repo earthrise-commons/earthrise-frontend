@@ -1,4 +1,4 @@
-## Why Contribute?
+<h2 id="why-contribute">Why Contribute?</h2>
 
 ### By sharing your work, you will:
 
