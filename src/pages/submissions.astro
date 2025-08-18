@@ -7,14 +7,16 @@ import ImageGroup from "../components/content-blocks/ImageGroup.astro";
 import InPageNav from "../components/layout/nav/InPageNav.astro";
 import KantrowitzPainting from "../assets/images/art-andrea-kantrowitz.jpg";
 import CFS1 from "../markdown/call-for-submissions/cfs-1.md";
+import CFS2 from "../markdown/call-for-submissions/cfs-2.md";
+import CFS3 from "../markdown/call-for-submissions/cfs-3.md";
 import Banner from "../components/content-blocks/Banner.astro";
-
+import Accordion from "../components/content-blocks/Accordion.astro";
 import Img1 from "../assets/images/cfs-img-1.jpg";
 import BGBlock from "../components/content-blocks/BGBlock.astro";
 import { Icon } from "astro-icon/components";
 ---
 
-<Layout>
+<Layout title="Call for Submissions">
   <GraphicHero title="Call for Submissions" imgSrc={CFSHero.src} />
   <TwoCol class="no-margin-after">
     <Fragment slot="left">
@@ -99,4 +101,6 @@ import { Icon } from "astro-icon/components";
       required sections. We look forward to receiving your submission!</Banner
     >
   </BGBlock>
+  <CFS2 />
+  <Accordion title="Suggested Topics"><CFS3 /></Accordion>
 </Layout>
