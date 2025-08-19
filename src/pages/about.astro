@@ -14,7 +14,10 @@ import OurTeam from "../content/about/our-team.md";
 import WhyThisWorkMatters from "../content/about/why-this-work-matters.md";
 import WhatWeHopeToDo from "../content/about/what-we-hope-to-do.md";
 import OurImpact from "../content/about/our-impact.md";
+import EarthrisePhoto from "../content/about/earthrise-photo.png";
+
 import Accordion from "../components/content-blocks/Accordion.astro";
+import ImageGroup from "../components/content-blocks/ImageGroup.astro";
 ---
 
 <Layout title="About Us">
@@ -27,14 +30,14 @@ import Accordion from "../components/content-blocks/Accordion.astro";
   <TwoCol class="no-margin-after"
     ><Fragment slot="left">
       <OurStory />
-      <Fragment slot="right"> asdasd</Fragment>
     </Fragment>
-    <style>
-      .page-hero {
-        max-width: var(--size-padded-page);
-        width: 100%;
-      }
-    </style>
+    <Fragment slot="right">
+      <ImageGroup
+        src={EarthrisePhoto}
+        alt="Photograph of the Earth rising above the surface of the Moon, taken from space"
+        caption={`"NASA Releases New High-Resolution Earthrise Image" by NASA Goddard Photo and Video is licensed under CC BY 2.0.`}
+      />
+    </Fragment>
   </TwoCol>
   <InPageNav
     class="no-margin-before"
@@ -65,3 +68,10 @@ import Accordion from "../components/content-blocks/Accordion.astro";
   </BGBlock>
   <OurImpact />
 </Layout>
+
+<style>
+  .page-hero {
+    max-width: var(--size-padded-page);
+    width: 100%;
+  }
+</style>
