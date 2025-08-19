@@ -1,4 +1,4 @@
-## A Place to Share & Remix (& Share Again)
+<h2 id="a-place-to-share-remix">A Place to Share & Remix (& Share Again)</h2>
 
 We want Earthrise Commons to be a ‘third place.’ An idea coined by sociologist Ray Oldenburg, a third place is an environment that’s not home (our first place) or work (our second place). Instead, it’s where people meet and build community. Think of coffee shops, parks, libraries, and community centers.
 

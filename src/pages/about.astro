@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import AboutHero from "../content/about/about-header.svg";
 import TwoCol from "../components/content-blocks/TwoCol.astro";
 import BGBlockAlt from "../components/content-blocks/BGBlockAlt.astro";
@@ -11,10 +12,16 @@ import FreeBook from "../content/about/free-book.md";
 import LearningWebsite from "../content/about/learning-website.md";
 import APlaceToShare from "../content/about/a-place-to-share.md";
 import OurTeam from "../content/about/our-team.md";
+import PeopleGroup from "../content/about/PeopleGroup.astro";
 import WhyThisWorkMatters from "../content/about/why-this-work-matters.md";
 import WhatWeHopeToDo from "../content/about/what-we-hope-to-do.md";
 import OurImpact from "../content/about/our-impact.md";
+import EarthrisePhoto from "../content/about/earthrise-photo.png";
+import FoundationGrowthPhoto from "../content/about/foundation-growth-photo.jpg";
 import Accordion from "../components/content-blocks/Accordion.astro";
+import ImageGroup from "../components/content-blocks/ImageGroup.astro";
+
+import EarthPinsPhoto from "../content/about/earth-pins.png";
 ---
 
 <Layout title="About Us">
@@ -27,19 +34,29 @@ import Accordion from "../components/content-blocks/Accordion.astro";
   <TwoCol class="no-margin-after"
     ><Fragment slot="left">
       <OurStory />
-      <Fragment slot="right"> asdasd</Fragment>
     </Fragment>
-    <style>
-      .page-hero {
-        max-width: var(--size-padded-page);
-        width: 100%;
-      }
-    </style>
+    <Fragment slot="right">
+      <ImageGroup
+        src={EarthrisePhoto}
+        alt="Photograph of the Earth rising above the surface of the Moon, taken from space"
+        caption={`"NASA Releases New High-Resolution Earthrise Image" by NASA Goddard Photo and Video is licensed under CC BY 2.0.`}
+      />
+    </Fragment>
   </TwoCol>
   <InPageNav
     class="no-margin-before"
     width="page"
-    items={[{ label: "item", href: "#" }]}
+    items={[
+      { label: "What We’re Building", href: "#what-were-building" },
+      { label: "A Place to Share & Remix", href: "#a-place-to-share-remix" },
+      {
+        label: "Our Foundation and Growth",
+        href: "#our-foundation-and-growth",
+      },
+      { label: "Our Team", href: "#our-team" },
+      { label: "Why This Work Matters", href: "#why-this-work-matters" },
+      { label: "Our Impact", href: "#our-impact" },
+    ]}
   />
   <WhatWereBuilding />
   <Accordion title="Free Book" group="what-were-building">
@@ -50,13 +67,19 @@ import Accordion from "../components/content-blocks/Accordion.astro";
   </Accordion>
   <APlaceToShare />
   <BGBlockAlt
-    ><h2>Our Foundation & Growth</h2><p>
+    ><h2 id="our-foundation-and-growth">Our Foundation & Growth</h2><p>
       We believe in SUNY’s commitment to the pillars of student success,
       research, diversity, inclusion, and sustainable development. But we hope
       to reach beyond any single school system.
-    </p></BGBlockAlt
-  >
+    </p>
+    <ImageGroup
+      src={FoundationGrowthPhoto}
+      alt="Group of Bangladeshi students sitting at a table in a circle"
+      caption="Village students attend a class at the Chalk Lanka Boat School, Singra, Natore, Bangladesh. Image by Abir Abdullah / Climate Visuals Countdown"
+    />
+  </BGBlockAlt>
   <OurTeam />
+  <PeopleGroup />
   <BGBlock>
     <WhyThisWorkMatters />
     <Accordion title="What We Hope to Do" group="why-this-work-matters">
@@ -64,4 +87,18 @@ import Accordion from "../components/content-blocks/Accordion.astro";
     </Accordion>
   </BGBlock>
   <OurImpact />
+  <Image id="img-earth-pins" src={EarthPinsPhoto} alt="Earth pins on a map" />
 </Layout>
+
+<style>
+  .page-hero {
+    max-width: var(--size-padded-page);
+    width: 100%;
+  }
+
+  #img-earth-pins {
+    max-width: calc(var(--size-padded-page) / 2);
+    width: 100%;
+    margin-bottom: 0;
+  }
+</style>
