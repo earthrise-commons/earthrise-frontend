@@ -1,0 +1,54 @@
+---
+import Person1 from "./people/person-1.svg";
+import Person2 from "./people/person-2.svg";
+import Person3 from "./people/person-3.svg";
+import Person4 from "./people/person-4.svg";
+import Person5 from "./people/person-5.svg";
+import Person6 from "./people/person-6.svg";
+import Person7 from "./people/person-7.svg";
+import Person8 from "./people/person-8.svg";
+
+const peopleComponents = [
+  Person1,
+  Person2,
+  Person3,
+  Person4,
+  Person5,
+  Person6,
+  Person7,
+  Person8,
+];
+
+const getRandomOrder = (count) => {
+  const order = Array.from({ length: count }, (_, i) => i + 1);
+  for (let i = 0; i < count; i++) {
+    const j = Math.floor(Math.random() * count);
+    [order[i], order[j]] = [order[j], order[i]];
+  }
+  return order;
+};
+
+const orderedPeople = getRandomOrder(peopleComponents.length).map((index) => {
+  return peopleComponents[index - 1];
+});
+
+const colors = ["a", "b", "c", "d", "d", "c", "a", "b"];
+---
+
+<div class="people-group">
+  {
+    orderedPeople.map((Component, index) => {
+      const color = colors[index];
+      return <Component style={`color: var(--color-category-${color})`} />;
+    })
+  }
+</div>
+
+<style>
+  .people-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1rem;
+    justify-content: center;
+  }
+</style>
