@@ -42,7 +42,17 @@ import ImageGroup from "../components/content-blocks/ImageGroup.astro";
   <InPageNav
     class="no-margin-before"
     width="page"
-    items={[{ label: "item", href: "#" }]}
+    items={[
+      { label: "What We’re Building", href: "#what-were-building" },
+      { label: "A Place to Share & Remix", href: "#a-place-to-share-remix" },
+      {
+        label: "Our Foundation and Growth",
+        href: "#our-foundation-and-growth",
+      },
+      { label: "Our Team", href: "#our-team" },
+      { label: "Why This Work Matters", href: "#why-this-work-matters" },
+      { label: "Our Impact", href: "#our-impact" },
+    ]}
   />
   <WhatWereBuilding />
   <Accordion title="Free Book" group="what-were-building">
@@ -53,7 +63,7 @@ import ImageGroup from "../components/content-blocks/ImageGroup.astro";
   </Accordion>
   <APlaceToShare />
   <BGBlockAlt
-    ><h2>Our Foundation & Growth</h2><p>
+    ><h2 id="our-foundation-and-growth">Our Foundation & Growth</h2><p>
       We believe in SUNY’s commitment to the pillars of student success,
       research, diversity, inclusion, and sustainable development. But we hope
       to reach beyond any single school system.
