@@ -1,5 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
 import AboutHero from "../content/about/about-header.svg";
 import TwoCol from "../components/content-blocks/TwoCol.astro";
 import BGBlockAlt from "../components/content-blocks/BGBlockAlt.astro";
@@ -18,6 +19,7 @@ import EarthrisePhoto from "../content/about/earthrise-photo.png";
 import FoundationGrowthPhoto from "../content/about/foundation-growth-photo.jpg";
 import Accordion from "../components/content-blocks/Accordion.astro";
 import ImageGroup from "../components/content-blocks/ImageGroup.astro";
+import EarthPinsPhoto from "../content/about/earth-pins.png";
 ---
 
 <Layout title="About Us">
@@ -82,11 +84,18 @@ import ImageGroup from "../components/content-blocks/ImageGroup.astro";
     </Accordion>
   </BGBlock>
   <OurImpact />
+  <Image id="img-earth-pins" src={EarthPinsPhoto} alt="Earth pins on a map" />
 </Layout>
 
 <style>
   .page-hero {
     max-width: var(--size-padded-page);
     width: 100%;
+  }
+
+  #img-earth-pins {
+    max-width: calc(var(--size-padded-page) / 2);
+    width: 100%;
+    margin-bottom: 0;
   }
 </style>
