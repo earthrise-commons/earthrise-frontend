@@ -1,0 +1,10 @@
+---
+import { loadFromCMS } from "../cms/loadFromCMS";
+const data = await loadFromCMS({ query: 'page("people").children' });
+import { Code } from "astro:components";
+import Layout from "../layouts/Layout.astro";
+---
+
+<Layout title="Test Page">
+  <Code lang="json" code={JSON.stringify(data, null, 2)} />
+</Layout>
