@@ -1,0 +1,30 @@
+---
+const { items } = Astro.props;
+const itemCount = items.length;
+---
+
+<div class="breadcrumbs">
+  {
+    items.map((item, index) => (
+      <Fragment>
+        {item.url ? (
+          <a href={item.url} data-astro-prefetch>
+            {item.title}
+          </a>
+        ) : (
+          <p>{item.title}</p>
+        )}
+        {index < itemCount - 1 && " / "}
+      </Fragment>
+    ))
+  }
+</div>
+<style>
+  .breadcrumbs a,
+  .breadcrumbs p {
+    font-size: 0.875rem;
+    display: inline;
+  }
+  .breadcrumbs {
+  }
+</style>

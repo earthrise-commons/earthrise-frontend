@@ -1,0 +1,41 @@
+---
+const { tags = [] }: { tags?: { label: string; value: string }[] } =
+  Astro.props;
+---
+
+<div class="tag-group">
+  <p>Tags:</p>
+  <ul>
+    {
+      tags.map((tag) => (
+        <li>
+          <a class="tag" href={`/tags/${tag.value}`}>
+            {tag.label}
+          </a>
+        </li>
+      ))
+    }
+  </ul>
+</div>
+
+<style>
+  ul {
+    display: contents;
+    list-style: none;
+  }
+  .tag-group {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.25rem 1rem;
+    margin-top: 1rem;
+  }
+  .tag {
+    background-color: var(--color-tags);
+    padding: 0.25rem 0.75rem;
+    border-radius: 2rem;
+    font-size: 0.75rem;
+  }
+  a {
+    text-decoration: none;
+  }
+</style>

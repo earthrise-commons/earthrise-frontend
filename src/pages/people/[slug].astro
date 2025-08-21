@@ -1,0 +1,57 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/page-blocks/Breadcrumbs.astro";
+import { loadFromCMS } from "../../cms/loadFromCMS";
+import Code from "astro/components/Code.astro";
+import PersonHero from "../../components/page-blocks/PersonHero.astro";
+const { slug } = Astro.params;
+
+export const getStaticPaths = async () => {
+  const people = await loadFromCMS({ query: 'page("people").children' });
+  return people.map((person) => {
+    const personSlug = person.split("/")[1];
+    return { params: { slug: personSlug } };
+  });
+};
+
+const rawData = await loadFromCMS({ query: `page('people/${slug}')` });
+
+const content = await loadFromCMS({
+  query: `page('people/${slug}')`,
+  select: {
+    displayname: true,
+    bio: true,
+    pronouns: true,
+    location: true,
+    organizationname: true,
+    role: true,
+    level: true,
+    email: true,
+    orcid: true,
+    urls: true,
+    tags: true,
+
+    photo: {
+      query: `page('people/${slug}').photo.toFile`,
+    },
+  },
+});
+---
+
+<Layout title={`Person: ${content.displayname}`}>
+  <Breadcrumbs
+    items={[
+      { title: "People", url: "/people/" },
+      { title: content.displayname },
+    ]}
+  />
+  <PersonHero data={content} />
+  <h2>About {content.displayname}</h2>
+  <Fragment set:html={content.bio} />
+  <h2>Content</h2>
+  <p>These are articles and lessons submitted by {content.displayname}.</p>
+  <!-- <Code code={JSON.stringify(rawData, null, 2)} /> -->
+</Layout>
+
+<style></style>
