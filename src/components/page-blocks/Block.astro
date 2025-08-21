@@ -1,0 +1,19 @@
+---
+const { blockData } = Astro.props;
+import { Code } from "astro/components";
+import BlockAccordion from "./blocks/BlockAccordion.astro";
+import BlockResources from "./blocks/BlockResources.astro";
+const blockMapping = {
+  accordion: BlockAccordion,
+  resources: BlockResources,
+  // Add more block types here
+};
+
+const Component = blockMapping[blockData.type];
+---
+
+{Component && <Component content={blockData.content} />}
+<div>
+  {!Component && <h2>block not found: {blockData.type}</h2>}
+  <Code code={JSON.stringify(blockData, null, 2)} />
+</div>

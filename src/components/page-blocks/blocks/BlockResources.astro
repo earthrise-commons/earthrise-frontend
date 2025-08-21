@@ -1,0 +1,26 @@
+---
+const { content } = Astro.props;
+import Accordion from "../../content-blocks/Accordion.astro";
+
+const processedItems = content.items.map((item) => {
+  const returnObj = { title: item.title, url: "", description: "description" };
+  if (item.type === "url") {
+    returnObj.url = item.url;
+    returnObj.description = "External Resource";
+  }
+  return returnObj;
+});
+---
+
+<Accordion title={content.title}>
+  {
+    processedItems.map((item) => {
+      return (
+        <div>
+          <h3>{item.title}</h3>
+          <a href={item.url}>{item.description}</a>
+        </div>
+      );
+    })
+  }
+</Accordion>
