@@ -1,9 +1,13 @@
 ---
 const { data } = Astro.props;
+import { normalizeTagsFromYaml } from "../../cms/normalizeTags";
+import { parse as parseYaml } from "yaml";
 import Image from "astro/components/Image.astro";
 import PersonBanner from "../../assets/layouts/person-banner.png";
 
 const hasPhoto = data.photo && data.photo.url;
+const tags = normalizeTagsFromYaml(data.tags || "");
+console.log(tags);
 // TODO: build placeholder photo component
 ---
 
@@ -25,6 +29,7 @@ const hasPhoto = data.photo && data.photo.url;
     }
     <!--  -->
     <h1>{data.displayname} <span class="pronouns">({data.pronouns})</span></h1>
+    {data.role && <p>{data.role}</p>}
   </div>
 </div>
 
