@@ -1,0 +1,42 @@
+---
+import type { GetStaticPaths } from "astro";
+import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/page-blocks/Breadcrumbs.astro";
+import { loadFromCMS } from "../../cms/loadFromCMS";
+import Code from "astro/components/Code.astro";
+import PersonHero from "../../components/page-blocks/PersonHero.astro";
+const { slug } = Astro.params;
+import BlockRenderer from "../../components/page-blocks/BlockRenderer.astro";
+
+export const getStaticPaths = async () => {
+  const chapters = await loadFromCMS({ query: 'page("chapters").children' });
+  return chapters.map((chapter) => {
+    const chapterSlug = chapter.split("/")[1];
+    return { params: { slug: chapterSlug } };
+  });
+};
+
+const rawData = await loadFromCMS({ query: `page('chapters/${slug}')` });
+
+const content = await loadFromCMS({
+  query: `page('chapters/${slug}')`,
+});
+---
+
+<Layout title={`Person: ${content.displayname}`}>
+  <BlockRenderer blockData={rawData.content.text} />
+  <!-- <Breadcrumbs
+    items={[
+      { title: "People", url: "/people/" },
+      { title: content.displayname },
+    ]}
+  /> -->
+  <!-- <PersonHero data={content} />
+  <h2>About {content.displayname}</h2>
+  <Fragment set:html={content.bio} />
+  <h2>Content</h2>
+  <p>These are articles and lessons submitted by {content.displayname}.</p> -->
+  <Code code={JSON.stringify(rawData, null, 2)} />
+</Layout>
+
+<style></style>

@@ -51,7 +51,7 @@ const content = await loadFromCMS({
   <Fragment set:html={content.bio} />
   <h2>Content</h2>
   <p>These are articles and lessons submitted by {content.displayname}.</p>
-  <Code code={JSON.stringify(rawData, null, 2)} />
+  <!-- <Code code={JSON.stringify(rawData, null, 2)} /> -->
 </Layout>
 
 <style></style>

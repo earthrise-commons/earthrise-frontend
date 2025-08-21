@@ -1,0 +1,8 @@
+---
+import { Code } from "astro/components";
+import { parse as parseYaml } from "yaml";
+const { blockData } = Astro.props;
+const parsedData = parseYaml(blockData);
+---
+
+<Code code={JSON.stringify(parsedData, null, 2)} />
