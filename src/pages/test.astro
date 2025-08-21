@@ -1,10 +1,31 @@
 ---
 import { loadFromCMS } from "../cms/loadFromCMS";
-const data = await loadFromCMS({ query: 'page("people").children' });
+const data = await loadFromCMS({
+  query: 'page("people").children',
+  // select: {
+  //   all: true,
+  //   // url: true,
+  //   // displayName: true,
+  //   // pronouns: true,
+  //   // bio:true,
+  //   // // "text": "page.text.markdown",
+  //   // photo: {
+  //   //   query: "page.images",
+  //   //   select: {
+  //   //     url: true,
+  //   //   },
+  //   // },
+  // },
+});
 import { Code } from "astro:components";
 import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Test Page">
-  <Code lang="json" code={JSON.stringify(data, null, 2)} />
+  <Code lang="json" class="test-code" code={JSON.stringify(data, null, 2)} />
 </Layout>
+<style>
+  .test-code {
+    padding: 1rem;
+  }
+</style>

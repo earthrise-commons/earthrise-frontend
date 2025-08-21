@@ -1,0 +1,54 @@
+---
+const { data } = Astro.props;
+import Image from "astro/components/Image.astro";
+import PersonBanner from "../../assets/layouts/person-banner.png";
+
+const hasPhoto = data.photo && data.photo.url;
+// TODO: build placeholder photo component
+---
+
+<div class="person-hero">
+  <Image src={PersonBanner} alt={""} />
+  <div class="person-content-pane">
+    {
+      hasPhoto ? (
+        <Image
+          src={data.photo.url}
+          width={data.photo.width}
+          height={data.photo.height}
+          alt={""}
+          class={"person-image"}
+        />
+      ) : (
+        <div class="person-image" />
+      )
+    }
+    <!--  -->
+    <h1>{data.displayname} <span class="pronouns">({data.pronouns})</span></h1>
+  </div>
+</div>
+
+<style>
+  .person-hero {
+    max-width: var(--size-padded-page);
+    border-radius: 0.5rem;
+    border: 1px solid black;
+  }
+  .person-image {
+    background-color: var(--color-borders);
+    width: 12rem;
+    height: 12rem;
+    object-fit: cover;
+    position: absolute;
+    top: -6rem;
+    border-radius: 6rem;
+    border: 0.5rem solid var(--color-background);
+  }
+  .person-content-pane {
+    position: relative;
+    padding: 7rem 1rem 1rem 1rem;
+  }
+  h1 {
+    font-size: 2rem;
+  }
+</style>
