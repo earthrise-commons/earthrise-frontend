@@ -35,8 +35,10 @@ switch (cardType) {
         )}
         <div class="card-content-panel">
           <h2>
-            {pageData.displayname}
-            <span class="pronouns">({pageData.pronouns}</span>)
+            <a class="card-link" href={`/${pageData.id}`} data-astro-prefetch>
+              {pageData.displayname}
+              <span class="pronouns">({pageData.pronouns})</span>
+            </a>
           </h2>
           {pageData.role && <p>{pageData.role}</p>}
           {pageData.organizationname && <p>{pageData.organizationname}</p>}
@@ -51,7 +53,7 @@ switch (cardType) {
       </Fragment>
     )
   }
-  <!-- <Code code={JSON.stringify(locationData, null, 2)} /> -->
+  <!-- <Code code={JSON.stringify(pageData, null, 2)} /> -->
 
   <style>
     .card {
@@ -63,18 +65,42 @@ switch (cardType) {
       display: flex;
       gap: 1rem;
       flex-direction: column;
+      position: relative;
     }
     .card-tag {
       padding: 0.25rem 0.75rem;
+      border-radius: 1rem;
       align-self: start;
+    }
+    h2 {
+      font-size: 1.5rem;
+    }
+    .card > * {
+    }
+    .card-link::after {
+      content: "";
+      position: absolute;
+      left: 0;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      /* background-color: yellow; */
+      /* z-index: -1; */
+    }
+    .card:focus-within,
+    .card:hover {
+      border-color: var(--color-cta);
     }
   </style>
   <style>
     .card-tag-person {
       background-color: var(--color-category-d);
       color: var(--color-theme-background);
-      font-weight: 600;
+      font-weight: 500;
       font-size: 0.75rem;
+    }
+    .pronouns {
+      font-weight: 300;
     }
     .person-image {
       width: 8rem;

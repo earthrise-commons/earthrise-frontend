@@ -1,6 +1,7 @@
 ---
 import type { GetStaticPaths } from "astro";
 import Layout from "../../layouts/Layout.astro";
+import Breadcrumbs from "../../components/page-blocks/Breadcrumbs.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import Code from "astro/components/Code.astro";
 import PersonHero from "../../components/page-blocks/PersonHero.astro";
@@ -38,7 +39,13 @@ const content = await loadFromCMS({
 });
 ---
 
-<Layout title={`Person: ${slug}`}>
+<Layout title={`Person: ${content.displayname}`}>
+  <Breadcrumbs
+    items={[
+      { title: "People", url: "/people/" },
+      { title: content.displayname },
+    ]}
+  />
   <PersonHero data={content} />
   <h2>About {content.displayname}</h2>
   <Fragment set:html={content.bio} />

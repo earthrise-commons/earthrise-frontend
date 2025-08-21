@@ -1,9 +1,9 @@
 ---
-import Layout from "../../layouts/Layout.astro";
-import { loadFromCMS } from "../../cms/loadFromCMS";
+import Layout from "../layouts/Layout.astro";
+import { loadFromCMS } from "../cms/loadFromCMS";
 import { Code } from "astro/components";
 
-import CardFeed from "../../components/page-blocks/CardFeed.astro";
+import CardFeed from "../components/page-blocks/CardFeed.astro";
 
 const people = await loadFromCMS({
   query: `page('people').children`,
@@ -27,8 +27,10 @@ const people = await loadFromCMS({
 });
 ---
 
-<Layout title="People">
-  <h1>People</h1>
+<Layout>
+  <h1>Explore</h1>
+
+  <h2>People</h2>
   <p>
     This is a list of people who have contributed to Earthrise Commons. You can
     find their articles, lessons, and other contributions here.

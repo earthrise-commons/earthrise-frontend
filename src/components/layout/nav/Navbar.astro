@@ -18,6 +18,7 @@ const navItems = [
       {
         navItems.map((item) => (
           <a
+            data-astro-prefetch
             href={item.href}
             class:list={["nav-item", item.href === "" && "nav-item-inactive"]}
           >

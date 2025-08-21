@@ -6,3 +6,13 @@ const { pageData } = Astro.props;
 <div class="card-container">
   {pageData.map((pageInfo) => <Card pageData={pageInfo} />)}
 </div>
+
+<style>
+  .card-container {
+    max-width: var(--size-padded-page);
+    width: 100%;
+    display: grid;
+    gap: 1rem;
+    grid-template-columns: repeat(auto-fit, minmax(380px, 1fr));
+  }
+</style>
