@@ -1,8 +1,10 @@
 import { parse as parseYaml } from "yaml";
 export const normalizeTagsFromYaml = (yamlString: string): string[] => {
   const parsed = parseYaml(yamlString);
-  parsed.other = parsed.other.split(", ");
   const tags = Object.values(parsed)
+    .map((item) => {
+      return item.split(", ");
+    })
     .flatMap((item) => item)
     .filter((item) => {
       return item !== "";
