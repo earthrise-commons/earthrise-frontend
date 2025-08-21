@@ -1,0 +1,87 @@
+---
+import { Code } from "astro/components";
+import Image from "astro/components/Image.astro";
+import { parse as parseYaml } from "yaml";
+const { pageData } = Astro.props;
+
+const cardType = pageData.id.split("/")[0];
+
+const locationData = parseYaml(pageData.location);
+
+switch (cardType) {
+  case "people":
+    break;
+
+  default:
+    break;
+}
+---
+
+<div class="card">
+  {
+    cardType == "people" && (
+      <Fragment>
+        <p class="card-tag card-tag-person">Person</p>
+        {pageData.photo ? (
+          <Image
+            src={pageData.photo.url}
+            width={pageData.photo.width}
+            height={pageData.photo.height}
+            alt={""}
+            class={"person-image"}
+          />
+        ) : (
+          <div class="person-image" />
+        )}
+        <div class="card-content-panel">
+          <h2>
+            {pageData.displayname}
+            <span class="pronouns">({pageData.pronouns}</span>)
+          </h2>
+          {pageData.role && <p>{pageData.role}</p>}
+          {pageData.organizationname && <p>{pageData.organizationname}</p>}
+          {locationData && (
+            <p>
+              {locationData.city && `${locationData.city}, `}
+              {locationData.region && `${locationData.region}, `}
+              {locationData.country && `${locationData.country}`}
+            </p>
+          )}
+        </div>
+      </Fragment>
+    )
+  }
+  <!-- <Code code={JSON.stringify(locationData, null, 2)} /> -->
+
+  <style>
+    .card {
+      padding: 1rem;
+      border: 1px solid var(--color-borders);
+      border-radius: 0.5rem;
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      display: flex;
+      gap: 1rem;
+      flex-direction: column;
+    }
+    .card-tag {
+      padding: 0.25rem 0.75rem;
+      align-self: start;
+    }
+  </style>
+  <style>
+    .card-tag-person {
+      background-color: var(--color-category-d);
+      color: var(--color-theme-background);
+      font-weight: 600;
+      font-size: 0.75rem;
+    }
+    .person-image {
+      width: 8rem;
+      height: 8rem;
+      object-fit: cover;
+      border-radius: 4rem;
+      background-color: var(--color-borders);
+    }
+  </style>
+</div>

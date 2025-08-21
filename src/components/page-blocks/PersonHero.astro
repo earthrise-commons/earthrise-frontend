@@ -5,7 +5,7 @@ import { parse as parseYaml } from "yaml";
 import Image from "astro/components/Image.astro";
 import PersonBanner from "../../assets/layouts/person-banner.png";
 import TagGroup from "./TagGroup.astro";
-
+import Accordion from "../content-blocks/Accordion.astro";
 const hasPhoto = data.photo && data.photo.url;
 const tags = normalizeTagsFromYaml(data.tags || "");
 console.log(tags);
@@ -13,7 +13,7 @@ console.log(tags);
 ---
 
 <div class="person-hero">
-  <Image src={PersonBanner} alt={""} />
+  <Image class={"person-banner"} src={PersonBanner} alt={""} />
   <div class="person-content-pane">
     {
       hasPhoto ? (
@@ -31,6 +31,7 @@ console.log(tags);
     <!--  -->
     <h1>{data.displayname} <span class="pronouns">({data.pronouns})</span></h1>
     {data.role && <p>{data.role}</p>}
+    <!-- <Accordion title="Contact Information" /> -->
     <TagGroup tags={tags} />
   </div>
 </div>
@@ -39,7 +40,11 @@ console.log(tags);
   .person-hero {
     max-width: var(--size-padded-page);
     border-radius: 0.5rem;
-    border: 1px solid black;
+    border: 1px solid var(--color-borders);
+  }
+  .person-banner {
+    height: 9rem;
+    object-fit: cover;
   }
   .person-image {
     background-color: var(--color-borders);
@@ -52,10 +57,17 @@ console.log(tags);
     border: 0.5rem solid var(--color-background);
   }
   .person-content-pane {
+    max-width: var(--size-padded-content);
+    width: 100%;
+    margin: 0 auto;
     position: relative;
     padding: 7rem 1rem 1rem 1rem;
   }
   h1 {
-    font-size: 2rem;
+    font-size: 3rem;
+    font-weight: 600;
+  }
+  .pronouns {
+    font-weight: 400;
   }
 </style>

@@ -1,0 +1,37 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { loadFromCMS } from "../../cms/loadFromCMS";
+import { Code } from "astro/components";
+
+import CardFeed from "../../components/page-blocks/CardFeed.astro";
+
+const content = await loadFromCMS({
+  query: `page('people').children`,
+  select: {
+    displayname: true,
+    id: true,
+    pronouns: true,
+    location: true,
+    organizationname: true,
+    role: true,
+    level: true,
+    // email: true,
+    // orcid: true,
+    // urls: true,
+    tags: true,
+
+    photo: {
+      query: `page.photo.toFile`,
+    },
+  },
+});
+---
+
+<Layout title="People">
+  <h1>People</h1>
+  <p>
+    This is a list of people who have contributed to Earthrise Commons. You can
+    find their articles, lessons, and other contributions here.
+  </p>
+  <CardFeed pageData={content} />
+</Layout>

@@ -40,17 +40,11 @@ const content = await loadFromCMS({
 
 <Layout title={`Person: ${slug}`}>
   <PersonHero data={content} />
-
-  <img
-    src={content.photo?.url}
-    alt={`Photo of ${content.displayname}`}
-    loading="lazy"
-  />
-  <h1>Person: {content.displayname}</h1>
   <h2>About {content.displayname}</h2>
   <Fragment set:html={content.bio} />
+  <h2>Content</h2>
+  <p>These are articles and lessons submitted by {content.displayname}.</p>
   <Code code={JSON.stringify(rawData, null, 2)} />
-  <Code code={JSON.stringify(content, null, 2)} />
 </Layout>
 
 <style></style>
