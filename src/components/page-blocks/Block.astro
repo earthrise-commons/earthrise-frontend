@@ -1,19 +1,28 @@
 ---
-const { blockData } = Astro.props;
+const { blockData, pageFiles } = Astro.props;
 import { Code } from "astro/components";
 import BlockAccordion from "./blocks/BlockAccordion.astro";
 import BlockResources from "./blocks/BlockResources.astro";
+import BlockTwoCol from "./blocks/BlockTwoCol.astro";
+import BlockText from "./blocks/BlockText.astro";
+import BlockHeading from "./blocks/BlockHeading.astro";
+import BlockImage from "./blocks/BlockImage.astro";
+import BlockList from "./blocks/BlockList.astro";
 const blockMapping = {
   accordion: BlockAccordion,
   resources: BlockResources,
+  twocol: BlockTwoCol,
+  text: BlockText,
+  heading: BlockHeading,
+  image: BlockImage,
+  list: BlockList,
   // Add more block types here
 };
 
 const Component = blockMapping[blockData.type];
 ---
 
-{Component && <Component content={blockData.content} />}
+{Component && <Component content={blockData.content} pageFiles={pageFiles} />}
 <div>
   {!Component && <h2>block not found: {blockData.type}</h2>}
-  <Code code={JSON.stringify(blockData, null, 2)} />
 </div>

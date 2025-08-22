@@ -1,0 +1,13 @@
+---
+const { content, pageFiles } = Astro.props;
+import lookupAsset from "../../../cms/lookupAsset";
+import ImageGroup from "../../content-blocks/ImageGroup.astro";
+
+const imageData = lookupAsset(content.image[0], pageFiles);
+---
+
+<ImageGroup
+  src={imageData.url}
+  alt={content.alt || ""}
+  caption={content.caption}
+/>

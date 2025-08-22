@@ -1,5 +1,6 @@
 ---
 import type { GetStaticPaths } from "astro";
+import { parse as parseYaml } from "yaml";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/page-blocks/Breadcrumbs.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
@@ -18,13 +19,19 @@ export const getStaticPaths = async () => {
 
 const rawData = await loadFromCMS({ query: `page('chapters/${slug}')` });
 
+const blockData = parseYaml(rawData.content.text);
+
 const content = await loadFromCMS({
   query: `page('chapters/${slug}')`,
+});
+const pageFiles = await loadFromCMS({
+  query: `page('chapters/${slug}').files`,
+  select: ["uuid", "url", "alt", "size", "extension", "filename", "caption"],
 });
 ---
 
 <Layout title={`Person: ${content.displayname}`}>
-  <BlockRenderer blockData={rawData.content.text} />
+  <BlockRenderer blockData={blockData} pageFiles={pageFiles} />
   <!-- <Breadcrumbs
     items={[
       { title: "People", url: "/people/" },

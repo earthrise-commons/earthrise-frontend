@@ -1,0 +1,26 @@
+---
+import { parse as parseYaml } from "yaml";
+import { Code } from "astro/components";
+import TwoCol from "../../content-blocks/TwoCol.astro";
+import BlockRenderer from "../BlockRenderer.astro";
+const { content, pageFiles } = Astro.props;
+const { left, right, theme } = content;
+const leftBlocks = JSON.parse(left);
+const rightBlocks = JSON.parse(right);
+const themeMapping = {
+  default: "light",
+  inverted: "dark",
+  light: "light",
+  dark: "dark",
+};
+const safeTheme = themeMapping[theme] || "light";
+---
+
+<TwoCol theme={safeTheme}>
+  <Fragment slot="left">
+    <BlockRenderer blockData={leftBlocks} pageFiles={pageFiles} />
+  </Fragment>
+  <Fragment slot="right">
+    <BlockRenderer blockData={rightBlocks} pageFiles={pageFiles} />
+  </Fragment>
+</TwoCol>

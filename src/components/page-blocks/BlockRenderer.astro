@@ -2,13 +2,12 @@
 import { Code } from "astro/components";
 import { parse as parseYaml } from "yaml";
 import Block from "./Block.astro";
-const { blockData } = Astro.props;
-const parsedData = parseYaml(blockData);
+const { blockData = [], pageFiles } = Astro.props;
 ---
 
 {
-  parsedData.map((block) => {
-    return <Block blockData={block} />;
+  blockData.map((block) => {
+    return <Block blockData={block} pageFiles={pageFiles} />;
   })
 }
 <!-- <Code code={JSON.stringify(parsedData, null, 2)} /> -->
