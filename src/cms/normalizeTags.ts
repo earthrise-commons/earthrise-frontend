@@ -1,6 +1,9 @@
 import { parse as parseYaml } from "yaml";
 export const normalizeTagsFromYaml = (yamlString: string): string[] => {
   const parsed = parseYaml(yamlString);
+  if (typeof parsed !== "object" || parsed === null) {
+    return [];
+  }
   const tags = Object.values(parsed)
     .map((item) => {
       return item.split(", ");

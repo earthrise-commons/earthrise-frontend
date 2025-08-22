@@ -1,10 +1,11 @@
 ---
 import type { GetStaticPaths } from "astro";
+import { parse as parseYaml } from "yaml";
 import Layout from "../../layouts/Layout.astro";
 import Breadcrumbs from "../../components/page-blocks/Breadcrumbs.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import Code from "astro/components/Code.astro";
-import PersonHero from "../../components/page-blocks/PersonHero.astro";
+import PageHero from "../../components/page-blocks/PageHero.astro";
 const { slug } = Astro.params;
 import BlockRenderer from "../../components/page-blocks/BlockRenderer.astro";
 
@@ -18,13 +19,21 @@ export const getStaticPaths = async () => {
 
 const rawData = await loadFromCMS({ query: `page('chapters/${slug}')` });
 
+const blockData = parseYaml(rawData.content.text);
+
 const content = await loadFromCMS({
   query: `page('chapters/${slug}')`,
+});
+const pageFiles = await loadFromCMS({
+  query: `page('chapters/${slug}').files`,
+  select: ["uuid", "url", "alt", "size", "extension", "filename", "caption"],
 });
 ---
 
 <Layout title={`Person: ${content.displayname}`}>
-  <BlockRenderer blockData={rawData.content.text} />
+  <pre>{JSON.stringify(content, null, 2)}</pre>
+  <!-- <PageHero title={content.title} subtitle={content.subtitle} /> -->
+  <!-- <BlockRenderer blockData={blockData} pageFiles={pageFiles} /> -->
   <!-- <Breadcrumbs
     items={[
       { title: "People", url: "/people/" },
@@ -36,7 +45,6 @@ const content = await loadFromCMS({
   <Fragment set:html={content.bio} />
   <h2>Content</h2>
   <p>These are articles and lessons submitted by {content.displayname}.</p> -->
-  <Code code={JSON.stringify(rawData, null, 2)} />
 </Layout>
 
 <style></style>

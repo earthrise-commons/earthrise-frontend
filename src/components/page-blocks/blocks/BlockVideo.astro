@@ -1,0 +1,22 @@
+---
+const { content, pageFiles } = Astro.props;
+import { YouTube, Vimeo } from "astro-embed";
+// TODO: add support for youtube playlists to the component:
+// https://github.com/delucis/astro-embed/issues/192
+const url = content.url;
+const isYoutube = url.includes("youtube.com") || url.includes("youtu.be");
+const isVimeo = url.includes("vimeo.com");
+const otherVideo = !isYoutube && !isVimeo;
+---
+
+{isYoutube && <YouTube id={url} />}
+{isVimeo && <Vimeo id={url} />}
+{
+  otherVideo && (
+    <p>
+      Unable to load video embed. Click <a href={url}>here</a> to watch.
+    </p>
+  )
+}
+
+<!-- <pre>{JSON.stringify(content, null, 2)}</pre> -->

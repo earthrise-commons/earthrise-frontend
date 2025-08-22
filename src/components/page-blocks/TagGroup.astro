@@ -3,20 +3,22 @@ const { tags = [] }: { tags?: { label: string; value: string }[] } =
   Astro.props;
 ---
 
-<div class="tag-group">
-  <p>Tags:</p>
-  <ul>
-    {
-      tags.map((tag) => (
-        <li>
-          <a class="tag" href={`/tags/${tag.value}`}>
-            {tag.label}
-          </a>
-        </li>
-      ))
-    }
-  </ul>
-</div>
+{
+  tags.length > 0 && (
+    <div class="tag-group">
+      <p>Tags:</p>
+      <ul>
+        {tags.map((tag) => (
+          <li>
+            <a class="tag" href={`/tags/${tag.value}`}>
+              {tag.label}
+            </a>
+          </li>
+        ))}
+      </ul>
+    </div>
+  )
+}
 
 <style>
   ul {

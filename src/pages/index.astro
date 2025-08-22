@@ -1,9 +1,55 @@
 ---
-import Welcome from "../components/Welcome.astro";
 import Layout from "../layouts/Layout.astro";
-
+import BannerImg from "../assets/graphic-hero/ec-welcome.png";
+import HomepageLRE from "../assets/graphic-hero/homepage-lre.png";
+import Image from "astro/components/Image.astro";
 // Welcome to Astro! Wondering what to do next? Check out the Astro documentation at https://docs.astro.build
 // Don't want to use any of this? Delete everything in this file, the `assets`, `components`, and `layouts` directories, and start fresh.
 ---
 
-<Layout />
+<Layout title="Home">
+  <Image
+    role={"heading"}
+    aria-level={1}
+    class="banner-image"
+    src={BannerImg}
+    alt="Welcome to Earthrise Commons"
+  />
+  <div class="home-group text-block">
+    <p class="ec-description">
+      A Sustainability Learning Commons with open resources for teaching &
+      practicing sustainability in your community
+    </p>
+    <a href="/submissions" class="ec-button">Contribute a Project</a>
+  </div>
+  <Image class="homepage-lre" src={HomepageLRE} alt="" />
+</Layout>
+
+<style>
+  .banner-image {
+    max-width: 100%;
+    height: auto;
+    min-height: 200px;
+    object-fit: cover;
+    object-position: left;
+  }
+  .homepage-lre {
+    max-width: 100%;
+    height: auto;
+    min-height: 200px;
+    object-fit: cover;
+    object-position: right;
+    margin-bottom: 0;
+  }
+
+  .ec-description {
+    font-size: 1.5rem;
+    margin: 1rem 0;
+    font-weight: 400;
+    max-width: 500px;
+  }
+  .home-group {
+    margin-top: -2rem;
+    margin-bottom: -3rem;
+  }
+</style>

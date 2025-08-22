@@ -1,0 +1,82 @@
+---
+const { content, pageFiles } = Astro.props;
+import Accordion from "../../content-blocks/Accordion.astro";
+import formatBytes from "../../../helpers/formatBytes";
+import { Icon } from "astro-icon/components";
+
+const processedItems = await Promise.all(
+  content.items.map(async (item) => {
+    const returnObj = {
+      title: item.title,
+      url: "",
+      description: "description",
+      icon: "",
+    };
+    if (item.type === "url") {
+      returnObj.url = item.url;
+      returnObj.description = "External Resource";
+      returnObj.icon = "fa7-solid:link";
+    } else {
+      const fileObj = pageFiles.find((file) => {
+        console.log(file);
+        console.log(item);
+        return file.uuid === item.file[0];
+      });
+      returnObj.icon = "fa7-solid:file";
+      returnObj.description =
+        fileObj.extension + " - " + formatBytes(fileObj.size);
+    }
+    return returnObj;
+  })
+);
+---
+
+<Accordion title={content.title}>
+  <ul class="resource-list">
+    {
+      processedItems.map((item) => {
+        return (
+          <li class="resource-group">
+            <div class="resource-icon">
+              <Icon name={item.icon} />
+            </div>
+            <div class="resource-panel">
+              <h3>
+                <a href={item.url}>{item.title}</a>
+              </h3>
+              <p>{item.description}</p>
+            </div>
+          </li>
+        );
+      })
+    }
+  </ul>
+</Accordion>
+<style>
+  .resource-icon {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 4rem;
+    height: 4rem;
+    border-radius: 4rem;
+
+    color: white;
+    background-color: var(--color-theme-accent-a);
+    font-size: 2rem;
+    padding: 1rem;
+  }
+  .resource-group {
+    position: relative;
+    display: flex;
+    align-items: center;
+    margin-bottom: 1rem;
+    gap: 1rem;
+  }
+  .resource-list {
+    display: flex;
+    flex-direction: column;
+    gap: 4rem;
+    padding: 2rem;
+  }
+</style>
