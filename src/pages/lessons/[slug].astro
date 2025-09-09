@@ -42,6 +42,6 @@ const pageFiles = await loadFromCMS({
       personImage={rawData.author.photo[0]}
     /></PageHero
   >
-  <pre>{JSON.stringify(rawData, null, 2)}</pre>
+  <!-- <pre>{JSON.stringify(rawData, null, 2)}</pre> -->
   <BlockRenderer blockData={blockData} pageFiles={pageFiles} />
 </Layout>
