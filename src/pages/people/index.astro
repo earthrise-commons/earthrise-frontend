@@ -21,7 +21,7 @@ const people = await loadFromCMS({
     tags: true,
 
     photo: {
-      query: `page.photo.toFile`,
+      query: `page.photo.isNotEmpty ? page.photo.toFile.crop(256,256) : null`,
     },
   },
 });

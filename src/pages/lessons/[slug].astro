@@ -18,14 +18,14 @@ const rawData = await loadFromCMS({
         pronouns: true,
         location: true,
         photo: {
-          query: "page.photo.toFiles",
+          query: "page.photo.toFile.resize(144, 144)",
           select: ["url", "width", "height"],
         },
       },
     },
   },
 });
-
+// TODO: update query to be able to select multiple authors
 const blockData = parseYaml(rawData.content.text);
 
 const pageFiles = await loadFromCMS({
@@ -35,12 +35,14 @@ const pageFiles = await loadFromCMS({
 ---
 
 <Layout title={`Lesson: ${rawData.title}`}>
-  <PageHero title={rawData.content.title}
-    ><PersonBlock
+  <PageHero title={rawData.content.title}>
+    <!-- TODO: map multiple authors to separate PersonBlock components -->
+    <PersonBlock
       personName={rawData.author.displayname}
       personOrg={rawData.author.organizationname}
-      personImage={rawData.author.photo[0]}
-    /></PageHero
+      personImage={rawData.author.photo}
+    />
+  </PageHero>
   >
   <!-- <pre>{JSON.stringify(rawData, null, 2)}</pre> -->
   <BlockRenderer blockData={blockData} pageFiles={pageFiles} />
