@@ -24,6 +24,7 @@ const blockMapping = {
 const Component = blockMapping[blockData.type];
 ---
 
+<!-- <pre>{JSON.stringify(blockData, null, 2)}</pre> -->
 {Component && <Component content={blockData.content} pageFiles={pageFiles} />}
 <div>
   {!Component && <h2>block not found: {blockData.type}</h2>}

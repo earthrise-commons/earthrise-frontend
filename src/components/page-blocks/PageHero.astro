@@ -5,6 +5,7 @@ const { title = "Title", subtitle = "" } = Astro.props;
 <div class="page-hero-group">
   <div class="page-hero-column">
     <h1>{title}</h1>
-    <p class="subtitle">{subtitle}</p>
+    {subtitle && <p class="subtitle">{subtitle}</p>}
+    <slot />
   </div>
 </div>
