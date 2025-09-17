@@ -21,14 +21,14 @@ const { title } = Astro.props;
 
   <body>
     <div class="under-construction">
-      <Icon name="fa7-solid:hammer" />
+      <Icon name="fa7-solid:hammer" class="uc-icon" />
       <span
         >This site is under construction. Please pardon our appearance while we
         build Earthrise Commons, and feel free to follow along on <a
           href="https://github.com/earthrise-commons">GitHub!</a
         ></span
       >
-      <Icon name="fa7-solid:hammer" />
+      <Icon name="fa7-solid:hammer" class="uc-icon" />
     </div>
     <Navbar />
     <PageBody>
@@ -53,5 +53,8 @@ const { title } = Astro.props;
     padding: 0.5rem;
     text-align: center;
     background-color: var(--color-theme-accent-b);
+  }
+  .uc-icon {
+    flex-shrink: 0;
   }
 </style>
