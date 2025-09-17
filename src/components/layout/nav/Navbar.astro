@@ -7,6 +7,7 @@ const navItems = [
   { label: "Call for Submissions", href: "/submissions" },
   { label: "Table of Contents", href: "" },
 ];
+import { Icon } from "astro-icon/components";
 ---
 
 <nav>
@@ -18,7 +19,10 @@ const navItems = [
       id="menu-toggle"
       class="btn"
       aria-controls="menu-main-group"
-      aria-expanded="false"><span class="menu-toggle-text">Menu</span></button
+      aria-expanded="false"
+    >
+      <Icon name={"fa7-solid:bars"} class={"menu-toggle-icon"} />
+      <span class="menu-toggle-text visually-hidden">Menu</span></button
     >
     <div class="nav-group-main nav-mobile-hidden" id="menu-main-group">
       <div class="nav-links-group">
@@ -47,8 +51,8 @@ const navItems = [
     display: flex;
     justify-content: center;
     align-items: center;
-    background-color: rgb(213, 213, 213);
     padding: var(--size-page-padding);
+    border-bottom: 1px solid var(--color-borders);
   }
   .nav-wrapper {
     display: flex;
@@ -101,7 +105,17 @@ const navItems = [
 
   #menu-toggle {
     z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+
+  .menu-toggle-icon {
+    font-size: 1.5rem;
+  }
+  .menu-toggle-text {
+  }
+
   #menu-toggle[aria-expanded="true"] {
     position: fixed;
     top: var(--size-page-padding);
@@ -123,6 +137,9 @@ const navItems = [
     align-items: center;
   }
   @media screen and (min-width: 900px) {
+    nav {
+      border-bottom: none;
+    }
     .nav-wrapper {
       flex-direction: row;
       width: 100%;

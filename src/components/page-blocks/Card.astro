@@ -2,6 +2,7 @@
 import { Code } from "astro/components";
 import Image from "astro/components/Image.astro";
 import { parse as parseYaml } from "yaml";
+import normalizePlaceName from "../../cms/normalizePlaceName";
 const { pageData } = Astro.props;
 
 const cardType = pageData.id.split("/")[0];
@@ -44,7 +45,8 @@ switch (cardType) {
           {pageData.organizationname && <p>{pageData.organizationname}</p>}
           {locationData && (
             <p>
-              {locationData.city && `${locationData.city}, `}
+              {locationData.city &&
+                `${normalizePlaceName(locationData.city)}, `}
               {locationData.region && `${locationData.region}, `}
               {locationData.country && `${locationData.country}`}
             </p>
