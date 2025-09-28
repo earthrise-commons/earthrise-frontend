@@ -30,8 +30,10 @@ const pageFiles = await loadFromCMS({
 });
 ---
 
-<Layout title={`Person: ${content.displayname}`}>
-  <pre>{JSON.stringify(content, null, 2)}</pre>
+<Layout title={`Chapter: ${content.displayname}`}>
+  <h1>{content.title}</h1>
+  <p>Chapter pages coming soon!</p>
+  <!-- <pre>{JSON.stringify(content, null, 2)}</pre> -->
   <!-- <PageHero title={content.title} subtitle={content.subtitle} /> -->
   <!-- <BlockRenderer blockData={blockData} pageFiles={pageFiles} /> -->
   <!-- <Breadcrumbs

@@ -8,7 +8,9 @@ import netlify from "@astrojs/netlify";
 // https://astro.build/config
 export default defineConfig({
   output: "server",
-  prefetch: true,
+  prefetch: {
+    prefetchAll: true,
+  },
   integrations: [icon()],
   scopedStyleStrategy: "class",
   adapter: netlify(),
