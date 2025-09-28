@@ -5,6 +5,8 @@ import Breadcrumbs from "../../components/page-blocks/Breadcrumbs.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import Code from "astro/components/Code.astro";
 import PersonHero from "../../components/page-blocks/PersonHero.astro";
+import CardFeed from "../../components/page-blocks/CardFeed.astro";
+
 const { slug } = Astro.params;
 
 export const getStaticPaths = async () => {
@@ -14,8 +16,6 @@ export const getStaticPaths = async () => {
     return { params: { slug: personSlug } };
   });
 };
-
-const rawData = await loadFromCMS({ query: `page('people/${slug}')` });
 
 const content = await loadFromCMS({
   query: `page('people/${slug}')`,
@@ -36,6 +36,23 @@ const content = await loadFromCMS({
       // pattern to check if photo exists before attempting to size it on the server
       query: `page('people/${slug}').photo.isNotEmpty ? page('people/${slug}').photo.toFile.crop(384,384) : null`,
     },
+    relatedPages: {
+      query: `site.index.children.filterBy('author','*=',page.uuid)`,
+      select: {
+        author: {
+          query: "page.author.toPage",
+          select: ["displayname", "organizationname", "location"],
+        },
+        hero: {
+          query: "page.hero.safeResize(600)",
+          select: ["url", "width", "height"],
+        },
+        id: true,
+        title: true,
+        slug: true,
+        type: true,
+      },
+    },
   },
 });
 ---
@@ -52,7 +69,8 @@ const content = await loadFromCMS({
   <Fragment set:html={content.bio} />
   <h2>Content</h2>
   <p>These are articles and lessons submitted by {content.displayname}.</p>
-  <!-- <Code code={JSON.stringify(rawData, null, 2)} /> -->
+
+  <CardFeed pageData={content.relatedPages} />
 </Layout>
 
 <style></style>

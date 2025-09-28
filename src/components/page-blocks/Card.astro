@@ -4,18 +4,18 @@ import Image from "astro/components/Image.astro";
 import { parse, parse as parseYaml } from "yaml";
 import normalizePlaceName from "../../cms/normalizePlaceName";
 const { pageData } = Astro.props;
-
+import HeroImage from "./HeroImage.astro";
 const cardType = pageData.id.split("/")[0];
 // TODO: extract location parsing and processing to a helper function
 const locationData = pageData.location ? parseYaml(pageData.location) : null;
-const authorLocationData = pageData.author
+const authorLocationData = pageData?.author?.location
   ? parseYaml(pageData.author.location)
   : null;
 
 switch (cardType) {
   case "people":
     break;
-
+  case "lessons":
   default:
     break;
 }
@@ -60,7 +60,7 @@ switch (cardType) {
   }
 
   {
-    cardType == "chapters" && (
+    (cardType == "chapters" || cardType == "lessons") && (
       <Fragment>
         <p class="card-tag card-tag-chapter">Book Chapter</p>
 
@@ -71,7 +71,7 @@ switch (cardType) {
               {/* <span class="pronouns">({pageData.pronouns})</span> */}
             </a>
           </h2>
-          <div class="card-img-rect" />
+          <HeroImage data={pageData.hero} />
           {pageData.author.displayname && <p>{pageData.author.displayname}</p>}
           {pageData.author.organizationname && (
             <p>{pageData.author.organizationname}</p>
