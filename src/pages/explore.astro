@@ -25,6 +25,22 @@ const people = await loadFromCMS({
     },
   },
 });
+
+const lessons = await loadFromCMS({
+  query: `page('lessons').children`,
+  select: {
+    title: true,
+    id: true,
+    hero: {
+      query: `page.hero.safeResize(600)`,
+      select: ["url", "width", "height"],
+    },
+    author: {
+      query: "page.author.toPage",
+      select: ["displayname", "organizationname", "location"],
+    },
+  },
+});
 ---
 
 <Layout>
@@ -36,4 +52,7 @@ const people = await loadFromCMS({
     find their articles, lessons, and other contributions here.
   </p>
   <CardFeed pageData={people} />
+  <h2>Lessons</h2>
+  <p>These are lessons contributed by members of the community.</p>
+  <CardFeed pageData={lessons} />
 </Layout>
