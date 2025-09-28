@@ -1,0 +1,34 @@
+---
+import { Image } from "astro:assets";
+const { personName, personOrg, personImage } = Astro.props;
+---
+
+<div class="person-block">
+  <Image class="person-block-image" src={personImage.url} alt="" />
+  <!-- TODO: add link to bio page -->
+  <div class="person-block-text">
+    <p class="person-block-name">{personName}</p>
+    <p class="person-block-org">{personOrg}</p>
+  </div>
+</div>
+
+<style>
+  .person-block {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    font-family:;
+  }
+  .person-block-image {
+    height: 4.5rem;
+    width: 4.5rem;
+    border-radius: 2.25rem;
+    object-fit: cover;
+  }
+  .person-block-name {
+    font-weight: 600;
+  }
+  .person-block-org {
+    font-size: 1rem;
+  }
+</style>

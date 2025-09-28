@@ -1,0 +1,49 @@
+---
+import { loadFromCMS } from "../../cms/loadFromCMS";
+import { parse as parseYaml } from "yaml";
+import BlockRenderer from "../../components/page-blocks/BlockRenderer.astro";
+import PersonBlock from "../../components/page-blocks/PersonBlock.astro";
+import PageHero from "../../components/page-blocks/PageHero.astro";
+import Layout from "../../layouts/Layout.astro";
+const { slug } = Astro.params;
+const rawData = await loadFromCMS({
+  query: `page('lessons/${slug}')`,
+  select: {
+    content: true,
+    author: {
+      query: "page.content.author.toPage",
+      select: {
+        displayname: true,
+        organizationname: true,
+        pronouns: true,
+        location: true,
+        photo: {
+          query: "page.photo.toFile.resize(144, 144)",
+          select: ["url", "width", "height"],
+        },
+      },
+    },
+  },
+});
+// TODO: update query to be able to select multiple authors
+const blockData = parseYaml(rawData.content.text);
+
+const pageFiles = await loadFromCMS({
+  query: `page('lessons/${slug}').files`,
+  select: ["uuid", "url", "alt", "size", "extension", "filename", "caption"],
+});
+---
+
+<Layout title={`Lesson: ${rawData.title}`}>
+  <PageHero title={rawData.content.title}>
+    <!-- TODO: map multiple authors to separate PersonBlock components -->
+    <PersonBlock
+      personName={rawData.author.displayname}
+      personOrg={rawData.author.organizationname}
+      personImage={rawData.author.photo}
+    />
+  </PageHero>
+  >
+  <!-- <pre>{JSON.stringify(rawData, null, 2)}</pre> -->
+  <BlockRenderer blockData={blockData} pageFiles={pageFiles} />
+</Layout>

@@ -33,7 +33,8 @@ const content = await loadFromCMS({
     tags: true,
 
     photo: {
-      query: `page('people/${slug}').photo.toFile`,
+      // pattern to check if photo exists before attempting to size it on the server
+      query: `page('people/${slug}').photo.isNotEmpty ? page('people/${slug}').photo.toFile.crop(384,384) : null`,
     },
   },
 });

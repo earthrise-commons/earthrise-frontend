@@ -7,32 +7,213 @@ const navItems = [
   { label: "Call for Submissions", href: "/submissions" },
   { label: "Table of Contents", href: "" },
 ];
+import { Icon } from "astro-icon/components";
 ---
 
 <nav>
-  <div class="nav-container">
+  <div class="nav-wrapper">
     <div class="nav-group-logo">
       <a href="/"><EcLogo /></a>
     </div>
-    <div class="nav-group-main">
-      {
-        navItems.map((item) => (
-          <a
-            data-astro-prefetch
-            href={item.href}
-            class:list={["nav-item", item.href === "" && "nav-item-inactive"]}
-          >
-            {item.label}
-          </a>
-        ))
-      }
-    </div>
-    <div class="nav-group-contribute">
-      <a href="/submissions" class="ec-button"> Contribute a Project </a>
+    <button
+      id="menu-toggle"
+      class="btn"
+      aria-controls="menu-main-group"
+      aria-expanded="false"
+    >
+      <Icon name={"fa7-solid:bars"} class={"menu-toggle-icon"} />
+      <span class="menu-toggle-text visually-hidden">Menu</span></button
+    >
+    <div class="nav-group-main nav-mobile-hidden" id="menu-main-group">
+      <div class="nav-links-group">
+        {
+          navItems.map((item) => (
+            <a
+              data-astro-prefetch
+              href={item.href}
+              class:list={["nav-item", item.href === "" && "nav-item-inactive"]}
+            >
+              {item.label}
+            </a>
+          ))
+        }
+      </div>
+
+      <div class="nav-group-contribute">
+        <a href="/submissions" class="ec-button"> Contribute a Project </a>
+      </div>
     </div>
   </div>
 </nav>
+
 <style>
+  nav {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: var(--size-page-padding);
+    border-bottom: 1px solid var(--color-borders);
+  }
+  .nav-wrapper {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 100%;
+    position: relative;
+    text-align: center;
+    overflow-y: auto;
+  }
+
+  .nav-links-group {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0rem;
+  }
+
+  #menu-main-group {
+    position: fixed;
+    top: 0px;
+    left: 0px;
+    right: 0px;
+    height: 100%;
+    /* padding: 1rem; */
+    /* overflow-y: auto; */
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0rem;
+
+    overflow-y: auto;
+    z-index: 10;
+    transform: none;
+    transition: all 0.3s;
+    backdrop-filter: blur(20px);
+  }
+
+  #menu-toggle[aria-expanded="false"] + #menu-main-group {
+    display: none;
+  }
+  #menu-toggle[aria-expanded="true"] + #menu-main-group,
+  #menu-toggle + #menu-main-group:focus-within {
+    display: flex;
+  }
+  h2 {
+    margin-top: 1rem;
+    margin-bottom: 0.5rem;
+  }
+
+  #menu-toggle {
+    z-index: 50;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .menu-toggle-icon {
+    font-size: 1.5rem;
+  }
+  .menu-toggle-text {
+  }
+
+  #menu-toggle[aria-expanded="true"] {
+    position: fixed;
+    top: var(--size-page-padding);
+    right: var(--size-page-padding);
+  }
+
+  .nav-item {
+    padding: 1rem 2rem;
+    text-decoration: none;
+    font-size: 1.5rem;
+  }
+  .nav-group-contribute {
+    margin-top: 1rem;
+  }
+
+  .nav-group-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  @media screen and (min-width: 900px) {
+    nav {
+      border-bottom: none;
+    }
+    .nav-wrapper {
+      flex-direction: row;
+      width: 100%;
+      max-width: var(--size-padded-page);
+      justify-content: space-between;
+    }
+    .nav-item {
+      padding: 0;
+      font-size: 1rem;
+    }
+    .nav-group-contribute {
+      margin: 0;
+    }
+    .nav-group-main {
+      flex-grow: 1;
+      justify-content: space-between;
+      padding-left: 4rem;
+    }
+    .nav-links-group {
+      flex-direction: row;
+      gap: 2rem;
+    }
+    #menu-toggle[aria-expanded] + #menu-main-group {
+      display: flex;
+      position: static;
+      flex-direction: row;
+      align-items: center;
+      gap: 2rem;
+    }
+    #menu-toggle,
+    #menu-close {
+      display: none;
+    }
+  }
+</style>
+
+<script type="text/javascript">
+  const isDesktop = () => window.matchMedia("(min-width: 768px)").matches;
+
+  const hideMobileMenu = () => {
+    document
+      .querySelector("#menu-toggle")
+      ?.setAttribute("aria-expanded", "false");
+  };
+
+  document.querySelector("#menu-toggle")?.addEventListener("click", () => {
+    const menuToggle = document.querySelector("#menu-toggle");
+    const isExpanded = menuToggle?.getAttribute("aria-expanded") === "true";
+    menuToggle?.setAttribute("aria-expanded", String(!isExpanded));
+  });
+
+  window.addEventListener("keyup", (e) => {
+    if (e.key === "Escape") {
+      hideMobileMenu();
+      document.querySelector("#menu-toggle")?.focus();
+    }
+  });
+
+  const desktopQuery = window.matchMedia("(min-width: 768px)");
+  desktopQuery.addEventListener("change", (e) => {
+    hideMobileMenu();
+  });
+
+  // Hide the mobile menu when focus moves outside of it
+  document
+    .querySelector("#menu-main-group")
+    ?.addEventListener("focusout", (e) => {
+      const menu = e.currentTarget;
+      if (!menu.contains(e.relatedTarget)) {
+        hideMobileMenu();
+      }
+    });
+</script>
+<!-- <style>
   nav {
     display: flex;
     align-items: center;
@@ -60,4 +241,4 @@ const navItems = [
     opacity: 0.25;
     pointer-events: none;
   }
-</style>
+</style> -->

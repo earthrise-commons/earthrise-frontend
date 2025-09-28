@@ -7,15 +7,27 @@ import CardFeed from "../../components/page-blocks/CardFeed.astro";
 
 const chapters = await loadFromCMS({
   query: `page('chapters').children`,
+  select: {
+    title: true,
+    id: true,
+    subtitle: true,
+    location: true,
+    author: {
+      query: "page.content.author.toPage",
+      select: {
+        displayname: true,
+        organizationname: true,
+        pronouns: true,
+        location: true,
+      },
+    },
+  },
 });
 ---
 
 <Layout title="Chapters">
   <h1>Chapters</h1>
-  <p>
-    This is a list of chapters in Earthrise Commons. You can find their
-    articles, lessons, and other contributions here.
-  </p>
+  <p>This is a list of chapters in Earthrise Commons.</p>
   <Code lang={"json"} code={JSON.stringify(chapters, null, 2)} />
-  <!-- <CardFeed pageData={chapters} /> -->
+  <CardFeed pageData={chapters} />
 </Layout>

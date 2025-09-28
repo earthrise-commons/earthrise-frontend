@@ -1,12 +1,16 @@
 ---
 import { Code } from "astro/components";
 import Image from "astro/components/Image.astro";
-import { parse as parseYaml } from "yaml";
+import { parse, parse as parseYaml } from "yaml";
+import normalizePlaceName from "../../cms/normalizePlaceName";
 const { pageData } = Astro.props;
 
 const cardType = pageData.id.split("/")[0];
-
-const locationData = parseYaml(pageData.location);
+// TODO: extract location parsing and processing to a helper function
+const locationData = pageData.location ? parseYaml(pageData.location) : null;
+const authorLocationData = pageData.author
+  ? parseYaml(pageData.author.location)
+  : null;
 
 switch (cardType) {
   case "people":
@@ -37,16 +41,47 @@ switch (cardType) {
           <h2>
             <a class="card-link" href={`/${pageData.id}`} data-astro-prefetch>
               {pageData.displayname}
-              <span class="pronouns">({pageData.pronouns})</span>
+              {/* <span class="pronouns">({pageData.pronouns})</span> */}
             </a>
           </h2>
           {pageData.role && <p>{pageData.role}</p>}
           {pageData.organizationname && <p>{pageData.organizationname}</p>}
           {locationData && (
             <p>
-              {locationData.city && `${locationData.city}, `}
+              {locationData.city &&
+                `${normalizePlaceName(locationData.city)}, `}
               {locationData.region && `${locationData.region}, `}
               {locationData.country && `${locationData.country}`}
+            </p>
+          )}
+        </div>
+      </Fragment>
+    )
+  }
+
+  {
+    cardType == "chapters" && (
+      <Fragment>
+        <p class="card-tag card-tag-chapter">Book Chapter</p>
+
+        <div class="card-content-panel">
+          <h2>
+            <a class="card-link" href={`/${pageData.id}`} data-astro-prefetch>
+              {pageData.title}
+              {/* <span class="pronouns">({pageData.pronouns})</span> */}
+            </a>
+          </h2>
+          <div class="card-img-rect" />
+          {pageData.author.displayname && <p>{pageData.author.displayname}</p>}
+          {pageData.author.organizationname && (
+            <p>{pageData.author.organizationname}</p>
+          )}
+          {authorLocationData && (
+            <p>
+              {authorLocationData.city &&
+                `${normalizePlaceName(authorLocationData.city)}, `}
+              {authorLocationData.region && `${authorLocationData.region}, `}
+              {authorLocationData.country && `${authorLocationData.country}`}
             </p>
           )}
         </div>
@@ -71,6 +106,8 @@ switch (cardType) {
       padding: 0.25rem 0.75rem;
       border-radius: 1rem;
       align-self: start;
+      font-weight: 500;
+      font-size: 0.75rem;
     }
     h2 {
       font-size: 1.5rem;
@@ -93,11 +130,21 @@ switch (cardType) {
     }
   </style>
   <style>
+    .card-content-panel p {
+      font-size: 0.8rem;
+    }
+    .card-content-panel h2,
+    .card-content-panel h2 a {
+      font-size: 1rem;
+      text-decoration: none;
+    }
     .card-tag-person {
       background-color: var(--color-category-d);
       color: var(--color-theme-background);
-      font-weight: 500;
-      font-size: 0.75rem;
+    }
+    .card-tag-chapter {
+      background-color: var(--color-category-a);
+      color: var(--color-theme-background);
     }
     .pronouns {
       font-weight: 300;
@@ -107,6 +154,14 @@ switch (cardType) {
       height: 8rem;
       object-fit: cover;
       border-radius: 4rem;
+      background-color: var(--color-borders);
+    }
+
+    .card-img-rect {
+      width: 100%;
+      height: 8rem;
+      object-fit: cover;
+      border-radius: 0.5rem;
       background-color: var(--color-borders);
     }
   </style>
