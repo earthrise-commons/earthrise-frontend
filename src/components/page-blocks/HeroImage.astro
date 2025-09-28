@@ -1,0 +1,32 @@
+---
+const { data } = Astro.props;
+import { Image } from "astro:assets";
+---
+
+{
+  data?.url && (
+    <Image
+      src={data.url}
+      alt={data.alt || ""}
+      width={data.width}
+      height={data.height}
+      class="hero-image"
+    />
+  )
+}
+{!data?.url && <div class="hero-placeholder" />}
+
+<style>
+  .hero-placeholder {
+    width: 100%;
+    /* height: 200px; */
+    aspect-ratio: 3 / 1;
+    background-color: rgb(196, 196, 196);
+  }
+  .hero-image,
+  .hero-placeholder {
+    border-radius: 0.5rem;
+    object-fit: cover;
+    object-position: center;
+  }
+</style>
