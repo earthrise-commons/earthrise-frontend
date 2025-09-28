@@ -1,6 +1,8 @@
 ---
 import { Image } from "astro:assets";
-const { personName, personOrg, personImage } = Astro.props;
+import { Icon } from "astro-icon/components";
+
+const { personName, personOrg, personImage, personId } = Astro.props;
 ---
 
 <div class="person-block">
@@ -10,6 +12,17 @@ const { personName, personOrg, personImage } = Astro.props;
     <p class="person-block-name">{personName}</p>
     <p class="person-block-org">{personOrg}</p>
   </div>
+  {
+    personId && (
+      <a
+        href={`/${personId}`}
+        class="person-block-link"
+        aria-label={`View ${personName}'s profile`}
+      >
+        <Icon name="fa7-solid:arrow-right" width="24" height="24" />
+      </a>
+    )
+  }
 </div>
 
 <style>
@@ -30,5 +43,14 @@ const { personName, personOrg, personImage } = Astro.props;
   }
   .person-block-org {
     font-size: 1rem;
+  }
+  .person-block-link {
+    padding: 0.5rem 0.5rem;
+    color: var(--color-theme-accent-a);
+  }
+  .person-block-link:hover {
+    background-color: var(--color-theme-accent-a);
+    color: var(--color-background);
+    border-radius: 0.5rem;
   }
 </style>

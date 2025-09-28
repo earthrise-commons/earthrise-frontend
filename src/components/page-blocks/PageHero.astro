@@ -6,6 +6,29 @@ const { title = "Title", subtitle = "" } = Astro.props;
   <div class="page-hero-column">
     <h1>{title}</h1>
     {subtitle && <p class="subtitle">{subtitle}</p>}
-    <slot />
+    <slot name="left" />
+  </div>
+  <div class="page-hero-column">
+    <slot name="right" />
   </div>
 </div>
+
+<style>
+  .page-hero-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 2rem;
+    max-width: var(--size-padded-page);
+  }
+  .page-hero-column {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    justify-content: center;
+  }
+  @media (max-width: 600px) {
+    .page-hero-group {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

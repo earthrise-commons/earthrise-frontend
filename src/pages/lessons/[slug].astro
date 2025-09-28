@@ -5,20 +5,28 @@ import BlockRenderer from "../../components/page-blocks/BlockRenderer.astro";
 import PersonBlock from "../../components/page-blocks/PersonBlock.astro";
 import PageHero from "../../components/page-blocks/PageHero.astro";
 import Layout from "../../layouts/Layout.astro";
+import HeroImage from "../../components/page-blocks/HeroImage.astro";
+import { Image } from "astro:assets";
 const { slug } = Astro.params;
 const rawData = await loadFromCMS({
   query: `page('lessons/${slug}')`,
   select: {
     content: true,
+    hero: {
+      query: "page.hero.safeResize(1200)",
+      select: ["url", "width", "height"],
+    },
     author: {
       query: "page.content.author.toPage",
       select: {
+        id: true,
         displayname: true,
         organizationname: true,
         pronouns: true,
         location: true,
+
         photo: {
-          query: "page.photo.toFile.resize(144, 144)",
+          query: "page.photo.safeResize(144)",
           select: ["url", "width", "height"],
         },
       },
@@ -37,11 +45,17 @@ const pageFiles = await loadFromCMS({
 <Layout title={`Lesson: ${rawData.title}`}>
   <PageHero title={rawData.content.title}>
     <!-- TODO: map multiple authors to separate PersonBlock components -->
-    <PersonBlock
-      personName={rawData.author.displayname}
-      personOrg={rawData.author.organizationname}
-      personImage={rawData.author.photo}
-    />
+    <Fragment slot="left">
+      <PersonBlock
+        personId={rawData.author.id}
+        personName={rawData.author.displayname}
+        personOrg={rawData.author.organizationname}
+        personImage={rawData.author.photo}
+      />
+    </Fragment>
+    <Fragment slot="right">
+      <HeroImage data={rawData.hero} />
+    </Fragment>
   </PageHero>
   >
   <!-- <pre>{JSON.stringify(rawData, null, 2)}</pre> -->
