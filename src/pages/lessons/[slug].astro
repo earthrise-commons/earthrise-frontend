@@ -42,7 +42,7 @@ const pageFiles = await loadFromCMS({
 });
 ---
 
-<Layout title={`Lesson: ${rawData.title}`}>
+<Layout title={`${rawData.content.title}`}>
   <PageHero title={rawData.content.title}>
     <!-- TODO: map multiple authors to separate PersonBlock components -->
     <Fragment slot="left">
