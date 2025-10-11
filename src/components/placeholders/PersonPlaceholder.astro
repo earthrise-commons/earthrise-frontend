@@ -1,0 +1,88 @@
+---
+const { uuid, iconId, ...rest } = Astro.props;
+import hash from "hash-it";
+const uuidHash = hash(uuid) % 27;
+const colorBank = {
+  dkBlue: "#26417B",
+  ltBlue: "#81C1FF",
+  dkGreen: "#177B51",
+  ltGreen: "#5FE5AD",
+  pink: "#E6B2E4",
+  yellow: "#F2FF63",
+  orange: "#FFB155",
+  red: "#FD5D36",
+  black: "#28232C",
+  white: "#FFFEFC",
+};
+
+const colorId = iconId ? iconId : uuidHash;
+
+const colorCombinations = [
+  ["ltBlue", "dkBlue"],
+  ["ltGreen", "dkBlue"],
+  ["pink", "dkBlue"],
+  ["yellow", "dkBlue"],
+  ["orange", "dkBlue"],
+  ["ltGreen", "dkGreen"],
+  ["yellow", "dkGreen"],
+  ["pink", "dkGreen"],
+  ["orange", "dkGreen"],
+  ["blue", "dkGreen"],
+  ["red", "white"],
+  ["dkGreen", "white"],
+  ["dkBlue", "white"],
+  ["black", "white"],
+  ["red", "yellow"],
+  ["dkGreen", "yellow"],
+  ["dkBlue", "yellow"],
+  ["black", "yellow"],
+  ["red", "ltGreen"],
+  ["dkGreen", "ltGreen"],
+  ["dkBlue", "ltGreen"],
+  ["black", "ltGreen"],
+  ["ltBlue", "black"],
+  ["ltGreen", "black"],
+  ["pink", "black"],
+  ["yellow", "black"],
+  ["orange", "black"],
+];
+
+const colorCombo = colorCombinations[colorId];
+const iconFgColor = colorBank[colorCombo[0]];
+const iconBgColor = colorBank[colorCombo[1]];
+---
+
+<svg
+  id="Layer_1"
+  xmlns="http://www.w3.org/2000/svg"
+  version="1.1"
+  viewBox="0 0 570 570"
+  style={`--color-avatar-bg:${iconBgColor};--color-avatar-fg:${iconFgColor}`}
+  {...rest}
+>
+  <!-- Generator: Adobe Illustrator 29.8.1, SVG Export Plug-In . SVG Version: 2.1.1 Build 2)  -->
+  <defs>
+    <style>
+      .st0 {
+        fill: none;
+      }
+
+      .st1 {
+        fill: var(--color-avatar-fg);
+      }
+
+      .st2 {
+        fill: var(--color-avatar-bg);
+      }
+    </style>
+  </defs>
+  <rect class="st0" width="570" height="570"></rect>
+  <g>
+    <rect class="st2" width="570" height="570"></rect>
+    <circle class="st1" cx="284.5" cy="198.5" r="120.5"></circle>
+    <path
+      class="st1"
+      d="M555.1,570H14.9c26.2-125.1,137.2-219,270.1-219s243.8,93.9,270.1,219Z"
+    ></path>
+  </g>
+</svg>

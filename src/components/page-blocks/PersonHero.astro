@@ -10,6 +10,7 @@ const hasPhoto = data.photo && data.photo.url;
 const tags = normalizeTagsFromYaml(data.tags || "");
 console.log(tags);
 // TODO: build placeholder photo component
+import PersonPlaceholder from "../placeholders/PersonPlaceholder.astro";
 ---
 
 <div class="person-hero">
@@ -25,7 +26,7 @@ console.log(tags);
           class={"person-image"}
         />
       ) : (
-        <div class="person-image" />
+        <PersonPlaceholder uuid={data.uuid} class="person-image" />
       )
     }
     <!--  -->
