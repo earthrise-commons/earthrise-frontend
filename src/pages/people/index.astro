@@ -9,6 +9,7 @@ const people = await loadFromCMS({
   query: `page('people').children`,
   select: {
     displayname: true,
+    uuid: true,
     id: true,
     pronouns: true,
     location: true,

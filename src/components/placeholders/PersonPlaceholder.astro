@@ -48,8 +48,8 @@ const colorCombinations = [
 ];
 
 const colorCombo = colorCombinations[colorId];
-const iconFgColor = colorBank[colorCombo[0]];
-const iconBgColor = colorBank[colorCombo[1]];
+const iconFgColor = colorBank[colorCombo[0]] || "#81C1FF";
+const iconBgColor = colorBank[colorCombo[1]] || "#28232C";
 ---
 
 <svg
