@@ -1,6 +1,7 @@
 ---
 const query = Astro.url.searchParams.get("query");
 import Layout from "../../layouts/Layout.astro";
+import SearchQuery from "../../components/page-blocks/SearchQuery.astro";
 ---
 
 <Layout>
@@ -16,5 +17,5 @@ import Layout from "../../layouts/Layout.astro";
     <button type="submit">Search</button>
   </form>
 
-  <h1>{query}</h1>
+  {query && <SearchQuery query={query} />}
 </Layout>

@@ -1,0 +1,43 @@
+---
+interface Props {
+  query: string;
+}
+const { query } = Astro.props;
+import CardFeed from "./CardFeed.astro";
+import { loadFromCMS } from "../../cms/loadFromCMS";
+
+const pages = await loadFromCMS({
+  query: `site.search('${query}')`,
+  select: {
+    id: true,
+    uuid: true,
+    taxonomy: { query: "page.taxonomy.toObject()" },
+
+    // fields for pages
+    title: true,
+    organizationname: true,
+    role: true,
+    level: true,
+    hero: {
+      query: `page.hero.safeResize(600)`,
+      select: ["url", "width", "height"],
+    },
+    author: {
+      query: "page.author.toPage",
+      select: ["displayname", "organizationname", "location"],
+    },
+    location: true,
+    // fields for people
+    displayname: true,
+    photo: {
+      query: `page.photo.isNotEmpty ? page.photo.toFile.crop(256,256) : null`,
+    },
+  },
+});
+---
+
+<h2>Results for: {query}</h2>
+<p>{pages.length} result{pages.length != 1 && "s"} found.</p>
+
+<!-- <pre>{JSON.stringify(pages,null,5)}</pre> -->
+<CardFeed pageData={pages} />
