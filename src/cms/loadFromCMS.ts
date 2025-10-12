@@ -27,7 +27,7 @@ export const loadFromCMS = async (query: object) => {
     } else {
       return response.data.result;
     }
-  } catch (error) {
+  } catch (error: any) {
     throw new Error("Failed to load data from CMS: " + error.message);
   }
 };

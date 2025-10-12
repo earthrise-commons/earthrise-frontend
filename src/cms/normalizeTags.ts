@@ -1,6 +1,8 @@
 import { parse as parseYaml } from "yaml";
 
-export const normalizeTagsJSON = (jsonObj: object): string[] => {
+export type Tag = { label: string; value: string };
+
+export const normalizeTagsJSON = (jsonObj: object): Tag[] => {
   if (typeof jsonObj !== "object" || jsonObj === null) {
     return [];
   }
@@ -17,7 +19,7 @@ export const normalizeTagsJSON = (jsonObj: object): string[] => {
   return tags;
 };
 
-export const normalizeTagsFromYaml = (yamlString: string): string[] => {
+export const normalizeTagsFromYaml = (yamlString: string): Tag[] => {
   const parsed = parseYaml(yamlString);
   return normalizeTagsJSON(parsed);
 };

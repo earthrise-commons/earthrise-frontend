@@ -4,8 +4,13 @@ import Image from "astro/components/Image.astro";
 import PersonPlaceholder from "../placeholders/PersonPlaceholder.astro";
 import { parse, parse as parseYaml } from "yaml";
 import normalizePlaceName from "../../cms/normalizePlaceName";
+
+interface Props {
+  pageData: Page;
+}
 const { pageData } = Astro.props;
 import HeroImage from "./HeroImage.astro";
+import type { Page } from "../../types/pageTypes";
 const cardType = pageData.id.split("/")[0];
 // TODO: extract location parsing and processing to a helper function
 const locationData = pageData.location ? parseYaml(pageData.location) : null;

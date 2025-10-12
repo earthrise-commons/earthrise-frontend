@@ -11,8 +11,9 @@ import BlockRenderer from "../../components/page-blocks/BlockRenderer.astro";
 
 export const getStaticPaths = async () => {
   const chapters = await loadFromCMS({ query: 'page("chapters").children' });
-  return chapters.map((chapter) => {
-    const chapterSlug = chapter.split("/")[1];
+  // chapterId is a path ie 'chapters/_____'
+  return chapters.map((chapterId: string) => {
+    const chapterSlug = chapterId.split("/")[1];
     return { params: { slug: chapterSlug } };
   });
 };
