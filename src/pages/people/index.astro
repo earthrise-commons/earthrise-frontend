@@ -9,6 +9,8 @@ const people = await loadFromCMS({
   query: `page('people').children`,
   select: {
     displayname: true,
+    taxonomy: true,
+
     uuid: true,
     id: true,
     pronouns: true,
@@ -19,7 +21,6 @@ const people = await loadFromCMS({
     // email: true,
     // orcid: true,
     // urls: true,
-    tags: true,
 
     photo: {
       query: `page.photo.isNotEmpty ? page.photo.toFile.crop(256,256) : null`,
@@ -32,6 +33,7 @@ export const prerender = false;
 
 <Layout title="People">
   <h1>People</h1>
+  <pre>{JSON.stringify(people, null, 10)}</pre>
   <p>
     This is a list of people who have contributed to Earthrise Commons. You can
     find their articles, lessons, and other contributions here.
