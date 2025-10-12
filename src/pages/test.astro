@@ -1,5 +1,6 @@
 ---
 import { loadFromCMS } from "../cms/loadFromCMS";
+import AvatarTest from "../tests/AvatarTest.astro";
 const data = await loadFromCMS({
   query: 'page("people").children',
   // select: {
@@ -22,7 +23,16 @@ import Layout from "../layouts/Layout.astro";
 ---
 
 <Layout title="Test Page">
+  <h1>Site Tests</h1>
+  <p>This page contains tests/demos for features.</p>
+  <h2>General API Test</h2>
   <Code lang="json" class="test-code" code={JSON.stringify(data, null, 2)} />
+  <h2>Avatar Test</h2>
+  <p>
+    This section tests the PersonPlaceholder component's ability to generate a
+    number of unique color variants.
+  </p>
+  <AvatarTest />
 </Layout>
 <style>
   .test-code {
