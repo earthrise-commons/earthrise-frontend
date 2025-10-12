@@ -9,7 +9,7 @@ const pages = await loadFromCMS({
   select: {
     title: true,
     id: true,
-    taxonomy: true,
+    taxonomy: { query: "page.taxonomy.toObject" },
     uuid: true,
     hero: {
       query: `page.hero.safeResize(600)`,

@@ -1,10 +1,10 @@
 import { parse as parseYaml } from "yaml";
-export const normalizeTagsFromYaml = (yamlString: string): string[] => {
-  const parsed = parseYaml(yamlString);
-  if (typeof parsed !== "object" || parsed === null) {
+
+export const normalizeTagsJSON = (jsonObj: object): string[] => {
+  if (typeof jsonObj !== "object" || jsonObj === null) {
     return [];
   }
-  const tags = Object.values(parsed)
+  const tags = Object.values(jsonObj)
     .map((item) => {
       return item.split(", ");
     })
@@ -15,4 +15,9 @@ export const normalizeTagsFromYaml = (yamlString: string): string[] => {
     .map((item) => ({ label: item, value: item }));
   // TODO: lookup tags from dictionary
   return tags;
+};
+
+export const normalizeTagsFromYaml = (yamlString: string): string[] => {
+  const parsed = parseYaml(yamlString);
+  return normalizeTagsJSON(parsed);
 };
