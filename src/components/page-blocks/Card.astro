@@ -36,7 +36,9 @@ switch (cardType) {
             class={"person-image"}
           />
         ) : (
-          <PersonPlaceholder uuid={pageData.uuid} class="person-image" />
+          <Fragment>
+            <PersonPlaceholder uuid={pageData.uuid} class="person-image" />
+          </Fragment>
         )}
         <div class="card-content-panel">
           <h2>

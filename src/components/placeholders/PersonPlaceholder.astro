@@ -1,5 +1,5 @@
 ---
-const { uuid, iconId, ...rest } = Astro.props;
+const { uuid = 0, iconId, ...rest } = Astro.props;
 import hash from "hash-it";
 const uuidHash = hash(uuid) % 27;
 const colorBank = {
