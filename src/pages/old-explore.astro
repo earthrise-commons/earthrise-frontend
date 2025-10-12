@@ -1,0 +1,60 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { loadFromCMS } from "../cms/loadFromCMS";
+import { Code } from "astro/components";
+
+import CardFeed from "../components/page-blocks/CardFeed.astro";
+
+const people = await loadFromCMS({
+  query: `page('people').children`,
+  select: {
+    displayname: true,
+    id: true,
+    uuid: true,
+    pronouns: true,
+    location: true,
+    organizationname: true,
+    role: true,
+    level: true,
+    // email: true,
+    // orcid: true,
+    // urls: true,
+    tags: true,
+
+    photo: {
+      query: `page.photo.toFile`,
+    },
+  },
+});
+
+const lessons = await loadFromCMS({
+  query: `page('lessons').children`,
+  select: {
+    title: true,
+    id: true,
+    uuid: true,
+    hero: {
+      query: `page.hero.safeResize(600)`,
+      select: ["url", "width", "height"],
+    },
+    author: {
+      query: "page.author.toPage",
+      select: ["displayname", "organizationname", "location"],
+    },
+  },
+});
+---
+
+<Layout>
+  <h1>Explore</h1>
+
+  <h2>People</h2>
+  <p>
+    This is a list of people who have contributed to Earthrise Commons. You can
+    find their articles, lessons, and other contributions here.
+  </p>
+  <CardFeed pageData={people} />
+  <h2>Lessons</h2>
+  <p>These are lessons contributed by members of the community.</p>
+  <CardFeed pageData={lessons} />
+</Layout>

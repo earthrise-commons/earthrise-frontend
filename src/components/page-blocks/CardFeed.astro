@@ -1,10 +1,15 @@
 ---
 import Card from "./Card.astro";
+import type { Page } from "../../types/pageTypes";
 const { pageData } = Astro.props;
+
+interface Props {
+  pageData: Page[];
+}
 ---
 
 <div class="card-container">
-  {pageData.map((pageInfo) => <Card pageData={pageInfo} />)}
+  {pageData.map((pageInfo: Page) => <Card pageData={pageInfo} />)}
 </div>
 
 <style>

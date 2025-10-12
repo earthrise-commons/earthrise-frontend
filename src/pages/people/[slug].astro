@@ -6,18 +6,18 @@ import { loadFromCMS } from "../../cms/loadFromCMS";
 import Code from "astro/components/Code.astro";
 import PersonHero from "../../components/page-blocks/PersonHero.astro";
 import CardFeed from "../../components/page-blocks/CardFeed.astro";
-
+import type { PersonPage } from "../../types/pageTypes";
 const { slug } = Astro.params;
-
 export const getStaticPaths = async () => {
   const people = await loadFromCMS({ query: 'page("people").children' });
-  return people.map((person) => {
-    const personSlug = person.split("/")[1];
+  // personId is a path ie 'people/_____'
+  return people.map((personId: string) => {
+    const personSlug = personId.split("/")[1];
     return { params: { slug: personSlug } };
   });
 };
 
-const content = await loadFromCMS({
+const content: PersonPage = await loadFromCMS({
   query: `page('people/${slug}')`,
   select: {
     uuid: true,

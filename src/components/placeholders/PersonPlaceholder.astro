@@ -2,7 +2,20 @@
 const { uuid = 0, iconId, ...rest } = Astro.props;
 import hash from "hash-it";
 const uuidHash = hash(uuid) % 27;
-const colorBank = {
+
+type ColorKey =
+  | "dkBlue"
+  | "ltBlue"
+  | "dkGreen"
+  | "ltGreen"
+  | "pink"
+  | "yellow"
+  | "orange"
+  | "red"
+  | "black"
+  | "white";
+
+const colorBank: Record<ColorKey, string> = {
   dkBlue: "#26417B",
   ltBlue: "#81C1FF",
   dkGreen: "#177B51",
@@ -17,7 +30,7 @@ const colorBank = {
 
 const colorId = iconId ? iconId : uuidHash;
 
-const colorCombinations = [
+const colorCombinations: [ColorKey, ColorKey][] = [
   ["ltBlue", "dkBlue"],
   ["ltGreen", "dkBlue"],
   ["pink", "dkBlue"],
@@ -27,7 +40,7 @@ const colorCombinations = [
   ["yellow", "dkGreen"],
   ["pink", "dkGreen"],
   ["orange", "dkGreen"],
-  ["blue", "dkGreen"],
+  ["ltBlue", "dkGreen"],
   ["red", "white"],
   ["dkGreen", "white"],
   ["dkBlue", "white"],
