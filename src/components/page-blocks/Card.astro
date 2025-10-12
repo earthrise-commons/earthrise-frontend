@@ -53,7 +53,7 @@ switch (cardType) {
               {/* <span class="pronouns">({pageData.pronouns})</span> */}
             </a>
           </h2>
-          {pageData.role && <p>{pageData.role}</p>}
+          {pageData.role && <p class="person-role">{pageData.role}</p>}
           {pageData.organizationname && <p>{pageData.organizationname}</p>}
           {locationData && (
             <p>
@@ -81,11 +81,12 @@ switch (cardType) {
           <h2>
             <a class="card-link" href={`/${pageData.id}`} data-astro-prefetch>
               {pageData.title}
-              {/* <span class="pronouns">({pageData.pronouns})</span> */}
             </a>
           </h2>
           <HeroImage data={pageData.hero} uuid={pageData.uuid} />
-          {pageData.author.displayname && <p>{pageData.author.displayname}</p>}
+          {pageData.author.displayname && (
+            <p class="page-author">{pageData.author.displayname}</p>
+          )}
           {pageData.author.organizationname && (
             <p>{pageData.author.organizationname}</p>
           )}
@@ -104,6 +105,10 @@ switch (cardType) {
   <!-- <Code code={JSON.stringify(pageData, null, 2)} /> -->
 
   <style>
+    p {
+      font-size: 0.8rem;
+      font-weight: 300;
+    }
     .card {
       padding: 1rem;
       border: 1px solid var(--color-borders);
@@ -123,9 +128,14 @@ switch (cardType) {
       font-size: 0.75rem;
     }
     h2 {
-      font-size: 1.5rem;
+      font-size: 1.25rem;
+      font-weight: 500;
     }
-    .card > * {
+    .person-role,
+    .page-author {
+      font-size: 1rem;
+      margin-bottom: 0.5rem;
+      font-weight: 400;
     }
     .card-link::after {
       content: "";
@@ -143,12 +153,9 @@ switch (cardType) {
     }
   </style>
   <style>
-    .card-content-panel p {
-      font-size: 0.8rem;
-    }
     .card-content-panel h2,
     .card-content-panel h2 a {
-      font-size: 1rem;
+      /* font-size: 1rem; */
       text-decoration: none;
     }
     .card-tag-person {

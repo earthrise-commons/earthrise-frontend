@@ -5,17 +5,25 @@ import SearchQuery from "../../components/page-blocks/SearchQuery.astro";
 ---
 
 <Layout>
-  <!-- a search box and submit button -->
-  <form method="GET" action="/search">
-    <input
-      type="text"
-      name="query"
-      placeholder="Search..."
-      value={query ?? ""}
-      required
-    />
-    <button type="submit">Search</button>
-  </form>
+  <h1>Search</h1>
+  <div class="search-box">
+    <form method="GET" action="/search">
+      <input
+        type="text"
+        name="query"
+        placeholder="Search..."
+        value={query ?? ""}
+        required
+      />
+      <button type="submit">Search</button>
+    </form>
+  </div>
 
   {query && <SearchQuery query={query} />}
 </Layout>
+<style>
+
+  .search-box{
+    
+  }
+</style>
