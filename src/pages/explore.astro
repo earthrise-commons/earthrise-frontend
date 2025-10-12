@@ -1,60 +1,81 @@
 ---
+const query = Astro.url.searchParams.get("query") || "";
 import Layout from "../layouts/Layout.astro";
-import { loadFromCMS } from "../cms/loadFromCMS";
-import { Code } from "astro/components";
-
-import CardFeed from "../components/page-blocks/CardFeed.astro";
-
-const people = await loadFromCMS({
-  query: `page('people').children`,
-  select: {
-    displayname: true,
-    id: true,
-    uuid: true,
-    pronouns: true,
-    location: true,
-    organizationname: true,
-    role: true,
-    level: true,
-    // email: true,
-    // orcid: true,
-    // urls: true,
-    tags: true,
-
-    photo: {
-      query: `page.photo.toFile`,
-    },
-  },
-});
-
-const lessons = await loadFromCMS({
-  query: `page('lessons').children`,
-  select: {
-    title: true,
-    id: true,
-    uuid: true,
-    hero: {
-      query: `page.hero.safeResize(600)`,
-      select: ["url", "width", "height"],
-    },
-    author: {
-      query: "page.author.toPage",
-      select: ["displayname", "organizationname", "location"],
-    },
-  },
-});
+import SearchQuery from "../components/page-blocks/SearchQuery.astro";
+import SearchHero from "../assets/graphic-hero/search-hero.png";
+import { Image } from "astro:assets";
 ---
 
 <Layout>
-  <h1>Explore</h1>
+  <div class="search-box">
+    <div class="search-box-content">
+      <p>earthrise commons</p>
+      <h1>the journey toward a sustainable future is here!</h1>
+      <form method="GET" action="/explore">
+        <input
+          type="text"
+          name="query"
+          placeholder="Search the Commons"
+          value={query ?? ""}
+        />
+        <button type="submit">Search</button>
+      </form>
+    </div>
 
-  <h2>People</h2>
-  <p>
-    This is a list of people who have contributed to Earthrise Commons. You can
-    find their articles, lessons, and other contributions here.
-  </p>
-  <CardFeed pageData={people} />
-  <h2>Lessons</h2>
-  <p>These are lessons contributed by members of the community.</p>
-  <CardFeed pageData={lessons} />
+    <Image src={SearchHero} alt="" class="search-img" />
+  </div>
+
+  {true && <SearchQuery query={query} />}
 </Layout>
+<style>
+  .search-box {
+    color: var(--color-background);
+    padding: 3rem 1rem;
+    /* background-color: lightgray; */
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    width: 100%;
+    max-width: var(--size-padded-page);
+    align-items: center;
+  }
+
+  .search-box-content {
+    max-width: var(--size-padded-content);
+    display: flex;
+    flex-direction: column;
+    gap: 2rem;
+    width: 100%;
+  }
+  h1,
+  p {
+    font-weight: 600;
+  }
+  .search-box form {
+    position: relative;
+    display: flex;
+    flex-direction: row;
+  }
+  form input {
+    flex-grow: 1;
+    padding: 0.5rem;
+    font-size: 1rem;
+    font-weight: 400;
+    border-radius: 0.5rem 0rem 0 0.5rem;
+    color: var(--color-text);
+  }
+  form button {
+    border-radius: 0 0.5rem 0.5rem 0;
+    padding: 0.5rem 1rem;
+  }
+  .search-img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -100;
+    border-radius: 0.5rem;
+  }
+</style>
