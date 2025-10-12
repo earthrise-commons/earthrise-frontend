@@ -65,7 +65,7 @@ switch (cardType) {
   {
     (cardType == "chapters" || cardType == "lessons") && (
       <Fragment>
-        <p class="card-tag card-tag-chapter">Book Chapter</p>
+        <p class="card-tag card-tag-lesson">Lesson</p>
 
         <div class="card-content-panel">
           <h2>
@@ -74,7 +74,7 @@ switch (cardType) {
               {/* <span class="pronouns">({pageData.pronouns})</span> */}
             </a>
           </h2>
-          <HeroImage data={pageData.hero} />
+          <HeroImage data={pageData.hero} uuid={pageData.uuid} />
           {pageData.author.displayname && <p>{pageData.author.displayname}</p>}
           {pageData.author.organizationname && (
             <p>{pageData.author.organizationname}</p>
@@ -147,6 +147,10 @@ switch (cardType) {
     }
     .card-tag-chapter {
       background-color: var(--color-category-a);
+      color: var(--color-theme-background);
+    }
+    .card-tag-lesson {
+      background-color: var(--color-category-b);
       color: var(--color-theme-background);
     }
     .pronouns {

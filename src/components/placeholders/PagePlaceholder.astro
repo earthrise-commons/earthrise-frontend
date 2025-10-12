@@ -1,0 +1,7 @@
+---
+const { uuid = 0, iconId, ...rest } = Astro.props;
+import hash from "hash-it";
+const uuidHash = iconId || hash(uuid) % 6;
+---
+
+<img src={`/page-placeholders/page-${uuidHash}.svg`} {...rest} />

@@ -32,6 +32,7 @@ const lessons = await loadFromCMS({
   select: {
     title: true,
     id: true,
+    uuid: true,
     hero: {
       query: `page.hero.safeResize(600)`,
       select: ["url", "width", "height"],
