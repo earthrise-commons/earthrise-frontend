@@ -6,6 +6,10 @@ import PageBody from "../components/layout/page/PageBody.astro";
 import { Icon } from "astro-icon/components";
 
 const { title } = Astro.props;
+Astro.response.headers.set(
+  "CDN-Cache-Control",
+  "public, max-age=120, stale-while-revalidate=3600"
+);
 ---
 
 <!doctype html>

@@ -13,6 +13,6 @@ export default defineConfig({
   },
   integrations: [icon()],
   scopedStyleStrategy: "class",
-  adapter: netlify(),
+  adapter: netlify({ cacheOnDemandPages: true }),
   image: { domains: ["251195.xyz"] },
 });
