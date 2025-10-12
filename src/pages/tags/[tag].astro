@@ -1,0 +1,50 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import { loadFromCMS } from "../../cms/loadFromCMS";
+const { tag } = Astro.params;
+import CardFeed from "../../components/page-blocks/CardFeed.astro";
+
+const pages = await loadFromCMS({
+  query: `site.index.children.filterBy('taxonomy','*=','${tag}')`,
+  select: {
+    title: true,
+    id: true,
+    taxonomy: { query: "page.taxonomy.toObject" },
+    uuid: true,
+    hero: {
+      query: `page.hero.safeResize(600)`,
+      select: ["url", "width", "height"],
+    },
+    author: {
+      query: "page.author.toPage",
+      select: ["displayname", "organizationname", "location", "uuid"],
+    },
+
+    // fields for people page
+    displayname: true,
+    organizationname: true,
+    location: true,
+    photo: {
+      // pattern to check if photo exists before attempting to size it on the server
+      query: `page.photo.isNotEmpty ? page.photo.toFile.crop(384,384) : null`,
+    },
+  },
+});
+---
+
+<Layout
+  ><h1>Pages tagged with <span class="tag-name">{tag}</span></h1>
+  <!-- <pre>{JSON.stringify(pages,null,10)}
+  </pre> -->
+
+  <CardFeed pageData={pages} />
+</Layout>
+
+<style>
+  .tag-name {
+    display: inline-block;
+    border: 3px solid var(--color-borders);
+    padding: 1rem;
+    border-radius: 3rem;
+  }
+</style>

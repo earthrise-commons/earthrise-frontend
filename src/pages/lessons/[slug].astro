@@ -6,13 +6,16 @@ import PersonBlock from "../../components/page-blocks/PersonBlock.astro";
 import PageHero from "../../components/page-blocks/PageHero.astro";
 import Layout from "../../layouts/Layout.astro";
 import HeroImage from "../../components/page-blocks/HeroImage.astro";
-import { Image } from "astro:assets";
+
+import TagGroup from "../../components/page-blocks/TagGroup.astro";
+import { normalizeTagsJSON } from "../../cms/normalizeTags";
 const { slug } = Astro.params;
 const rawData = await loadFromCMS({
   query: `page('lessons/${slug}')`,
   select: {
     content: true,
     uuid: true,
+    taxonomy: { query: "page.taxonomy.toObject" },
     hero: {
       query: "page.hero.safeResize(1200)",
       select: ["url", "width", "height"],
@@ -48,6 +51,7 @@ const pageFiles = await loadFromCMS({
   <PageHero title={rawData.content.title}>
     <!-- TODO: map multiple authors to separate PersonBlock components -->
     <Fragment slot="left">
+      <TagGroup tags={normalizeTagsJSON(rawData.taxonomy)} />
       <PersonBlock
         personId={rawData.author.id}
         personName={rawData.author.displayname}

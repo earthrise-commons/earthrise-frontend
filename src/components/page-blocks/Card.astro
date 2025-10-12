@@ -22,6 +22,7 @@ switch (cardType) {
 }
 ---
 
+<!-- TODO: split Card to be multiple components with slots -->
 <div class="card">
   {
     cardType == "people" && (
@@ -65,7 +66,11 @@ switch (cardType) {
   {
     (cardType == "chapters" || cardType == "lessons") && (
       <Fragment>
-        <p class="card-tag card-tag-lesson">Lesson</p>
+        {cardType == "chapters" ? (
+          <p class="card-tag card-tag-chapter">Chapter</p>
+        ) : (
+          <p class="card-tag card-tag-lesson">Lesson</p>
+        )}
 
         <div class="card-content-panel">
           <h2>

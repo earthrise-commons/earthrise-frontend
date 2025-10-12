@@ -10,9 +10,9 @@ const agent = new https.Agent({
 });
 const useCustomAgent = isLocal ? { httpsAgent: agent } : {};
 export const loadFromCMS = async (query: object) => {
-  console.log("running query:");
-  console.log(query);
-  console.log("endpoint is " + apiEndpoint);
+  // console.log("running query:");
+  // console.log(query);
+  // console.log("endpoint is " + apiEndpoint);
 
   try {
     const response = await axios.post(apiEndpoint, query, {
