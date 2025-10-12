@@ -1,12 +1,22 @@
 ---
 import { Image } from "astro:assets";
 import { Icon } from "astro-icon/components";
+import PersonPlaceholder from "../placeholders/PersonPlaceholder.astro";
 
-const { personName, personOrg, personImage, personId } = Astro.props;
+const { personName, personOrg, personImage, personId, personUuid } =
+  Astro.props;
+
+const hasPhoto = personImage;
 ---
 
 <div class="person-block">
-  <Image class="person-block-image" src={personImage.url} alt="" />
+  {
+    personImage ? (
+      <Image class="person-block-image" src={personImage.url} alt="" />
+    ) : (
+      <PersonPlaceholder class="person-block-image" uuid={personUuid} />
+    )
+  }
   <!-- TODO: add link to bio page -->
   <div class="person-block-text">
     <p class="person-block-name">{personName}</p>

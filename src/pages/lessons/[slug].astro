@@ -12,6 +12,7 @@ const rawData = await loadFromCMS({
   query: `page('lessons/${slug}')`,
   select: {
     content: true,
+    uuid: true,
     hero: {
       query: "page.hero.safeResize(1200)",
       select: ["url", "width", "height"],
@@ -19,6 +20,7 @@ const rawData = await loadFromCMS({
     author: {
       query: "page.content.author.toPage",
       select: {
+        uuid: true,
         id: true,
         displayname: true,
         organizationname: true,
@@ -51,10 +53,11 @@ const pageFiles = await loadFromCMS({
         personName={rawData.author.displayname}
         personOrg={rawData.author.organizationname}
         personImage={rawData.author.photo}
+        personUuid={rawData.author.uuid}
       />
     </Fragment>
     <Fragment slot="right">
-      <HeroImage data={rawData.hero} />
+      <HeroImage data={rawData.hero} uuid={rawData.uuid} />
     </Fragment>
   </PageHero>
   >
