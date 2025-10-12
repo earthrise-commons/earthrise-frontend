@@ -1,0 +1,20 @@
+---
+const query = Astro.url.searchParams.get("query");
+import Layout from "../../layouts/Layout.astro";
+---
+
+<Layout>
+  <!-- a search box and submit button -->
+  <form method="GET" action="/search">
+    <input
+      type="text"
+      name="query"
+      placeholder="Search..."
+      value={query ?? ""}
+      required
+    />
+    <button type="submit">Search</button>
+  </form>
+
+  <h1>{query}</h1>
+</Layout>
