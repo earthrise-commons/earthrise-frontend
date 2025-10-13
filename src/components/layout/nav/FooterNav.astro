@@ -7,11 +7,6 @@ const navItems = [
   { label: "Call for Submissions", href: "/submissions" },
   { label: "Table of Contents", href: "" },
 ];
-
-// split navItems into two roughly equal-sized subgroups
-const midIndex = Math.ceil(navItems.length / 2);
-const firstGroup = navItems.slice(0, midIndex);
-const secondGroup = navItems.slice(midIndex);
 ---
 
 <nav>
@@ -19,10 +14,10 @@ const secondGroup = navItems.slice(midIndex);
     <div class="nav-group-logo">
       <a href="/"><EcLogo /></a>
     </div>
-    <div class="nav-group-main">
-      <div class="nav-subgroup">
+    <div class="nav-items-wrapper">
+      <div class="nav-group-main">
         {
-          firstGroup.map((item) => (
+          navItems.map((item) => (
             <a
               data-astro-prefetch
               href={item.href}
@@ -33,18 +28,7 @@ const secondGroup = navItems.slice(midIndex);
           ))
         }
       </div>
-      <div class="nav-subgroup">
-        {
-          secondGroup.map((item) => (
-            <a
-              data-astro-prefetch
-              href={item.href}
-              class:list={["nav-item", item.href === "" && "nav-item-inactive"]}
-            >
-              {item.label}
-            </a>
-          ))
-        }
+      <div class="nav-group-contribute">
         <a href="/submissions" class="ec-button"> Contribute a Project </a>
       </div>
     </div>
@@ -64,13 +48,15 @@ const secondGroup = navItems.slice(midIndex);
     max-width: var(--size-page-width);
     padding: 1rem 0;
     width: 100%;
-    gap: 2rem;
-
     font-size: var(--font-size-navitems);
   }
   .nav-group-main {
-    display: flex;
+    display: contents;
     flex-wrap: wrap;
+  }
+  .nav-item {
+    padding: 1rem 1.5rem;
+    text-decoration: none;
   }
   .nav-item {
     padding: 1rem 1.5rem;
@@ -91,19 +77,23 @@ const secondGroup = navItems.slice(midIndex);
     opacity: 0.25;
     pointer-events: none;
   }
-  .nav-subgroup {
-    display: contents;
+  .nav-items-wrapper {
+    display: flex;
+    flex-wrap: wrap;
   }
 
   .nav-group-logo {
     flex-shrink: 0;
+    margin-right: 2rem;
   }
-  @media (min-width: 600px) {
-    .nav-subgroup {
+
+  @media (min-width: 900px) {
+    .nav-group-main {
       display: flex;
-      flex-direction: row;
-      justify-content: flex-start;
-      align-items: center;
+      flex-grow: 1;
+    }
+    .nav-items-wrapper {
+      flex-grow: 1;
     }
   }
 </style>
