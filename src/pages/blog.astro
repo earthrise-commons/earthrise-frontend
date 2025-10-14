@@ -1,0 +1,63 @@
+---
+import Layout from "../layouts/Layout.astro";
+import * as article1 from "../content/blog/article1.md";
+---
+
+<Layout title="Blog">
+  <h1>We’re starting a blog!</h1>
+  <p>
+    We launched Earthrise Commons to be more than a collection of open
+    educational resources—we set out to build a community where educators,
+    leaders, and practitioners share, learn, and grow together. Now, we’re
+    taking the next step in that journey.
+  </p><p>
+    We’re thrilled to announce the launch of The Earthrise Commons Blog, hosted
+    on Substack. This dynamic, dedicated space will deliver innovative teaching
+    strategies and real-world sustainability insights directly to your inbox.
+  </p><p>
+    Read our inaugural post below, and if you like what you see, subscribe to
+    get all future articles sent straight to your inbox!
+  </p>
+  <article class="blog-article text-container">
+    <h2>{article1.frontmatter.title}</h2>
+    <p class="subtitle">{article1.frontmatter.subtitle}</p>
+    <p>
+      by <a href={article1.frontmatter.authorUrl}
+        >{article1.frontmatter.author}</a
+      >
+    </p>
+    <hr />
+    <article1.Content />
+  </article>
+
+  <p>
+    We hope Genevieve Flynn's <em>"Wonder Cabinet"</em> has sparked some new ideas
+    for your classroom or community work. This is just the beginning.
+  </p><p>
+    The Earthrise Commons Blog is committed to bringing you more practical,
+    creative, and actionable content to bring sustainability to your classroom
+    and beyond.
+  </p><p>
+    Join our community and ensure you never miss an update. Subscribe now to get
+    the next post delivered straight to your inbox.
+  </p><p>
+    [Substack signup link or embed] We look forward to building a sustainable
+    future together!
+  </p>
+
+  <style>
+    .blog-article {
+      border: 2px solid var(--color-border);
+      padding: 2rem;
+      border-radius: 0.5rem;
+    }
+    .blog-article hr {
+      margin-top: 0.5rem;
+      margin-bottom: 1rem;
+    }
+    .subtitle {
+      font-size: 1.5rem;
+      font-style: italic;
+    }
+  </style>
+</Layout>

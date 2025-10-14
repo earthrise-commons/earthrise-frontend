@@ -191,4 +191,17 @@ import "@fontsource/poppins";
     color: var(--color-theme-background);
     border-radius: 0.5rem 0.5rem 0 0;
   }
+
+  /* Utility Class to create a plain text container (decent for Markdown, etc) */
+
+  .text-container > * {
+    margin-top: 0.5em;
+    margin-bottom: 0.125em;
+  }
+  .text-container > *:first-child {
+    margin-top: 0;
+  }
+  .text-container > *:last-child {
+    margin-bottom: 0;
+  }
 </style>
