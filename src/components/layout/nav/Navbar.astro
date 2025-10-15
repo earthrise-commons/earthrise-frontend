@@ -5,6 +5,7 @@ const navItems = [
   { label: "About", href: "/about" },
   { label: "Code of Conduct", href: "/code-of-conduct" },
   { label: "Call for Submissions", href: "/submissions" },
+  { label: "Blog", href: "/blog", isNew: true },
   { label: "Table of Contents", href: "" },
 ];
 import { Icon } from "astro-icon/components";
@@ -34,6 +35,7 @@ import { Icon } from "astro-icon/components";
               class:list={["nav-item", item.href === "" && "nav-item-inactive"]}
             >
               {item.label}
+              {item.isNew && <span class="ec-pill ec-pill-red">New!</span>}
             </a>
           ))
         }
@@ -108,6 +110,8 @@ import { Icon } from "astro-icon/components";
     display: flex;
     flex-direction: column;
     align-items: center;
+    background-color: transparent;
+    color: var(--color-text);
   }
 
   .menu-toggle-icon {
@@ -140,6 +144,16 @@ import { Icon } from "astro-icon/components";
     justify-content: center;
     align-items: center;
   }
+
+  .ec-pill {
+    padding: 0.125rem 0.25rem;
+    border-radius: 1rem;
+    align-self: start;
+    font-weight: 500;
+    font-size: 0.75em;
+    background-color: var(--color-category-a);
+    color: var(--color-theme-background);
+  }
   @media screen and (min-width: 900px) {
     nav {
       border-bottom: none;
@@ -166,6 +180,7 @@ import { Icon } from "astro-icon/components";
       flex-direction: row;
       gap: 2rem;
     }
+
     #menu-toggle[aria-expanded] + #menu-main-group {
       display: flex;
       position: static;
