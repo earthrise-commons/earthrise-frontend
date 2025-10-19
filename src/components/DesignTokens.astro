@@ -204,4 +204,21 @@ import "@fontsource/poppins";
   .text-container > *:last-child {
     margin-bottom: 0;
   }
+
+  .text-container > p:has(img) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 2rem;
+    place-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    max-width: calc(100% - 4rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .text-container img {
+  }
+  .text-container > p:has(img) br {
+    display: none;
+  }
 </style>

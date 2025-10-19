@@ -27,13 +27,14 @@ Consider an open framework that encourages ownership and diverse perspectives wh
 One classroom model that exemplifies the Wonder Cabinet’s spirit of observation and pattern-making is Joshua Korenblat’s design lesson, “Small Multiples, Part 2: Stamp Your Homegrown National Park.” In this project for a college Information Design course, students act as both naturalists and designers by transforming local landscapes into postage stamp campaigns that visualize “wee little things” or the often-overlooked textures, species, and patterns of their environment. Korenblat’s approach aligns with the Wonder Cabinet’s aim to sustain curiosity through iterative seeing: students show, compare, understand, and repeat. Each stamp becomes a miniature act of ecological noticing, where abstraction and pattern replace passive representation. Similar to the Wonder Cabinet, Korenblat’s framework cultivates eco-conscious _literacy._ Students learn that close observation of small details can reveal larger systems of interdependence and beauty. The process is much like assembling a cabinet of curiosities, but with graphics.  
 By isolating different parts of nature (or reworking them through shifts in color and texture), students invite themselves and viewers to see familiar forms anew. The goal is to forge patterns and insights from the world’s diversity and to bring sustainability into a creative and tangible focus. Most importantly, students are required to justify their decisions and their motivations behind their work.
 
-### Small Wonders, Large Questions\*\*
+### Small Wonders, Large Questions
 
 Jigen Wagnac’s postcard series brings together various natural elements into a small constellation of noticing. Each image zooms in on the ordinary until it becomes extraordinary. Each image captures what the naked eye often misses, the quiet architecture of wonder. Each natural fragment (rock, flower, leaf, bird, moon, water droplet, and snowflake) is isolated yet connected. Jigen’s work is an invitation to ask what happens when we pause, isolate, and see anew.
 
-![][image1]  
-![][image2]  
-Jigen Wagnac (2025)
+![Postcard with close-up of snowflake](image1.png)
+![Grid of illustrations of nature](image10.png)
+
+_Jigen Wagnac (2025)_
 
 The varied textures become a study in attention itself—an ecology of looking closely.
 
@@ -48,8 +49,9 @@ Students can meaningfully integrate their items into a project where they can ex
 
 Lee Beatty’s warbler series began with research and sketching, then unfolded into a study of pattern, gender, and seasonal rhythm. Lee researched about the warbler’s habitat, migration patterns to New York, and diet. His initial stamp sketches and final stamps showcase the power of students building upon early stages and receiving feedback. Lee says he changed the color pattern and design between the birds because their patterns vary between genders. They used a curved pen tool to make it look “natural yet stylized.” The varied-colored backgrounds depict the season, but the different-colored birds reveal which specific species of warbler would be found in New York. The finished product portrays a mesh of his thoughtful research, his deliberate choice to have all the birds face in the same direction, and his understanding of color and form. Lee’s work is digestible to viewers, yet creative in its composition.
 
-![][image3]  
-![][image4]  
+![Grid of sketches of birds](image2.png)
+![Grid of illustrations of different types of warblers](image6.png)
+
 Their stamps reveal how comparison across species, structure, and color can be a form of environmental care.
 
 ## A Change in Climate: What Happens When Students Reorient Themselves?
@@ -59,30 +61,37 @@ The process of removing an item from its “original” location opens up a gene
 
 ### Water and Pattern: Seeing Seasons through Texture
 
-Jigen Magnac turned their attention to water, its movement, texture, and quiet refusal to stay still. Jigen wanted the water as her focal subject. Each image traces the shifting surfaces of the surrounding land across four seasons. Each season is noticeable based on the surrounding land—whether that be blossoming flowers, snow, or leaves. She also altered the water color to signify the changing seasons. Drawing inspiration from _Nihonga_ art, she layered image tracing and digital textures to mirror the rhythmic and tactical expression of water.  
-![][image5]  
+Jigen Magnac turned their attention to water, its movement, texture, and quiet refusal to stay still. Jigen wanted the water as her focal subject. Each image traces the shifting surfaces of the surrounding land across four seasons. Each season is noticeable based on the surrounding land—whether that be blossoming flowers, snow, or leaves. She also altered the water color to signify the changing seasons. Drawing inspiration from _Nihonga_ art, she layered image tracing and digital textures to mirror the rhythmic and tactical expression of water.
+
+![Grid of illustrations of a river, depicted in different seasons and times of day](image5.png)  
 What emerges is not four seasons, but one continuous surface of change. The water becomes a representation of time itself.
 
 ### Hands, Flowers, and the Touch of Learning
 
 Adam Lopez approached the natural world through touch. Adam’s series pairs human hands with flowers to merge gesture and growth. The hands do not only grasp, but also offer. Adam reflected on how, through nature journaling and working with his own style, he learned more about color and composition in design. Through this act of holding, Adam began to see how form, color, and care are intertwined. Adam also revealed how design and art can be both tactile and reflective.
 
-![][image6]![][image7]![][image8]
+![Illustration of a hand picking a flower, blue on yellow background](image7.png)![Illustration of orange hand picking a flower](image12.png)
 
-![][image9]
+![Illustration of a hand holding a flower, green on white background](image8.png)
+![Abstract illustrations of flowers and hands](image9.png)
 
 “I decided to make different wildlife held by hands, mainly because I enjoy drawing those things,” Adam Lopez explains—merging his own personal artistic interests with the project’s ecological theme.
 
 The hands remind us that learning begins with touch, or the willingness to hold something gently enough to see it clearly. Learning activates multiple senses, which is why it is particularly beneficial to utilize sensory experiences as tools for learning. Students unearth how material encounters and inner awareness co-produce learning.
 
-Adam also focused on trees. In his drawing, four trees gradually recede in size. His attention to scale transforms the familiar act of observing nature into a study of perspective and relationality. The shift in scale between hands holding (or reaching for) plants and distant renderings of trees creates an argument: that our relationship to nature changes with proximity. What appears small and graspable at one level reveals vastly interconnected systems at another.  
-![][image10]![][image11]  
-![][image12]![][image13]
+Adam also focused on trees. In his drawing, four trees gradually recede in size. His attention to scale transforms the familiar act of observing nature into a study of perspective and relationality. The shift in scale between hands holding (or reaching for) plants and distant renderings of trees creates an argument: that our relationship to nature changes with proximity. What appears small and graspable at one level reveals vastly interconnected systems at another.
+
+![Illustration of trees in autumn](image11.png)
+![Illustration of trees in summer](image13.png)
+![Abstract illustration of row of trees in autumn](image3.png)  
+![Abstract illustration of row of trees in winter](image4.png)
 
 ## Patterns and Possibilities: Rethinking Order in Nature
 
-Adrian Bibik’s stamp series explores organization as a tool for envisioning and re-envisioning natural elements. Adrian’s design can be reordered by relationship (color, species, texture, or form), and new narratives emerge with each rearrangement. Meaning arises from comparison, juxtapositions, and connections between stamps.  
-![][image14]  
+Adrian Bibik’s stamp series explores organization as a tool for envisioning and re-envisioning natural elements. Adrian’s design can be reordered by relationship (color, species, texture, or form), and new narratives emerge with each rearrangement. Meaning arises from comparison, juxtapositions, and connections between stamps.
+
+![Grid of stamps featuring various plants and insects, organized into multiple categories](image14.png)
+
 Adrian’s stamps are still a collection. His stamps can be reordered by color, size, or classification without fundamentally breaking the system itself. The relationships shift visually, but the logic of separation (each as an isolated “unit”) remains intact. However, Adrian’s work sits at the edge between two modes of thinking: aesthetic arrangement (objects organized by human logic of color, size, and type) and ecological interdependence. Adrian’s work reminds us that arrangement is never neutral because how we choose to group and compare things changes how we imagine relationships. When/how does a design diverge from being a “set” (compositional) to being a system of interdependence (structural)? Or, how can it be both? Adrian’s stamps raise a tension between order and interdependence, and remind us that how we arrange ‘things’ (through categories or other methods) shapes our understanding of nature itself.
 
 ## Furthering the Wonder: Earthrise and Creative Sustainability
@@ -94,5 +103,6 @@ Together, projects like Earthrise remind us that sustainability is not a single 
 
 ## References
 
-Kimmerer, Robin Wall. “Grammar of Animacy.” _Braiding Sweetgrass: Indigenous Wisdom, Scientific Knowledge, and the Teachings of Plants._ Milkweed Editions, 2015\.  
+Kimmerer, Robin Wall. “Grammar of Animacy.” _Braiding Sweetgrass: Indigenous Wisdom, Scientific Knowledge, and the Teachings of Plants._ Milkweed Editions, 2015\.
+
 Korenblat, Joshua. “Small Multiples Part 2: Stamp Your Homegrown National Park.” DES 220 Information Design, SUNY New Paltz, Fall 2025\.
