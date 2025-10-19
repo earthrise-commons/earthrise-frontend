@@ -191,4 +191,34 @@ import "@fontsource/poppins";
     color: var(--color-theme-background);
     border-radius: 0.5rem 0.5rem 0 0;
   }
+
+  /* Utility Class to create a plain text container (decent for Markdown, etc) */
+
+  .text-container > * {
+    margin-top: 0.5em;
+    margin-bottom: 0.125em;
+  }
+  .text-container > *:first-child {
+    margin-top: 0;
+  }
+  .text-container > *:last-child {
+    margin-bottom: 0;
+  }
+
+  .text-container > p:has(img) {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(100px, 1fr));
+    gap: 2rem;
+    place-items: center;
+    margin-bottom: 2rem;
+    margin-top: 2rem;
+    max-width: calc(100% - 4rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .text-container img {
+  }
+  .text-container > p:has(img) br {
+    display: none;
+  }
 </style>
