@@ -34,11 +34,11 @@ Astro.response.headers.set(
       >
       <Icon name="fa7-solid:hammer" class="uc-icon" />
     </div>
-    <Navbar />
-    <PageBody >
+    <Navbar transition:persist />
+    <PageBody>
       <slot />
     </PageBody>
-    <Footer />
+    <Footer transition:persist />
   </body>
 </html>
 
