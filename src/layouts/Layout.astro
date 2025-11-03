@@ -4,6 +4,7 @@ import Navbar from "../components/layout/nav/Navbar.astro";
 import Footer from "../components/layout/page/Footer.astro";
 import PageBody from "../components/layout/page/PageBody.astro";
 import { Icon } from "astro-icon/components";
+import { ClientRouter } from "astro:transitions";
 
 const { title } = Astro.props;
 Astro.response.headers.set(
@@ -21,10 +22,9 @@ Astro.response.headers.set(
     <meta name="generator" content={Astro.generator} />
     <title>{title} {title && "|"} Earthrise Commons</title>
     <DesignTokens />
-  </head>
-
-  <body>
-    <div class="under-construction">
+    <ClientRouter />
+  </head><body>
+    <div class="under-construction" transition:persist>
       <Icon name="fa7-solid:hammer" class="uc-icon" />
       <span
         >This site is under construction. Please pardon our appearance while we
@@ -34,11 +34,11 @@ Astro.response.headers.set(
       >
       <Icon name="fa7-solid:hammer" class="uc-icon" />
     </div>
-    <Navbar />
+    <Navbar transition:persist />
     <PageBody>
       <slot />
     </PageBody>
-    <Footer />
+    <Footer transition:persist />
   </body>
 </html>
 
