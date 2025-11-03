@@ -18,6 +18,11 @@ import * as article1 from "../content/blog/article1.md";
     Read our inaugural post below, and if you like what you see, subscribe to
     get all future articles sent straight to your inbox!
   </p>
+  <p class="link-paragraph">
+    <a class="substack-link" href="https://genevieveflynn2.substack.com/"
+      >Subscribe on Substack</a
+    >
+  </p>
   <article class="blog-article text-container">
     <h2>{article1.frontmatter.title}</h2>
     <p class="subtitle">{article1.frontmatter.subtitle}</p>
@@ -39,9 +44,37 @@ import * as article1 from "../content/blog/article1.md";
     Join our community and ensure you never miss an update. We'll be launching
     on Substack soon; make sure to come back and subscribe to get the next post
     delivered straight to your inbox.
-  </p><p>We look forward to building a sustainable future together!</p>
+  </p>
+  <p>
+    <a class="substack-link" href="https://genevieveflynn2.substack.com/"
+      >Subscribe on Substack</a
+    >
+  </p>
+
+  <p>We look forward to building a sustainable future together!</p>
 
   <style>
+    .link-paragraph {
+      margin-top: 1rem;
+      margin-bottom: 1rem;
+      display: block;
+    }
+    .substack-link {
+      display: inline-block;
+      padding: 0.5rem 0.75rem;
+      background-color: #ff8542;
+      border-radius: 0.25rem;
+      text-decoration: none;
+      border: 3px solid #ff8542;
+
+      color: white;
+      font-weight: 600;
+    }
+    .substack-link:hover,
+    .substack-link:focus-visible {
+      background-color: transparent;
+      color: #ff8542;
+    }
     .blog-article {
       border: 2px solid var(--color-border);
       padding: 2rem;
