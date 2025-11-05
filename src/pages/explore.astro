@@ -1,5 +1,7 @@
 ---
 const query = Astro.url.searchParams.get("query") || "";
+const pageStr = Astro.url.searchParams.get("page") || "1";
+const page = parseInt(pageStr);
 import Layout from "../layouts/Layout.astro";
 import SearchQuery from "../components/page-blocks/SearchQuery.astro";
 import SearchHero from "../assets/graphic-hero/search-hero.png";
@@ -25,7 +27,7 @@ import { Image } from "astro:assets";
     <Image src={SearchHero} alt="" class="search-img" />
   </div>
 
-  {true && <SearchQuery query={query} />}
+  {true && <SearchQuery query={query} page={page} />}
 </Layout>
 <style>
   .search-box {
