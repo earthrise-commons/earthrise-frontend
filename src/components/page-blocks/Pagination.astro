@@ -15,7 +15,6 @@ const getPaginationURL = (page: number) => {
 };
 
 const paginationItems = [];
-console.log(current);
 // build pagination items in array
 
 if (current <= 4) {
@@ -44,8 +43,42 @@ if (max - current <= 3) {
 ---
 
 <!-- https://design-system.w3.org/components/pagination.html --><!-- consider using this as reference for markup  -->
-<code>{JSON.stringify(Astro.props, null, 2)}</code>
-<code>{JSON.stringify(paginationItems, null, 2)}</code>
-<a href={getPaginationURL(1)}>Clicc mee 1</a>
-<a href={getPaginationURL(2)}>Clicc mee 2</a>
-<a href={getPaginationURL(3)}>Clicc mee 3</a>
+<div class="pagination-items">
+  {
+    paginationItems.map((item) => {
+      const isActive = item == current;
+      if (item !== null) {
+        return (
+          <a
+            class:list={["pagination-item", isActive && "item-current"]}
+            href={getPaginationURL(item)}
+          >
+            {item}
+          </a>
+        );
+      } else {
+        return <span>...</span>;
+      }
+    })
+  }
+</div>
+
+<style>
+  .pagination-items {
+    display: flex;
+    gap: 1rem;
+  }
+  .item-current {
+    font-weight: 700;
+  }
+  .pagination-item {
+    border: 1px solid var(--color-text);
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+  }
+  .pagination-item:hover,
+  .pagination-item:focus-visible {
+    background-color: var(--color-cta);
+    color: var(--color-background);
+  }
+</style>

@@ -54,7 +54,6 @@ const pages = await loadFromCMS({
     page: page,
   },
 });
-console.log(pages.pagination);
 const paginationData = pages.pagination;
 const sortedPages = randomizeArray(pages.data);
 const startPage = (paginationData.page - 1) * PAGINATION_SIZE + 1;
@@ -62,7 +61,6 @@ const endPage = startPage + pages.data.length - 1;
 ---
 
 {query ? <h2>Results for: {query}</h2> : <h2>Explore Earthrise Commons:</h2>}
-<code>{JSON.stringify(paginationData, null, 2)}</code>
 <p>Results {startPage} through {endPage} of {paginationData.total}</p>
 
 <!-- <pre>{JSON.stringify(pages,null,5)}</pre> -->
