@@ -10,6 +10,17 @@ import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
 const cmsQuery = query ? `site.search('${query}')` : "site.index.children";
 
+const pageParams = new URLSearchParams("");
+pageParams.append("query", query);
+pageParams.append("page", (page + 1).toString());
+
+const getPaginationURL = (page: number) => {
+  const tempParams = new URLSearchParams("");
+  tempParams.append("query", query);
+  tempParams.append("page", page.toString());
+  return "?" + tempParams.toString();
+};
+
 const pages = await loadFromCMS({
   query: cmsQuery,
   select: {
@@ -55,3 +66,6 @@ const endPage = startPage + pages.data.length - 1;
 
 <!-- <pre>{JSON.stringify(pages,null,5)}</pre> -->
 <CardFeed pageData={sortedPages} />
+<a href={getPaginationURL(1)}>Clicc mee 1</a>
+<a href={getPaginationURL(2)}>Clicc mee 2</a>
+<a href={getPaginationURL(3)}>Clicc mee 3</a>
