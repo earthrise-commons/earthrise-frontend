@@ -3,9 +3,10 @@ interface Props {
   query: string;
   page: number;
 }
-const PAGINATION_SIZE = 20;
+const PAGINATION_SIZE = 5;
 const { query, page } = Astro.props;
 import CardFeed from "./CardFeed.astro";
+import Pagination from "./Pagination.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
 const cmsQuery = query ? `site.search('${query}')` : "site.index.children";
@@ -61,11 +62,9 @@ const endPage = startPage + pages.data.length - 1;
 ---
 
 {query ? <h2>Results for: {query}</h2> : <h2>Explore Earthrise Commons:</h2>}
-<!-- <code>{JSON.stringify(paginationData, null, 2)}</code> -->
+<code>{JSON.stringify(paginationData, null, 2)}</code>
 <p>Results {startPage} through {endPage} of {paginationData.total}</p>
 
 <!-- <pre>{JSON.stringify(pages,null,5)}</pre> -->
 <CardFeed pageData={sortedPages} />
-<a href={getPaginationURL(1)}>Clicc mee 1</a>
-<a href={getPaginationURL(2)}>Clicc mee 2</a>
-<a href={getPaginationURL(3)}>Clicc mee 3</a>
+<Pagination current={page} max={paginationData.pages} query={query} />

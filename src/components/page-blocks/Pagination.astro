@@ -1,0 +1,51 @@
+---
+interface Props {
+  current: number;
+  max: number;
+  query: string;
+}
+
+const { current, max, query } = Astro.props;
+
+const getPaginationURL = (page: number) => {
+  const tempParams = new URLSearchParams("");
+  tempParams.append("query", query);
+  tempParams.append("page", page.toString());
+  return "?" + tempParams.toString();
+};
+
+const paginationItems = [];
+console.log(current);
+// build pagination items in array
+
+if (current <= 4) {
+  // less than 3 items before current - no need to split
+  for (let i = 1; i < current; i++) {
+    paginationItems.push(i);
+  }
+} else {
+  //more than 3 items before current - split to first + 2 prior
+  paginationItems.push(1);
+  paginationItems.push(null);
+  paginationItems.push(current - 2);
+  paginationItems.push(current - 1);
+}
+// add current item
+paginationItems.push(current);
+if (max - current <= 3) {
+  for (let i = current + 1; i <= max; i++) {
+    paginationItems.push(i);
+  }
+} else {
+  paginationItems.push(current + 1);
+  paginationItems.push(current + 2);
+  paginationItems.push(null), paginationItems.push(max);
+}
+---
+
+<!-- https://design-system.w3.org/components/pagination.html --><!-- consider using this as reference for markup  -->
+<code>{JSON.stringify(Astro.props, null, 2)}</code>
+<code>{JSON.stringify(paginationItems, null, 2)}</code>
+<a href={getPaginationURL(1)}>Clicc mee 1</a>
+<a href={getPaginationURL(2)}>Clicc mee 2</a>
+<a href={getPaginationURL(3)}>Clicc mee 3</a>
