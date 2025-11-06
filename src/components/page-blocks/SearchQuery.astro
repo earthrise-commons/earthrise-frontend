@@ -55,14 +55,22 @@ const pages = await loadFromCMS({
   },
 });
 const paginationData = pages.pagination;
+console.log(paginationData);
+
 const sortedPages = randomizeArray(pages.data);
 const startPage = (paginationData.page - 1) * PAGINATION_SIZE + 1;
 const endPage = startPage + pages.data.length - 1;
 ---
 
 {query ? <h2>Results for: {query}</h2> : <h2>Explore Earthrise Commons:</h2>}
-<p>Results {startPage} through {endPage} of {paginationData.total}</p>
+<p>
+  {paginationData.total} results found. Showing {startPage} through {endPage}:
+</p>
 
 <!-- <pre>{JSON.stringify(pages,null,5)}</pre> -->
 <CardFeed pageData={sortedPages} />
-<Pagination current={page} max={paginationData.pages} query={query} />
+<Pagination
+  current={paginationData.page}
+  max={paginationData.pages}
+  query={query}
+/>

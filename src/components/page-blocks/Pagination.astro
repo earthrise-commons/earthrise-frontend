@@ -14,6 +14,9 @@ const getPaginationURL = (page: number) => {
   return "?" + tempParams.toString();
 };
 
+const hasPrevButton = current !== 1;
+const hasNextButton = current < max;
+
 const paginationItems = [];
 // build pagination items in array
 
@@ -43,7 +46,8 @@ if (max - current <= 3) {
 ---
 
 <!-- https://design-system.w3.org/components/pagination.html --><!-- consider using this as reference for markup  -->
-<div class="pagination-items">
+<nav class="pagination-items" aria-label="Search Results Pagination">
+  {hasPrevButton && <a class="pagination-item">Previous page</a>}
   {
     paginationItems.map((item) => {
       const isActive = item == current;
@@ -52,23 +56,32 @@ if (max - current <= 3) {
           <a
             class:list={["pagination-item", isActive && "item-current"]}
             href={getPaginationURL(item)}
+            aria-label={`Page ${item}`}
+            aria-current={isActive ? "page" : "false"}
           >
             {item}
           </a>
         );
       } else {
-        return <span>...</span>;
+        return <span class="pagination-ellipsis">...</span>;
       }
     })
   }
-</div>
+  {hasNextButton && <a class="pagination-item">Next page</a>}
+</nav>
 
 <style>
   .pagination-items {
     display: flex;
     gap: 1rem;
+    justify-content: center;
   }
   .item-current {
+    font-weight: 700;
+  }
+  .pagination-ellipsis {
+    padding: 0.5rem 0;
+    letter-spacing: 0.04em;
     font-weight: 700;
   }
   .pagination-item {
