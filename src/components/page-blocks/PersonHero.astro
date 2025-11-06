@@ -8,7 +8,6 @@ import TagGroup from "./TagGroup.astro";
 import Accordion from "../content-blocks/Accordion.astro";
 const hasPhoto = data.photo && data.photo.url;
 const tags = normalizeTagsFromYaml(data.tags || "");
-console.log(tags);
 // TODO: build placeholder photo component
 import PersonPlaceholder from "../placeholders/PersonPlaceholder.astro";
 ---

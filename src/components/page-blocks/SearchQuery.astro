@@ -1,12 +1,26 @@
 ---
 interface Props {
   query: string;
+  page: number;
 }
-const { query } = Astro.props;
+const PAGINATION_SIZE = 12;
+const { query, page } = Astro.props;
 import CardFeed from "./CardFeed.astro";
+import Pagination from "./Pagination.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
 const cmsQuery = query ? `site.search('${query}')` : "site.index.children";
+
+const pageParams = new URLSearchParams("");
+pageParams.append("query", query);
+pageParams.append("page", (page + 1).toString());
+
+const getPaginationURL = (page: number) => {
+  const tempParams = new URLSearchParams("");
+  tempParams.append("query", query);
+  tempParams.append("page", page.toString());
+  return "?" + tempParams.toString();
+};
 
 const pages = await loadFromCMS({
   query: cmsQuery,
@@ -35,14 +49,35 @@ const pages = await loadFromCMS({
       query: `page.photo.isNotEmpty ? page.photo.toFile.crop(256,256) : null`,
     },
   },
+  pagination: {
+    limit: PAGINATION_SIZE,
+    page: page,
+  },
 });
+const paginationData = pages.pagination;
+console.log(paginationData);
 
-const sortedPages = randomizeArray(pages);
+const sortedPages = randomizeArray(pages.data);
+const startPage = (paginationData.page - 1) * PAGINATION_SIZE + 1;
+const endPage = startPage + pages.data.length - 1;
+const hasResults = paginationData.total > 0;
+
+const resultsMsg = hasResults
+  ? `${paginationData.total} results found. Showing ${startPage} through ${endPage}:`
+  : `No results found for ${query}.`;
 ---
 
 {query ? <h2>Results for: {query}</h2> : <h2>Explore Earthrise Commons:</h2>}
-
-<p>{pages.length} page{pages.length != 1 && "s"} found.</p>
+<p>{resultsMsg}</p>
 
 <!-- <pre>{JSON.stringify(pages,null,5)}</pre> -->
 <CardFeed pageData={sortedPages} />
+{
+  hasResults && (
+    <Pagination
+      current={paginationData.page}
+      max={paginationData.pages}
+      query={query}
+    />
+  )
+}

@@ -18,8 +18,7 @@ const processedItems = await Promise.all(
       returnObj.icon = "fa7-solid:link";
     } else {
       const fileObj = pageFiles.find((file) => {
-        console.log(file);
-        console.log(item);
+
         return file.uuid === item.file[0];
       });
       returnObj.icon = "fa7-solid:file";
