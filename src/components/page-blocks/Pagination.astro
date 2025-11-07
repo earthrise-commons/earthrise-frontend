@@ -47,7 +47,13 @@ if (max - current <= 3) {
 
 <!-- https://design-system.w3.org/components/pagination.html --><!-- consider using this as reference for markup  -->
 <nav class="pagination-items" aria-label="Search Results Pagination">
-  {hasPrevButton && <a class="pagination-item">Previous page</a>}
+  {
+    hasPrevButton && (
+      <a class="pagination-item" href={getPaginationURL(current - 1)}>
+        Previous page
+      </a>
+    )
+  }
   {
     paginationItems.map((item) => {
       const isActive = item == current;
@@ -67,7 +73,13 @@ if (max - current <= 3) {
       }
     })
   }
-  {hasNextButton && <a class="pagination-item">Next page</a>}
+  {
+    hasNextButton && (
+      <a class="pagination-item" href={getPaginationURL(current + 1)}>
+        Next page
+      </a>
+    )
+  }
 </nav>
 
 <style>
