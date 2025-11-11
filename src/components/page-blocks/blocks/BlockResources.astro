@@ -18,10 +18,12 @@ const processedItems = await Promise.all(
       returnObj.icon = "fa7-solid:link";
     } else {
       const fileObj = pageFiles.find((file) => {
-
         return file.uuid === item.file[0];
       });
+      console.log(fileObj);
+      const uuid = fileObj.uuid.replace("file://", "");
       returnObj.icon = "fa7-solid:file";
+      returnObj.url = `/files/${uuid}/${fileObj.filename}`;
       returnObj.description =
         fileObj.extension + " - " + formatBytes(fileObj.size);
     }
