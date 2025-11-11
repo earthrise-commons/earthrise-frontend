@@ -6,20 +6,22 @@ export const GET: APIRoute = async ({ params }) => {
   // derive external url from params
   console.log(params);
 
-  const externalUrl = `${apiUrl}/@/file/${fileID}`;
+  const servedUrl = `${apiUrl}/@/file/${fileID}`;
 
   try {
-    // 3. Fetch the file from the external server
-    const externalResponse = await fetch(externalUrl);
 
+    const externalResponse = await fetch(servedUrl);
+
+    // proxy error messages
     if (!externalResponse.ok) {
-      return new Response(externalResponse.body, {
+      return new Response("Error proxying file", {
         status: externalResponse.status,
         statusText: externalResponse.statusText,
       });
     }
 
     const headers = new Headers();
+    // copy headers from CMS response and serve them to the client
     headers.set(
       "Content-Type",
       externalResponse.headers.get("Content-Type") || "application/octet-stream"
