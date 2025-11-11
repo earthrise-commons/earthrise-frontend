@@ -55,7 +55,6 @@ const pages = await loadFromCMS({
   },
 });
 const paginationData = pages.pagination;
-console.log(paginationData);
 
 const sortedPages = randomizeArray(pages.data);
 const startPage = (paginationData.page - 1) * PAGINATION_SIZE + 1;

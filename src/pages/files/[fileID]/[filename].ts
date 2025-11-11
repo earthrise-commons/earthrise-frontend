@@ -4,8 +4,6 @@ type ProxyFileParams = { fileID: string; filename: string };
 export const GET: APIRoute = async ({ params }) => {
   const { fileID, filename } = params as ProxyFileParams;
   // derive external url from params
-  console.log(params);
-
   const servedUrl = `${apiUrl}/@/file/${fileID}`;
 
   try {
