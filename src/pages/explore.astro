@@ -1,11 +1,17 @@
 ---
 const query = Astro.url.searchParams.get("query") || "";
+const type = Astro.url.searchParams.get("type") || "";
 const pageStr = Astro.url.searchParams.get("page") || "1";
 const page = parseInt(pageStr);
 import Layout from "../layouts/Layout.astro";
 import SearchQuery from "../components/page-blocks/SearchQuery.astro";
 import SearchHero from "../assets/graphic-hero/search-hero.png";
 import { Image } from "astro:assets";
+
+const pageTypes = [
+  { label: "Lesson", value: "lesson" },
+  { label: "Person", value: "person" },
+];
 ---
 
 <Layout>
@@ -26,9 +32,39 @@ import { Image } from "astro:assets";
 
     <Image src={SearchHero} alt="" class="search-img" />
   </div>
+  <div>
+<h3>Filter</h3>
 
-  {true && <SearchQuery query={query} page={page} />}
+    <form method="GET" action="/explore">
+      <input hidden type="text" name="query" value={query ?? ""} />
+      <input
+              type="radio"
+              id={'pt-all'}
+              name="type"
+              value={""} checked={type==""}
+            />
+            <label for={'pt-all'}>{"All"}</label>
+      {
+        pageTypes.map((pageType) => {
+          return (
+            <input
+              type="radio"
+              id={pageType.value}
+              name="type"
+              value={pageType.value} checked={type===pageType.value}
+            />
+            <label for={pageType.value}>{pageType.label}</label>
+          );
+        })
+      }
+      <button type="submit">Filter</button>
+    </form>
+  </div>
+  {true && <SearchQuery type={type} query={query} page={page} />}
+
 </Layout>
+
+
 <style>
   .search-box {
     color: var(--color-background);
