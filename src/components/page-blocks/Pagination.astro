@@ -1,0 +1,109 @@
+---
+interface Props {
+  current: number;
+  max: number;
+  query: string;
+}
+
+const { current, max, query } = Astro.props;
+
+const getPaginationURL = (page: number) => {
+  const tempParams = new URLSearchParams("");
+  tempParams.append("query", query);
+  tempParams.append("page", page.toString());
+  return "?" + tempParams.toString();
+};
+
+const hasPrevButton = current !== 1;
+const hasNextButton = current < max;
+
+const paginationItems = [];
+// build pagination items in array
+
+if (current <= 4) {
+  // less than 3 items before current - no need to split
+  for (let i = 1; i < current; i++) {
+    paginationItems.push(i);
+  }
+} else {
+  //more than 3 items before current - split to first + 2 prior
+  paginationItems.push(1);
+  paginationItems.push(null);
+  paginationItems.push(current - 2);
+  paginationItems.push(current - 1);
+}
+// add current item
+paginationItems.push(current);
+if (max - current <= 3) {
+  for (let i = current + 1; i <= max; i++) {
+    paginationItems.push(i);
+  }
+} else {
+  paginationItems.push(current + 1);
+  paginationItems.push(current + 2);
+  paginationItems.push(null), paginationItems.push(max);
+}
+---
+
+<!-- https://design-system.w3.org/components/pagination.html --><!-- consider using this as reference for markup  -->
+<nav class="pagination-items" aria-label="Search Results Pagination">
+  {
+    hasPrevButton && (
+      <a class="pagination-item" href={getPaginationURL(current - 1)}>
+        Previous page
+      </a>
+    )
+  }
+  {
+    paginationItems.map((item) => {
+      const isActive = item == current;
+      if (item !== null) {
+        return (
+          <a
+            class:list={["pagination-item", isActive && "item-current"]}
+            href={getPaginationURL(item)}
+            aria-label={`Page ${item}`}
+            aria-current={isActive ? "page" : "false"}
+          >
+            {item}
+          </a>
+        );
+      } else {
+        return <span class="pagination-ellipsis">...</span>;
+      }
+    })
+  }
+  {
+    hasNextButton && (
+      <a class="pagination-item" href={getPaginationURL(current + 1)}>
+        Next page
+      </a>
+    )
+  }
+</nav>
+
+<style>
+  .pagination-items {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+  }
+  .item-current {
+    font-weight: 700;
+  }
+  .pagination-ellipsis {
+    padding: 0.5rem 0;
+    letter-spacing: 0.04em;
+    font-weight: 700;
+  }
+  .pagination-item {
+    border: 1px solid var(--color-text);
+    padding: 0.5rem 0.75rem;
+    text-decoration: none;
+  }
+  .pagination-item:hover,
+  .pagination-item:focus-visible {
+    background-color: var(--color-cta);
+    color: var(--color-background);
+  }
+</style>
