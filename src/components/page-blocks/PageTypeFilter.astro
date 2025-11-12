@@ -3,20 +3,18 @@ import type { SearchQueryType } from '../../types/searchQueryTypes';
 import {pageTypes} from "../../types/searchQueryTypes"  
 interface Props extends SearchQueryType{}
 const {props}=Astro;
+import { Image } from 'astro:assets';
 
 ---
 
 
  <form method="GET" action="/explore">
+      <h3>Filter by Page Type:</h3>
+
       <input hidden type="text" name="query" value={props.query ?? ""} />
-      <input
-              type="checkbox"
-              id={'pt-all'}
-              name="type"
-              value={""} checked={props.types.length==0}
-            />
-            <label for={'pt-all'}>{"All"}</label>
-      {
+      
+            <div class="page-types-grid">
+                    {
         pageTypes.map((pageType) => {
           return (
             <input
@@ -26,22 +24,61 @@ const {props}=Astro;
               class="really-hidden"
               value={pageType.value} checked={props.types.includes(pageType.value)}
             />
-            <label class="filter-label" style={`--color-filter:${pageType.color}`} for={pageType.value}>{pageType.label}</label>
+            <label class="filter-label" style={`--color-filter:${pageType.color}`} for={pageType.value}>
+              <Image src={pageType.Graphic} alt=""  class={"filter-label-img"}></Image>
+            <span class="filter-label-text">
+             {pageType.label} </span>  </label>
           );
         })
       }
-      <button type="submit">Filter</button>
+              <button type="submit">Filter</button> </div>
+
+   
     </form>
 
     <style>
-
-
-.filter-label{
-  display: block;
-  padding:1rem;
-  border: 2px solid var(--color-filter);
-  border-radius:.5rem;
+h3{
+  margin-bottom:1rem
 }
+
+.page-types-grid{
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 80px;
+  gap:1rem;
+}
+.filter-label{
+  display: flex;
+  position: relative;
+  justify-content: flex-end;
+  align-items: stretch;
+  /* padding:1rem; */
+  border: 2px solid var(--color-filter);
+  color: var(--color-filter);
+  border-radius:.5rem;
+  font-weight:600;
+}
+.filter-label-img{
+/* background-color: yellow; */
+/* object-fit: cover; */
+position: absolute;
+left:0;top:0;bottom:0;
+height: 100%;
+width:auto;
+}
+.filter-label-text{
+  padding:1rem;
+}
+
+input:checked+.filter-label{
+  background-color: var(--color-filter);
+  color: var(--color-theme-background);
+}
+
+button{
+  text-align: center;
+  border-radius:.5rem
+}
+
       .really-hidden {
   border: 0;
   clip: rect(0 0 0 0); /* Or clip-path: inset(50%); for modern browsers */

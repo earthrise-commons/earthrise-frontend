@@ -29,7 +29,6 @@ import PageTypeFilter from "../components/page-blocks/PageTypeFilter.astro";
     <Image src={SearchHero} alt="" class="search-img" />
   </div>
   <div>
-    <h3>Filter</h3>
     <PageTypeFilter query={query} types={types} page={pageStr} />
   </div>
   {true && <SearchQuery types={types} query={query} page={page} />}
