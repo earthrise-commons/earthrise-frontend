@@ -11,7 +11,7 @@ import PageTypeFilter from "../components/page-blocks/PageTypeFilter.astro";
 ---
 
 <Layout>
-  <div class="search-box">
+  <div class="search-box" transition:persist="search-box">
     <div class="search-box-content">
       <p>earthrise commons</p>
       <h1>the journey toward a sustainable future is here!</h1>
@@ -28,9 +28,9 @@ import PageTypeFilter from "../components/page-blocks/PageTypeFilter.astro";
 
     <Image src={SearchHero} alt="" class="search-img" />
   </div>
-  <div>
-    <PageTypeFilter query={query} types={types} page={pageStr} />
-  </div>
+
+  <PageTypeFilter query={query} types={types} page={pageStr} />
+
   {true && <SearchQuery types={types} query={query} page={page} />}
 </Layout>
 

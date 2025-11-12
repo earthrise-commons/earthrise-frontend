@@ -7,10 +7,18 @@ import { Image } from 'astro:assets';
 
 ---
 
-
- <form method="GET" action="/explore">
-      <h3>Filter by Page Type:</h3>
-
+<script>
+  const filterBtn = document.querySelector('#btn-clear-pt-filter');
+  filterBtn?.addEventListener('click',()=>{
+    const gridItems=document.querySelectorAll('.page-types-grid input');
+    gridItems?.forEach((item)=>{
+      item.checked=false;
+    })
+  })
+</script>
+ <form method="GET" action="/explore" transition:persist="search-page-filter">
+     <div class="inline-heading-group"><h3>Filter by Page Type:</h3><button id="btn-clear-pt-filter">Clear filter</button></div> 
+      
       <input hidden type="text" name="query" value={props.query ?? ""} />
       
             <div class="page-types-grid">
@@ -37,14 +45,18 @@ import { Image } from 'astro:assets';
     </form>
 
     <style>
+      form{
+        max-width: var(--size-padded-super);
+      }
 h3{
   margin-bottom:1rem
 }
 
 .page-types-grid{
+  margin-top:1rem;
   display: grid;
   grid-template-columns: 1fr 1fr 1fr 1fr 80px;
-  gap:1rem;
+  gap:.5rem;
 }
 .filter-label{
   display: flex;
@@ -61,17 +73,24 @@ h3{
 /* background-color: yellow; */
 /* object-fit: cover; */
 position: absolute;
+z-index: 0;
 left:0;top:0;bottom:0;
 height: 100%;
 width:auto;
+opacity: .25;
 }
 .filter-label-text{
   padding:1rem;
+  position: relative;
+  z-index: 10;
 }
 
 input:checked+.filter-label{
   background-color: var(--color-filter);
   color: var(--color-theme-background);
+}
+input:checked+.filter-label .filter-label-img{
+ opacity:1;
 }
 
 button{
@@ -90,4 +109,22 @@ button{
   width: 1px;
   white-space: nowrap;
 }
+    #btn-clear-pt-filter{
+      display: none;
+      margin-left:.5rem;
+      color:var(--color-theme-accent-a);
+      background: none;
+      text-decoration: underline;
+      font-weight: 500;
+    }
+    form:has(input:checked) #btn-clear-pt-filter{
+      display: inline-block;
+
+    }
+    
+.inline-heading-group h3{
+  display: inline;
+}
+
     </style>
+
