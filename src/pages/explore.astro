@@ -7,12 +7,7 @@ import Layout from "../layouts/Layout.astro";
 import SearchQuery from "../components/page-blocks/SearchQuery.astro";
 import SearchHero from "../assets/graphic-hero/search-hero.png";
 import { Image } from "astro:assets";
-
-const pageTypes = [
-  { label: "Lesson", value: "lesson" },
-  { label: "Person", value: "person" },
-  {label: 'Chapter',value:'chapter'}
-];
+import PageTypeFilter from "../components/page-blocks/PageTypeFilter.astro";
 ---
 
 <Layout>
@@ -34,37 +29,11 @@ const pageTypes = [
     <Image src={SearchHero} alt="" class="search-img" />
   </div>
   <div>
-<h3>Filter</h3>
-
-    <form method="GET" action="/explore">
-      <input hidden type="text" name="query" value={query ?? ""} />
-      <input
-              type="checkbox"
-              id={'pt-all'}
-              name="type"
-              value={""} checked={types.length==0}
-            />
-            <label for={'pt-all'}>{"All"}</label>
-      {
-        pageTypes.map((pageType) => {
-          return (
-            <input
-              type="checkbox"
-              id={pageType.value}
-              name="type"
-              value={pageType.value} checked={types.includes(pageType.value)}
-            />
-            <label for={pageType.value}>{pageType.label}</label>
-          );
-        })
-      }
-      <button type="submit">Filter</button>
-    </form>
+    <h3>Filter</h3>
+    <PageTypeFilter query={query} types={types} page={pageStr} />
   </div>
   {true && <SearchQuery types={types} query={query} page={page} />}
-
 </Layout>
-
 
 <style>
   .search-box {

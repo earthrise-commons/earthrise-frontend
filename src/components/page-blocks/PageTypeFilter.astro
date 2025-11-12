@@ -1,0 +1,56 @@
+---
+import type { SearchQueryType } from '../../types/searchQueryTypes';
+import {pageTypes} from "../../types/searchQueryTypes"  
+interface Props extends SearchQueryType{}
+const {props}=Astro;
+
+---
+
+
+ <form method="GET" action="/explore">
+      <input hidden type="text" name="query" value={props.query ?? ""} />
+      <input
+              type="checkbox"
+              id={'pt-all'}
+              name="type"
+              value={""} checked={props.types.length==0}
+            />
+            <label for={'pt-all'}>{"All"}</label>
+      {
+        pageTypes.map((pageType) => {
+          return (
+            <input
+              type="checkbox"
+              id={pageType.value}
+              name="type"
+              class="really-hidden"
+              value={pageType.value} checked={props.types.includes(pageType.value)}
+            />
+            <label class="filter-label" style={`--color-filter:${pageType.color}`} for={pageType.value}>{pageType.label}</label>
+          );
+        })
+      }
+      <button type="submit">Filter</button>
+    </form>
+
+    <style>
+
+
+.filter-label{
+  display: block;
+  padding:1rem;
+  border: 2px solid var(--color-filter);
+  border-radius:.5rem;
+}
+      .really-hidden {
+  border: 0;
+  clip: rect(0 0 0 0); /* Or clip-path: inset(50%); for modern browsers */
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  padding: 0;
+  position: absolute;
+  width: 1px;
+  white-space: nowrap;
+}
+    </style>
