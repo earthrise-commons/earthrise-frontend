@@ -2,17 +2,20 @@
 interface Props {
   query: string;
   page: number;
-  type: string;
+  types: string[];
 }
 const PAGINATION_SIZE = 12;
-const { query, page, type } = Astro.props;
+const { query, page, types } = Astro.props;
 import CardFeed from "./CardFeed.astro";
 import Pagination from "./Pagination.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
 
 const cmsQuery = query ? `site.search('${query}')` : "site.index.children";
-const typeQuery = type ? `.filterBy('intendedTemplate',"${type}")` : "";
+const typeQuery =
+  types.length > 0
+    ? `.filterBy('intendedTemplate',"in",["${types.join(`", "`)}"])`
+    : "";
 const combinedQuery = cmsQuery + typeQuery;
 console.log(combinedQuery);
 const pageParams = new URLSearchParams("");
