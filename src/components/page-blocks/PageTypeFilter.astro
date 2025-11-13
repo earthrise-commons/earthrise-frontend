@@ -7,14 +7,17 @@ import { Image } from 'astro:assets';
 
 ---
 
-<script data-astro-rerun>
-  const filterBtn = document.querySelector('#btn-clear-pt-filter');
+<script >
+    document.addEventListener("astro:page-load", () => {
+    const filterBtn = document.querySelector('#btn-clear-pt-filter');
   filterBtn?.addEventListener('click',()=>{
     const gridItems=document.querySelectorAll('.page-types-grid input');
     gridItems?.forEach((item)=>{
       item.checked=false;
     })
   })
+  });
+  
 </script>
  <form method="GET" action="/explore" >
      <div class="inline-heading-group"><h3>Filter by Page Type:</h3><button id="btn-clear-pt-filter">Clear filter</button></div> 
