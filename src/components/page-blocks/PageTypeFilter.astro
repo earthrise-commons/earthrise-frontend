@@ -16,7 +16,7 @@ import { Image } from 'astro:assets';
     })
   })
 </script>
- <form method="GET" action="/explore" transition:persist="search-page-filter">
+ <form method="GET" action="/explore" >
      <div class="inline-heading-group"><h3>Filter by Page Type:</h3><button id="btn-clear-pt-filter">Clear filter</button></div> 
       
       <input hidden type="text" name="query" value={props.query ?? ""} />
@@ -83,6 +83,20 @@ opacity: .25;
   padding:1rem;
   position: relative;
   z-index: 10;
+}
+.filter-label::after{
+  content:"";
+  background-color: var(--color-filter);
+  position: absolute;
+  left:0;top:0;right:0;bottom:0;
+  z-index: -10;
+  opacity: 0;
+}
+.filter-label:hover .filter-label-img{
+  opacity: 1;
+}
+.filter-label:hover::after{
+  opacity:0.125
 }
 
 input:checked+.filter-label{
