@@ -69,14 +69,19 @@ switch (cardType) {
   }
 
   {
-    (cardType == "chapters" || cardType == "lessons") && (
+    (cardType == "chapters" ||
+      cardType == "lessons" ||
+      cardType == "articles") && (
       <Fragment>
-        {cardType == "chapters" ? (
+        {cardType == "chapters" && (
           <p class="card-tag card-tag-chapter">Chapter</p>
-        ) : (
+        )}
+        {cardType == "lessons" && (
           <p class="card-tag card-tag-lesson">Lesson</p>
         )}
-
+        {cardType == "articles" && (
+          <p class="card-tag card-tag-article">Article</p>
+        )}
         <div class="card-content-panel">
           <h2>
             <a class="card-link" href={`/${pageData.id}`} data-astro-prefetch>
@@ -163,11 +168,15 @@ switch (cardType) {
       color: var(--color-theme-background);
     }
     .card-tag-chapter {
+      background-color: var(--color-category-b);
+      color: var(--color-theme-background);
+    }
+    .card-tag-article {
       background-color: var(--color-category-a);
       color: var(--color-theme-background);
     }
     .card-tag-lesson {
-      background-color: var(--color-category-b);
+      background-color: var(--color-category-c);
       color: var(--color-theme-background);
     }
     .pronouns {
