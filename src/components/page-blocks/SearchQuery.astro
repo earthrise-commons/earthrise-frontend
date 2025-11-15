@@ -2,15 +2,22 @@
 interface Props {
   query: string;
   page: number;
+  types: string[];
 }
 const PAGINATION_SIZE = 12;
-const { query, page } = Astro.props;
+const { query, page, types } = Astro.props;
 import CardFeed from "./CardFeed.astro";
 import Pagination from "./Pagination.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
-const cmsQuery = query ? `site.search('${query}')` : "site.index.children";
 
+const cmsQuery = query ? `site.search('${query}')` : "site.index.children";
+const typeQuery =
+  types.length > 0
+    ? `.filterBy('intendedTemplate',"in",["${types.join(`", "`)}"])`
+    : "";
+const combinedQuery = cmsQuery + typeQuery;
+console.log(combinedQuery);
 const pageParams = new URLSearchParams("");
 pageParams.append("query", query);
 pageParams.append("page", (page + 1).toString());
@@ -23,12 +30,15 @@ const getPaginationURL = (page: number) => {
 };
 
 const pages = await loadFromCMS({
-  query: cmsQuery,
+  query: combinedQuery,
   select: {
     id: true,
     uuid: true,
     taxonomy: { query: "page.taxonomy.toObject()" },
-
+    // blueprint: true,
+    template: {
+      query: "page.intendedTemplate",
+    },
     // fields for pages
     title: true,
     organizationname: true,
@@ -55,7 +65,6 @@ const pages = await loadFromCMS({
   },
 });
 const paginationData = pages.pagination;
-console.log(paginationData);
 
 const sortedPages = randomizeArray(pages.data);
 const startPage = (paginationData.page - 1) * PAGINATION_SIZE + 1;

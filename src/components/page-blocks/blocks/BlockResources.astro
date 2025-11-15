@@ -17,10 +17,9 @@ const processedItems = await Promise.all(
       returnObj.description = "External Resource";
       returnObj.icon = "fa7-solid:link";
     } else {
-      const fileObj = pageFiles.find((file) => {
+      const fileObj = pageFiles.find((file: any) => {
         return file.uuid === item.file[0];
       });
-      console.log(fileObj);
       const uuid = fileObj.uuid.replace("file://", "");
       returnObj.icon = "fa7-solid:file";
       returnObj.url = `/files/${uuid}/${fileObj.filename}`;
