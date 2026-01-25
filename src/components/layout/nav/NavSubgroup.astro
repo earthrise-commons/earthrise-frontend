@@ -1,4 +1,5 @@
 ---
+import { Icon } from "astro-icon/components";
 import NavItem from "./NavItem.astro";
 const { itemData, uid } = Astro.props;
 
@@ -15,7 +16,7 @@ interface Props {
       class="nav-dropdown-toggle"
       aria-controls={`dropdown-${uid}`}
       aria-expanded="false"
-      ><div class="nav-caret">V</div>
+      ><div class="nav-caret"><Icon name="fa7-solid:angle-down" /></div>
     </button>
   </div>
 
@@ -58,6 +59,7 @@ interface Props {
     }
     .nav-dropdown-toggle {
       display: flex;
+      padding: 0.5rem;
     }
     .nav-dropdown-group {
       position: relative;
