@@ -1,0 +1,136 @@
+---
+import NavItem from "./NavItem.astro";
+const { itemData, uid } = Astro.props;
+
+interface Props {
+  itemData: any;
+  uid: number;
+}
+---
+
+<div class="nav-dropdown-group">
+  <div class="nav-dropdown-trigger">
+    <NavItem {...itemData} />
+    <button
+      class="nav-dropdown-toggle"
+      aria-controls={`dropdown-${uid}`}
+      aria-expanded="false"
+      ><div class="nav-caret">V</div>
+    </button>
+  </div>
+
+  <div class="nav-dropdown-content hidden" id={`dropdown-${uid}`}>
+    {itemData.subItems.map((item) => <NavItem {...item} />)}
+  </div>
+</div>
+
+<style>
+  .nav-dropdown-group,
+  .nav-dropdown-content,
+  .nav-dropdown-trigger {
+    display: contents;
+  }
+  .nav-dropdown-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-top: -1rem;
+  }
+  .nav-dropdown-content > :global(*) {
+    /* border: 1px solid red; */
+    padding: 0.25rem 1rem;
+    font-family: "Montserrat", sans-serif;
+    letter-spacing: 0;
+  }
+
+  .nav-caret {
+    display: none;
+  }
+  @media (min-width: 1080px) {
+    .nav-dropdown-content > :global(*) {
+      /* border: 1px solid red; */
+      padding: 0.5rem 1rem;
+      font-family: "Montserrat", sans-serif;
+      letter-spacing: 0;
+    }
+    .nav-caret {
+      display: flex;
+    }
+    .nav-dropdown-toggle {
+      display: flex;
+    }
+    .nav-dropdown-group {
+      position: relative;
+      display: block;
+    }
+    .nav-dropdown-trigger {
+      display: flex;
+    }
+    .nav-dropdown-content {
+      position: absolute;
+      top: calc(100% + 0.75rem);
+      display: flex;
+      align-items: stretch;
+      flex-direction: column;
+      background-color: var(--color-dark-teal);
+      padding: 0rem;
+      z-index: 100;
+    }
+
+    .nav-dropdown-content.hidden {
+      display: none;
+    }
+  }
+</style>
+
+<script>
+  const dropdownGroups = document.querySelectorAll(".nav-dropdown-group");
+  const dropdownContents = document.querySelectorAll(".nav-dropdown-content");
+
+  const hideAllGroups = () => {
+    dropdownContents.forEach((elem) => {
+      elem.classList.toggle("hidden", true);
+    });
+  };
+
+  dropdownGroups.forEach((group) => {
+    const contentElem = group.querySelector(".nav-dropdown-content");
+    const triggerButton = group.querySelector(".nav-dropdown-toggle");
+    let cancelTimeout;
+    triggerButton?.addEventListener("click", () => {
+      contentElem?.classList.toggle("hidden");
+      triggerButton.ariaExpanded = contentElem?.classList.contains("hidden")
+        ? "false"
+        : "true";
+    });
+
+    group.addEventListener("mouseenter", () => {
+      contentElem?.classList.toggle("hidden", false);
+      if (triggerButton) {
+        triggerButton.ariaExpanded = "true";
+      }
+      clearTimeout(cancelTimeout);
+    });
+
+    group.addEventListener("mouseleave", () => {
+      cancelTimeout = setTimeout(() => {
+        if (triggerButton) {
+          triggerButton.ariaExpanded = "false";
+        }
+        contentElem?.classList.toggle("hidden", true);
+      }, 500);
+    });
+    group.addEventListener("focusout", (e) => {
+      // console.log(e.relatedTarget);
+      const isChildElem = group.contains(e.relatedTarget);
+      if (!isChildElem) {
+        cancelTimeout = setTimeout(() => {
+          if (triggerButton) {
+            triggerButton.ariaExpanded = "false";
+          }
+          contentElem?.classList.toggle("hidden", true);
+        }, 500);
+      }
+    });
+  });
+</script>

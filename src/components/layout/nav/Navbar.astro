@@ -9,7 +9,7 @@ const navItems = [
   {
     label: "Has submenu",
     href: "",
-    items: [
+    subItems: [
       { label: "Code of Conduct", href: "/code-of-conduct" },
       { label: "Call for Submissions", href: "/submissions" },
     ],
@@ -17,6 +17,8 @@ const navItems = [
   { label: "Table of Contents", href: "" },
 ];
 import { Icon } from "astro-icon/components";
+import NavItem from "./NavItem.astro";
+import NavSubgroup from "./NavSubgroup.astro";
 ---
 
 <nav>
@@ -36,45 +38,58 @@ import { Icon } from "astro-icon/components";
     <div class="nav-group-main nav-mobile-hidden" id="menu-main-group">
       <div class="nav-links-group">
         {
-          navItems.map((item) => {
-            const hasSubitems = item.items?.length > 0;
-            return (
-              <div class="nav-item">
-                <a
-                  data-astro-prefetch
-                  href={item.href}
-                  class:list={[
-                    hasSubitems && "nav-item-parent",
-                    item.href === "" && "nav-item-inactive",
-                  ]}
-                >
-                  {item.label}
-                  {item.isNew && <span class="ec-pill ec-pill-red">New!</span>}
-                </a>
-                {hasSubitems && (
-                  <div class="nav-subitem-list nav-subitem-list-hidden">
-                    {item.items.map((item) => {
-                      return (
-                        <a
-                          data-astro-prefetch
-                          href={item.href}
-                          class:list={[
-                            "nav-item",
+          navItems.map((item, index) => {
+            const hasSubItems = item.subItems?.length > 0;
+            let isCurrent = item.slug && item.slug === curPage;
 
-                            item.href === "" && "nav-item-inactive",
-                          ]}
-                        >
-                          {item.label}
-                          {item.isNew && (
-                            <span class="ec-pill ec-pill-red">New!</span>
-                          )}
-                        </a>
-                      );
-                    })}
-                  </div>
-                )}
-              </div>
+            const isInert = item.href === "";
+            const itemData = {
+              ...item,
+              isInert,
+              isCurrent,
+            };
+            return hasSubItems ? (
+              <NavSubgroup {itemData} uid={index} />
+            ) : (
+              <NavItem {...itemData} />
             );
+            // return (
+            //   <div class="nav-item">
+            //     <a
+            //       data-astro-prefetch
+            //       href={item.href}
+            //       class:list={[
+            //         hasSubitems && "nav-item-parent",
+            //         item.href === "" && "nav-item-inactive",
+            //       ]}
+            //     >
+            //       {item.label}
+            //       {item.isNew && <span class="ec-pill ec-pill-red">New!</span>}
+            //     </a>
+            //     {hasSubitems && (
+            //       <div class="nav-subitem-list nav-subitem-list-hidden">
+            //         {item.items.map((item) => {
+            //           return (
+            //             <a
+            //               data-astro-prefetch
+            //               href={item.href}
+            //               class:list={[
+            //                 "nav-item",
+
+            //                 item.href === "" && "nav-item-inactive",
+            //               ]}
+            //             >
+            //               {item.label}
+            //               {item.isNew && (
+            //                 <span class="ec-pill ec-pill-red">New!</span>
+            //               )}
+            //             </a>
+            //           );
+            //         })}
+            //       </div>
+            //     )}
+            //   </div>
+            // );
           })
         }
       </div>
@@ -101,7 +116,7 @@ import { Icon } from "astro-icon/components";
     width: 100%;
     position: relative;
     text-align: center;
-    overflow-y: auto;
+    overflow-y: visible;
   }
 
   .nav-links-group {
@@ -128,7 +143,7 @@ import { Icon } from "astro-icon/components";
     align-items: center;
     gap: 0rem;
 
-    overflow-y: auto;
+    /* overflow-y: auto; */
     z-index: 10;
     transform: none;
     transition: all 0.3s;
@@ -190,15 +205,6 @@ import { Icon } from "astro-icon/components";
     align-items: center;
   }
 
-  .ec-pill {
-    padding: 0.125rem 0.25rem;
-    border-radius: 1rem;
-    align-self: start;
-    font-weight: 500;
-    font-size: 0.75em;
-    background-color: var(--color-category-a);
-    color: var(--color-theme-background);
-  }
   @media screen and (min-width: 900px) {
     nav {
       border-bottom: none;
@@ -223,6 +229,8 @@ import { Icon } from "astro-icon/components";
     }
     .nav-links-group {
       flex-direction: row;
+      align-items: center;
+
       gap: 2rem;
     }
 
