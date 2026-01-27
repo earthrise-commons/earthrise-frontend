@@ -31,15 +31,11 @@ interface Props {
   .nav-dropdown-trigger {
     display: contents;
   }
-  .nav-dropdown-content {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    margin-top: -1rem;
-  }
+
   .nav-dropdown-content > :global(*) {
+    /* padding-left: 0; */
     /* border: 1px solid red; */
-    padding: 0.25rem 1rem;
+    /* padding: 0.25rem 1rem; */
     font-family: "Montserrat", sans-serif;
     letter-spacing: 0;
   }
@@ -47,7 +43,15 @@ interface Props {
   .nav-caret {
     display: none;
   }
-  @media (min-width: 1080px) {
+  @media (min-width: 900px) {
+    .nav-dropdown-content {
+      display: flex;
+      flex-direction: column;
+      align-items: stretch;
+      text-align: left;
+      margin-top: -1rem;
+    }
+
     .nav-dropdown-content > :global(*) {
       /* border: 1px solid red; */
       padding: 0.5rem 1rem;
@@ -58,8 +62,15 @@ interface Props {
       display: flex;
     }
     .nav-dropdown-toggle {
+      color: var(--color-text);
+      background-color: var(--color-background);
       display: flex;
       padding: 0.5rem;
+    }
+    .nav-dropdown-toggle:hover,
+    .nav-dropdown-toggle:focus-visible {
+      color: var(--color-background);
+      background-color: var(--color-theme-accent-b);
     }
     .nav-dropdown-group {
       position: relative;
@@ -70,11 +81,11 @@ interface Props {
     }
     .nav-dropdown-content {
       position: absolute;
-      top: calc(100% + 0.75rem);
+      top: calc(100% + 1rem);
       display: flex;
       align-items: stretch;
       flex-direction: column;
-      background-color: var(--color-dark-teal);
+      background-color: var(--color-background);
       padding: 0rem;
       z-index: 100;
     }
@@ -86,6 +97,7 @@ interface Props {
 </style>
 
 <script>
+  // TODO: add astro events so this continues working after view transitions
   const dropdownGroups = document.querySelectorAll(".nav-dropdown-group");
   const dropdownContents = document.querySelectorAll(".nav-dropdown-content");
 

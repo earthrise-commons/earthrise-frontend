@@ -53,43 +53,6 @@ import NavSubgroup from "./NavSubgroup.astro";
             ) : (
               <NavItem {...itemData} />
             );
-            // return (
-            //   <div class="nav-item">
-            //     <a
-            //       data-astro-prefetch
-            //       href={item.href}
-            //       class:list={[
-            //         hasSubitems && "nav-item-parent",
-            //         item.href === "" && "nav-item-inactive",
-            //       ]}
-            //     >
-            //       {item.label}
-            //       {item.isNew && <span class="ec-pill ec-pill-red">New!</span>}
-            //     </a>
-            //     {hasSubitems && (
-            //       <div class="nav-subitem-list nav-subitem-list-hidden">
-            //         {item.items.map((item) => {
-            //           return (
-            //             <a
-            //               data-astro-prefetch
-            //               href={item.href}
-            //               class:list={[
-            //                 "nav-item",
-
-            //                 item.href === "" && "nav-item-inactive",
-            //               ]}
-            //             >
-            //               {item.label}
-            //               {item.isNew && (
-            //                 <span class="ec-pill ec-pill-red">New!</span>
-            //               )}
-            //             </a>
-            //           );
-            //         })}
-            //       </div>
-            //     )}
-            //   </div>
-            // );
           })
         }
       </div>
@@ -122,7 +85,7 @@ import NavSubgroup from "./NavSubgroup.astro";
   .nav-links-group {
     display: flex;
     flex-direction: column;
-    align-items: flex-start;
+    align-items: stretch;
     gap: 0rem;
   }
   .nav-subitem-list {
@@ -144,10 +107,11 @@ import NavSubgroup from "./NavSubgroup.astro";
     gap: 0rem;
 
     /* overflow-y: auto; */
-    z-index: 10;
+    z-index: 9999;
     transform: none;
     transition: all 0.3s;
-    backdrop-filter: blur(20px);
+    background-color: var(--color-background);
+    /* backdrop-filter: blur(20px); */
   }
 
   #menu-toggle[aria-expanded="false"] + #menu-main-group {
@@ -163,7 +127,7 @@ import NavSubgroup from "./NavSubgroup.astro";
   }
 
   #menu-toggle {
-    z-index: 50;
+    z-index: 10000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -229,9 +193,9 @@ import NavSubgroup from "./NavSubgroup.astro";
     }
     .nav-links-group {
       flex-direction: row;
-      align-items: center;
+      align-items: stretch;
 
-      gap: 2rem;
+      /* gap: 2rem; */
     }
 
     #menu-toggle[aria-expanded] + #menu-main-group {
@@ -285,32 +249,3 @@ import NavSubgroup from "./NavSubgroup.astro";
       }
     });
 </script>
-<!-- <style>
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 var(--size-page-padding);
-  }
-  .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: var(--size-page-width);
-    padding: 1rem 0;
-    width: 100%;
-    font-size: var(--font-size-navitems);
-  }
-  .nav-group-main {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .nav-item {
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-  }
-  .nav-item-inactive {
-    opacity: 0.25;
-    pointer-events: none;
-  }
-</style> -->

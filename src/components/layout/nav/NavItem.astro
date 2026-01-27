@@ -23,29 +23,31 @@ const linkType = getElementType();
   linkType === "div" && (
     <div class="nav-item nav-item-inert">
       <p> {label}</p>
-      <slot />
+      {/* <slot /> */}
     </div>
   )
 }
 {
   linkType === "a" && (
     <a class:list={["nav-item", isCurrent && "nav-item-current"]} href={href}>
-      {label}
+      <span>{label}</span>
       {isNew && <span class="ec-pill ec-pill-red">New!</span>}
-      <slot />
+      {/* <slot /> */}
     </a>
   )
 }
 
 <style>
+  .nav-item {
+    padding: 1rem 2rem;
+    border: 1px solid red;
+  }
   .nav-item,
   .nav-item p {
-    padding: 1rem 2rem;
     text-decoration: none;
     font-size: 1.5rem;
     position: relative;
-    display: flex;
-    flex-direction: column;
+    text-align: left;
   }
   .nav-item-inert {
     opacity: 0.33;
@@ -54,8 +56,9 @@ const linkType = getElementType();
 
   .ec-pill {
     padding: 0.125rem 0.25rem;
+    margin-left: 0.25rem;
     border-radius: 1rem;
-    align-self: start;
+    /* align-self: start; */
     font-weight: 500;
     font-size: 0.75em;
     background-color: var(--color-category-a);
@@ -63,10 +66,18 @@ const linkType = getElementType();
   }
 
   @media screen and (min-width: 900px) {
+    .nav-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
     .nav-item,
     .nav-item p {
-      padding: 0;
+      padding: 0 0.5rem;
       font-size: 1rem;
+      text-align: center;
+      flex-basis: content;
+      flex-shrink: 10;
     }
     .nav-group-contribute {
       margin: 0;
