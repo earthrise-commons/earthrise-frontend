@@ -54,11 +54,11 @@ const pageFiles = await loadFromCMS({
     <Fragment slot="left">
       <TagGroup tags={normalizeTagsJSON(rawData.taxonomy)} />
       <PersonBlock
-        personId={rawData.author.id}
-        personName={rawData.author.displayname}
-        personOrg={rawData.author.organizationname}
-        personImage={rawData.author.photo}
-        personUuid={rawData.author.uuid}
+        personId={rawData?.author?.id}
+        personName={rawData?.author?.displayname}
+        personOrg={rawData?.author?.organizationname}
+        personImage={rawData?.author?.photo}
+        personUuid={rawData?.author?.uuid}
       />
     </Fragment>
     <Fragment slot="right">
