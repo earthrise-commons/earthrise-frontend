@@ -1,0 +1,95 @@
+---
+const { variant, isCurrent, href, label, isNew, isInert = false } = Astro.props;
+
+interface Props {
+  variant: string;
+  isInert?: boolean;
+  isCurrent: boolean;
+  href: string;
+  label: string;
+  isNew: boolean;
+}
+
+const getElementType = () => {
+  if (isInert) return "div";
+  if (variant === "button") return "decoButton";
+  return "a";
+};
+
+const linkType = getElementType();
+---
+
+{
+  linkType === "div" && (
+    <div class="nav-item nav-item-inert">
+      <p> {label}</p>
+      {/* <slot /> */}
+    </div>
+  )
+}
+{
+  linkType === "a" && (
+    <a class:list={["nav-item", isCurrent && "nav-item-current"]} href={href}>
+      <span>{label}</span>
+      {isNew && <span class="ec-pill ec-pill-red">New!</span>}
+      {/* <slot /> */}
+    </a>
+  )
+}
+
+<style>
+  .nav-item {
+    padding: 1rem 2rem;
+    /* border: 1px solid red; */
+  }
+  .nav-item,
+  .nav-item p {
+    text-decoration: none;
+    font-size: 1.5rem;
+    position: relative;
+    text-align: left;
+  }
+  .nav-item-inert {
+    opacity: 0.33;
+    pointer-events: none;
+  }
+
+  .ec-pill {
+    padding: 0.125rem 0.25rem;
+    margin-left: 0.25rem;
+    border-radius: 1rem;
+    /* align-self: start; */
+    font-weight: 500;
+    font-size: 0.75em;
+    background-color: var(--color-category-a);
+    color: var(--color-theme-background);
+  }
+
+  @media screen and (min-width: 900px) {
+    .nav-item {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+    }
+    .nav-item,
+    .nav-item p {
+      padding: 0 0.5rem;
+      font-size: 1rem;
+      text-align: center;
+      flex-basis: content;
+      flex-shrink: 10;
+    }
+    .nav-group-contribute {
+      margin: 0;
+    }
+    .nav-group-main {
+      flex-grow: 1;
+      justify-content: space-between;
+      padding-left: 4rem;
+    }
+    .nav-links-group {
+      flex-direction: row;
+      gap: 2rem;
+    }
+  }
+</style>

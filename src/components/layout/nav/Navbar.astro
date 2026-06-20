@@ -6,9 +6,19 @@ const navItems = [
   { label: "Code of Conduct", href: "/code-of-conduct" },
   { label: "Call for Submissions", href: "/submissions" },
   { label: "Blog", href: "/blog", isNew: true },
+  // {
+  //   label: "Has submenu",
+  //   href: "",
+  //   subItems: [
+  //     { label: "Code of Conduct", href: "/code-of-conduct" },
+  //     { label: "Call for Submissions", href: "/submissions" },
+  //   ],
+  // },
   { label: "Table of Contents", href: "" },
 ];
 import { Icon } from "astro-icon/components";
+import NavItem from "./NavItem.astro";
+import NavSubgroup from "./NavSubgroup.astro";
 ---
 
 <nav>
@@ -28,16 +38,22 @@ import { Icon } from "astro-icon/components";
     <div class="nav-group-main nav-mobile-hidden" id="menu-main-group">
       <div class="nav-links-group">
         {
-          navItems.map((item) => (
-            <a
-              data-astro-prefetch
-              href={item.href}
-              class:list={["nav-item", item.href === "" && "nav-item-inactive"]}
-            >
-              {item.label}
-              {item.isNew && <span class="ec-pill ec-pill-red">New!</span>}
-            </a>
-          ))
+          navItems.map((item, index) => {
+            const hasSubItems = item.subItems?.length > 0;
+            let isCurrent = item.slug && item.slug === curPage;
+
+            const isInert = item.href === "";
+            const itemData = {
+              ...item,
+              isInert,
+              isCurrent,
+            };
+            return hasSubItems ? (
+              <NavSubgroup {itemData} uid={index} />
+            ) : (
+              <NavItem {...itemData} />
+            );
+          })
         }
       </div>
 
@@ -52,7 +68,7 @@ import { Icon } from "astro-icon/components";
   nav {
     display: flex;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
     padding: var(--size-page-padding);
     border-bottom: 1px solid var(--color-borders);
   }
@@ -63,14 +79,18 @@ import { Icon } from "astro-icon/components";
     width: 100%;
     position: relative;
     text-align: center;
-    overflow-y: auto;
+    overflow-y: visible;
   }
 
   .nav-links-group {
     display: flex;
     flex-direction: column;
-    align-items: center;
-    gap: 0rem;
+    align-items: stretch;
+    gap: 1rem;
+  }
+  .nav-subitem-list {
+    display: flex;
+    flex-direction: column;
   }
 
   #menu-main-group {
@@ -86,11 +106,12 @@ import { Icon } from "astro-icon/components";
     align-items: center;
     gap: 0rem;
 
-    overflow-y: auto;
-    z-index: 10;
+    /* overflow-y: auto; */
+    z-index: 9999;
     transform: none;
     transition: all 0.3s;
-    backdrop-filter: blur(20px);
+    background-color: var(--color-background);
+    /* backdrop-filter: blur(20px); */
   }
 
   #menu-toggle[aria-expanded="false"] + #menu-main-group {
@@ -106,7 +127,7 @@ import { Icon } from "astro-icon/components";
   }
 
   #menu-toggle {
-    z-index: 50;
+    z-index: 10000;
     display: flex;
     flex-direction: column;
     align-items: center;
@@ -130,6 +151,9 @@ import { Icon } from "astro-icon/components";
     padding: 1rem 2rem;
     text-decoration: none;
     font-size: 1.5rem;
+    position: relative;
+    display: flex;
+    flex-direction: column;
   }
   .nav-item-inactive {
     opacity: 0.33;
@@ -145,15 +169,6 @@ import { Icon } from "astro-icon/components";
     align-items: center;
   }
 
-  .ec-pill {
-    padding: 0.125rem 0.25rem;
-    border-radius: 1rem;
-    align-self: start;
-    font-weight: 500;
-    font-size: 0.75em;
-    background-color: var(--color-category-a);
-    color: var(--color-theme-background);
-  }
   @media screen and (min-width: 900px) {
     nav {
       border-bottom: none;
@@ -178,7 +193,9 @@ import { Icon } from "astro-icon/components";
     }
     .nav-links-group {
       flex-direction: row;
-      gap: 2rem;
+      align-items: stretch;
+
+      /* gap: 2rem; */
     }
 
     #menu-toggle[aria-expanded] + #menu-main-group {
@@ -232,32 +249,3 @@ import { Icon } from "astro-icon/components";
       }
     });
 </script>
-<!-- <style>
-  nav {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 0 var(--size-page-padding);
-  }
-  .nav-container {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    max-width: var(--size-page-width);
-    padding: 1rem 0;
-    width: 100%;
-    font-size: var(--font-size-navitems);
-  }
-  .nav-group-main {
-    display: flex;
-    flex-wrap: wrap;
-  }
-  .nav-item {
-    padding: 1rem 1.5rem;
-    text-decoration: none;
-  }
-  .nav-item-inactive {
-    opacity: 0.25;
-    pointer-events: none;
-  }
-</style> -->

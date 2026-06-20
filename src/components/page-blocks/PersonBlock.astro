@@ -8,7 +8,7 @@ const { personName, personOrg, personImage, personId, personUuid } =
 
 const hasPhoto = personImage;
 ---
-
+{personName && (
 <div class="person-block">
   {
     personImage ? (
@@ -33,7 +33,7 @@ const hasPhoto = personImage;
       </a>
     )
   }
-</div>
+</div>)}
 
 <style>
   .person-block {

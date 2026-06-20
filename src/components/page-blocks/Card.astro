@@ -89,11 +89,11 @@ switch (cardType) {
             </a>
           </h2>
           <HeroImage data={pageData.hero} uuid={pageData.uuid} />
-          {pageData.author.displayname && (
+          {pageData?.author?.displayname && (
             <p class="page-author">{pageData.author.displayname}</p>
           )}
-          {pageData.author.organizationname && (
-            <p>{pageData.author.organizationname}</p>
+          {pageData?.author?.organizationname && (
+            <p>{pageData?.author?.organizationname}</p>
           )}
           {authorLocationData && (
             <p>
