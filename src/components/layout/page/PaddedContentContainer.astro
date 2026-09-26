@@ -1,0 +1,20 @@
+---
+
+---
+
+<section class="padded-content-section">
+  <slot />
+</section>
+
+<style is:global>
+  .padded-content-section > * {
+    max-width: var(--size-padded-content);
+    margin: 1em auto;
+  }
+  .padded-content-section > *:first-child {
+    margin-top: 6rem;
+  }
+  .padded-content-section > *:last-child {
+    margin-bottom: 6rem;
+  }
+</style>
