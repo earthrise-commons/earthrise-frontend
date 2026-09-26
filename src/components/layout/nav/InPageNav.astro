@@ -11,7 +11,7 @@ const navItems = items || [
 ---
 
 <nav class={className}>
-  <div class:list={["nav-group-main", "nav-width-" + width]}>
+  <div class:list={["nav-group-main", "theme-dark", "nav-width-" + width]}>
     {
       navItems.map((item) => (
         <a href={item.href} class="nav-item">
@@ -55,6 +55,8 @@ const navItems = items || [
     padding: 1rem 1.5rem;
     text-decoration: none;
     font-size: 1rem;
+    color: var(--color-dark-text);
+    font-weight: 500;
   }
   .nav-item:first-child {
     /* padding-left: 0; */

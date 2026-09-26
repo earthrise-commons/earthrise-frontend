@@ -9,8 +9,9 @@ const baseColors = {
   "neutral-700": "#28232c",
   "neutral-900": "#1b171f",
   "blue-100": "#e6ebf5",
-  "blue-500": "#26417b",
   "blue-300": "#8eaadc",
+  "blue-400": "#2864dc",
+  "blue-500": "#26417b",
   "blue-700": "#192a52",
   "blue-900": "#0f1a33",
   "orange-100": "#fff4e6",
@@ -45,6 +46,7 @@ const themes: ColorPalette = {
   'accent-b': { light: "green-500", dark: 'green-500' },
   'accent-c': { light: "purple-500", dark: 'purple-500' },
   'accent-d': { light: "red-500", dark: 'red-500' },
+  'link': { light: 'blue-400', dark: 'orange-500' }
 
 }
 
