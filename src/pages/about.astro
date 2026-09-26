@@ -22,6 +22,7 @@ import Accordion from "../components/content-blocks/Accordion.astro";
 import ImageGroup from "../components/content-blocks/ImageGroup.astro";
 
 import EarthPinsPhoto from "../content/about/earth-pins.png";
+import PaddedContentContainer from "../components/layout/page/PaddedContentContainer.astro";
 ---
 
 <Layout title="About Us">
@@ -58,14 +59,18 @@ import EarthPinsPhoto from "../content/about/earth-pins.png";
       { label: "Our Impact", href: "#our-impact" },
     ]}
   />
-  <WhatWereBuilding />
-  <Accordion title="Free Book" group="what-were-building">
-    <FreeBook />
-  </Accordion>
-  <Accordion title="Learning Website" group="what-were-building">
-    <LearningWebsite />
-  </Accordion>
-  <APlaceToShare />
+  <PaddedContentContainer>
+    <WhatWereBuilding />
+    <Accordion title="Free Book" group="what-were-building">
+      <FreeBook />
+    </Accordion>
+    <Accordion title="Learning Website" group="what-were-building">
+      <LearningWebsite />
+    </Accordion>
+  </PaddedContentContainer>
+  <PaddedContentContainer>
+    <APlaceToShare />
+  </PaddedContentContainer>
   <BGBlockAlt
     ><h2 id="our-foundation-and-growth">Our Foundation & Growth</h2><p>
       We believe in SUNY's commitment to the pillars of student success,
@@ -78,16 +83,20 @@ import EarthPinsPhoto from "../content/about/earth-pins.png";
       caption="Village students attend a class at the Chalk Lanka Boat School, Singra, Natore, Bangladesh. Image by Abir Abdullah / Climate Visuals Countdown"
     />
   </BGBlockAlt>
-  <OurTeam />
-  <PeopleGroup />
+  <PaddedContentContainer>
+    <OurTeam />
+    <PeopleGroup />
+  </PaddedContentContainer>
   <BGBlock>
     <WhyThisWorkMatters />
     <Accordion title="What We Hope to Do" group="why-this-work-matters">
       <WhatWeHopeToDo />
     </Accordion>
   </BGBlock>
-  <OurImpact />
-  <Image id="img-earth-pins" src={EarthPinsPhoto} alt="Earth pins on a map" />
+  <PaddedContentContainer variant="top-only">
+    <OurImpact />
+    <Image id="img-earth-pins" src={EarthPinsPhoto} alt="Earth pins on a map" />
+  </PaddedContentContainer>
 </Layout>
 
 <style>
