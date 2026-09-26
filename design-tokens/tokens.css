@@ -37,6 +37,7 @@
   /* theme: light */
   --color-light-background: var(--color-base-neutral-100);
   --color-light-text: var(--color-base-neutral-700);
+  --color-light-headings: var(--color-base-blue-700);
   --color-light-border: var(--color-base-neutral-500);
   --color-light-cta-background: var(--color-base-blue-500);
   --color-light-cta-text: var(--color-base-neutral-100);
@@ -48,6 +49,7 @@
   /* theme: dark */
   --color-dark-background: var(--color-base-neutral-700);
   --color-dark-text: var(--color-base-neutral-100);
+  --color-dark-headings: var(--color-base-orange-300);
   --color-dark-border: var(--color-base-neutral-300);
   --color-dark-cta-background: var(--color-base-orange-500);
   --color-dark-cta-text: var(--color-base-neutral-700);
@@ -61,6 +63,7 @@
   /* theme: light */
   --color-local-background: var(--color-light-background);
   --color-local-text: var(--color-light-text);
+  --color-local-headings: var(--color-light-headings);
   --color-local-border: var(--color-light-border);
   --color-local-cta-background: var(--color-light-cta-background);
   --color-local-cta-text: var(--color-light-cta-text);
@@ -73,6 +76,7 @@
   /* theme: dark */
   --color-local-background: var(--color-dark-background);
   --color-local-text: var(--color-dark-text);
+  --color-local-headings: var(--color-dark-headings);
   --color-local-border: var(--color-dark-border);
   --color-local-cta-background: var(--color-dark-cta-background);
   --color-local-cta-text: var(--color-dark-cta-text);
