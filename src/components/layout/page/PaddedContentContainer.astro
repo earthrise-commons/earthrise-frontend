@@ -1,0 +1,34 @@
+---
+type PaddedContainerVariants = "normal" | "top-only";
+
+interface Props {
+  variant?: PaddedContainerVariants;
+}
+const { variant = "normal" } = Astro.props;
+---
+
+<section class={`padded-content-section variant-${variant}`}>
+  <slot />
+</section>
+
+<style is:global>
+  .padded-content-section > * {
+    max-width: var(--size-padded-content);
+    margin: 1em auto;
+  }
+  .variant-normal > *:first-child,
+  .variant-top-only > *:first-child {
+    margin-top: 6rem;
+  }
+
+  .variant-normal > *:last-child {
+    margin-bottom: 6rem;
+  }
+
+  .variant-top-only > *: last-child {
+    margin-bottom: 0;
+  }
+  .padded-content-container .padded-content-section.variant-top-only {
+    margin-bottom: 0;
+  }
+</style>

@@ -83,7 +83,8 @@ for (const [sectionID, sectionTitle] of Object.entries(sectionTitles)) {
     chapterData.map((section) => {
       return (
         <Accordion title={section.title} group="toc">
-          <dl>
+          {section.chapters.length >0 &&
+          ( <dl>
             {section.chapters.map((chapter) => {
               return (
                 <>
@@ -94,7 +95,14 @@ for (const [sectionID, sectionTitle] of Object.entries(sectionTitles)) {
                 </>
               );
             })}
-          </dl>
+          </dl>)}
+         {section.chapters.length ===0 &&
+          ( <p>We're still working on adding these chapters into Earthrise Commons. In the meantime, check out the full book on <a
+       
+        href="https://link.springer.com/book/10.1007/978-3-032-11698-7"
+        >SpringerLink.</a
+      ></p>)}
+        
         </Accordion>
       );
     })

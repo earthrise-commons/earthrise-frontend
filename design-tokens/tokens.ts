@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import prettier from "prettier";
 
+const opacityValue = .7;
 
 const baseColors = {
   "neutral-100": "#fffefc",
@@ -14,6 +15,7 @@ const baseColors = {
   "blue-500": "#26417b",
   "blue-700": "#192a52",
   "blue-900": "#0f1a33",
+  "yellow-500": "#F2FF63",
   "orange-100": "#fff4e6",
   "orange-300": "#ffcf96",
   "orange-500": "#ffb155",
@@ -39,6 +41,7 @@ const themeNames = ['light', 'dark'] as const;
 const themes: ColorPalette = {
   background: { light: 'neutral-100', dark: 'neutral-700' },
   text: { light: 'neutral-700', dark: 'neutral-100' },
+  headings: { light: 'blue-700', dark: 'orange-300' },
   border: { light: 'neutral-500', dark: 'neutral-300' },
   'cta-background': { light: 'blue-500', dark: 'orange-500' },
   'cta-text': { light: 'neutral-100', dark: 'neutral-700' },
@@ -51,8 +54,10 @@ const themes: ColorPalette = {
 }
 
 type ThemeName = typeof themeNames[number];
-type ColorKey = keyof typeof baseColors;
+export type ColorKey = keyof typeof baseColors;
 type ColorPalette = Record<string, Record<ThemeName, ColorKey>>
+
+const opacityString = Math.floor(opacityValue * 255).toString(16);
 
 const buildCSSString = (assignments: String[], comment: String) => {
   // console.log(assignments)
@@ -75,6 +80,8 @@ const generateCSS = () => {
   // build base values
   for (const [colorName, colorValue] of Object.entries(baseColors)) {
     baseValues.push(`--color-base-${colorName}: ${colorValue}`)
+    baseValues.push(`--color-base-${colorName}-alpha: ${colorValue}${opacityString}`)
+
   }
 
   // console.log(baseValues);
@@ -84,8 +91,11 @@ const generateCSS = () => {
       const varName = `color-${themeName}-${color}`;
       const targetVarName = `color-base-${themes[color][themeName]}`;
       const varAssignment = `--${varName}: var(--${targetVarName})`;
+      const varAssignmentAlpha = `--${varName}-alpha: var(--${targetVarName}-alpha)`;
       themeValues[themeName].push(varAssignment);
+      themeValues[themeName].push(varAssignmentAlpha);
       themeLocals[themeName].push(`--color-local-${color}: var(--${varName})`);
+      themeLocals[themeName].push(`--color-local-${color}-alpha: var(--${varName}-alpha)`);
     }
 
     // build CSS for theme color assignments

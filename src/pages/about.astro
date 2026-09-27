@@ -20,8 +20,9 @@ import EarthrisePhoto from "../content/about/earthrise-photo.png";
 import FoundationGrowthPhoto from "../content/about/foundation-growth-photo.jpg";
 import Accordion from "../components/content-blocks/Accordion.astro";
 import ImageGroup from "../components/content-blocks/ImageGroup.astro";
-
+import planetsBG from "../assets/illustrations/planets-bg.svg";
 import EarthPinsPhoto from "../content/about/earth-pins.png";
+import PaddedContentContainer from "../components/layout/page/PaddedContentContainer.astro";
 ---
 
 <Layout title="About Us">
@@ -58,15 +59,19 @@ import EarthPinsPhoto from "../content/about/earth-pins.png";
       { label: "Our Impact", href: "#our-impact" },
     ]}
   />
-  <WhatWereBuilding />
-  <Accordion title="Free Book" group="what-were-building">
-    <FreeBook />
-  </Accordion>
-  <Accordion title="Learning Website" group="what-were-building">
-    <LearningWebsite />
-  </Accordion>
-  <APlaceToShare />
-  <BGBlockAlt
+  <PaddedContentContainer>
+    <WhatWereBuilding />
+    <Accordion title="Free Book" group="what-were-building">
+      <FreeBook />
+    </Accordion>
+    <Accordion title="Learning Website" group="what-were-building">
+      <LearningWebsite />
+    </Accordion>
+  </PaddedContentContainer>
+  <PaddedContentContainer>
+    <APlaceToShare />
+  </PaddedContentContainer>
+  <BGBlock
     ><h2 id="our-foundation-and-growth">Our Foundation & Growth</h2><p>
       We believe in SUNY's commitment to the pillars of student success,
       research, diversity, inclusion, and sustainable development. But we hope
@@ -77,17 +82,21 @@ import EarthPinsPhoto from "../content/about/earth-pins.png";
       alt="Group of Bangladeshi students sitting at a table in a circle"
       caption="Village students attend a class at the Chalk Lanka Boat School, Singra, Natore, Bangladesh. Image by Abir Abdullah / Climate Visuals Countdown"
     />
-  </BGBlockAlt>
-  <OurTeam />
-  <PeopleGroup />
-  <BGBlock>
+  </BGBlock>
+  <PaddedContentContainer>
+    <OurTeam />
+    <PeopleGroup />
+  </PaddedContentContainer>
+  <BGBlock imgSrc={planetsBG} starColors={["yellow-500"]} starCount={8}>
     <WhyThisWorkMatters />
     <Accordion title="What We Hope to Do" group="why-this-work-matters">
       <WhatWeHopeToDo />
     </Accordion>
   </BGBlock>
-  <OurImpact />
-  <Image id="img-earth-pins" src={EarthPinsPhoto} alt="Earth pins on a map" />
+  <PaddedContentContainer variant="top-only">
+    <OurImpact />
+    <Image id="img-earth-pins" src={EarthPinsPhoto} alt="Earth pins on a map" />
+  </PaddedContentContainer>
 </Layout>
 
 <style>

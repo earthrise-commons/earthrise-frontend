@@ -23,7 +23,7 @@ const { class: className } = Astro.props;
   }
   .coc-content-wrapper {
     margin: 0 auto;
-    max-width: var(--size-padded-content);
+    max-width: var(--size-padded-medium);
     width: 100%;
     margin: 0 auto;
   }
@@ -31,6 +31,9 @@ const { class: className } = Astro.props;
     max-width: 500px;
     position: relative;
     z-index: 10;
+  }
+  .coc-col :global(h2) {
+    text-align: left;
   }
   .coc-col::before {
     content: "";
