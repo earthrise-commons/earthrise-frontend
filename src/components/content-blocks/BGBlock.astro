@@ -11,7 +11,7 @@ interface Props {
   starCount?: number
 }
 
-const { starColors = ["none"], imgSrc = null, starCount = 6 } = Astro.props;
+const { starColors = ["yellow-500"], imgSrc = null, starCount = 6 } = Astro.props;
 const getRandomSign = () => {
   return Math.random() < 0.5 ? 1 : -1;
 };
