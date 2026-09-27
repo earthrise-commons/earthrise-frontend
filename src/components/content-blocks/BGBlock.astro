@@ -16,10 +16,10 @@ const getRandomSign = () => {
   return Math.random() < 0.5 ? 1 : -1;
 };
 
-const stars = [];
+const stars: Array<astroHTML.JSX.SVGAttributes["style"]> = [];
 // TODO: better algorithmically generated star placements
 for (let i = 0; i < starCount; i++) {
-  const curStar = {};
+  const curStar: astroHTML.JSX.SVGAttributes['style'] = {};
   const side = getRandomSign();
   const xPosKeyword = side == 1 ? "left" : "right";
   const xPosValue = -1 * Math.floor(Math.random() * 160 + 40);
@@ -29,7 +29,6 @@ for (let i = 0; i < starCount; i++) {
   curStar[xPosKeyword] = xPosValue + "px";
   curStar.top = yPosPercent + "%";
   curStar.width = width + "px";
-  console.log(starColors)
   if (starColors[(i+1) % starColors.length] !=="none"){
    const curColor=`var(--color-base-${starColors[(i+1) % starColors.length]})`;
    curStar.color=curColor;
