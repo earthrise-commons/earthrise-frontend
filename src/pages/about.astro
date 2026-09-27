@@ -87,7 +87,11 @@ import PaddedContentContainer from "../components/layout/page/PaddedContentConta
     <OurTeam />
     <PeopleGroup />
   </PaddedContentContainer>
-  <BGBlock imgSrc={planetsBG}>
+  <BGBlock
+    imgSrc={planetsBG}
+    starColors={["yellow-500", "orange-500"]}
+    starCount={20}
+  >
     <WhyThisWorkMatters />
     <Accordion title="What We Hope to Do" group="why-this-work-matters">
       <WhatWeHopeToDo />

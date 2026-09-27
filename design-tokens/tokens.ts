@@ -15,6 +15,7 @@ const baseColors = {
   "blue-500": "#26417b",
   "blue-700": "#192a52",
   "blue-900": "#0f1a33",
+  "yellow-500": "#F2FF63",
   "orange-100": "#fff4e6",
   "orange-300": "#ffcf96",
   "orange-500": "#ffb155",
@@ -53,7 +54,7 @@ const themes: ColorPalette = {
 }
 
 type ThemeName = typeof themeNames[number];
-type ColorKey = keyof typeof baseColors;
+export type ColorKey = keyof typeof baseColors;
 type ColorPalette = Record<string, Record<ThemeName, ColorKey>>
 
 const opacityString = Math.floor(opacityValue * 255).toString(16);

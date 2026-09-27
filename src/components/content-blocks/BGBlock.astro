@@ -2,22 +2,23 @@
 import { Image } from "astro:assets";
 import StarIcon from "../../assets/icons/icon-star.svg";
 import type { ImageMetadata } from "astro";
+import type {ColorKey} from "../../../design-tokens/tokens.ts"
 
-type StarTypes = "none" | "white" | "yellow";
 
 interface Props {
-  starType?: StarTypes;
+  starColors?: Array<ColorKey | "none">;
   imgSrc?: ImageMetadata;
+  starCount?: number
 }
 
-const { starType = "white", imgSrc = null } = Astro.props;
+const { starColors = ["none"], imgSrc = null, starCount = 6 } = Astro.props;
 const getRandomSign = () => {
   return Math.random() < 0.5 ? 1 : -1;
 };
 
 const stars = [];
 // TODO: better algorithmically generated star placements
-for (let i = 0; i < 6; i++) {
+for (let i = 0; i < starCount; i++) {
   const curStar = {};
   const side = getRandomSign();
   const xPosKeyword = side == 1 ? "left" : "right";
@@ -28,6 +29,12 @@ for (let i = 0; i < 6; i++) {
   curStar[xPosKeyword] = xPosValue + "px";
   curStar.top = yPosPercent + "%";
   curStar.width = width + "px";
+  console.log(starColors)
+  if (starColors[(i+1) % starColors.length] !=="none"){
+   const curColor=`var(--color-base-${starColors[(i+1) % starColors.length]})`;
+   curStar.color=curColor;
+
+  }
   curStar.transform = `rotate(${rotation}deg)`;
   stars.push(curStar);
 }
