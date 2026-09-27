@@ -20,7 +20,7 @@ import EarthrisePhoto from "../content/about/earthrise-photo.png";
 import FoundationGrowthPhoto from "../content/about/foundation-growth-photo.jpg";
 import Accordion from "../components/content-blocks/Accordion.astro";
 import ImageGroup from "../components/content-blocks/ImageGroup.astro";
-
+import planetsBG from "../assets/illustrations/planets-bg.svg";
 import EarthPinsPhoto from "../content/about/earth-pins.png";
 import PaddedContentContainer from "../components/layout/page/PaddedContentContainer.astro";
 ---
@@ -87,7 +87,7 @@ import PaddedContentContainer from "../components/layout/page/PaddedContentConta
     <OurTeam />
     <PeopleGroup />
   </PaddedContentContainer>
-  <BGBlock>
+  <BGBlock imgSrc={planetsBG}>
     <WhyThisWorkMatters />
     <Accordion title="What We Hope to Do" group="why-this-work-matters">
       <WhatWeHopeToDo />
