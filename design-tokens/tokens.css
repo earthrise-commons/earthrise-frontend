@@ -2,91 +2,166 @@
 :root {
   /* base theme colors */
   --color-base-neutral-100: #fffefc;
+  --color-base-neutral-100-alpha: #fffefcb2;
   --color-base-neutral-300: #d4d1cb;
+  --color-base-neutral-300-alpha: #d4d1cbb2;
   --color-base-neutral-500: #736b7a;
+  --color-base-neutral-500-alpha: #736b7ab2;
   --color-base-neutral-700: #28232c;
+  --color-base-neutral-700-alpha: #28232cb2;
   --color-base-neutral-900: #1b171f;
+  --color-base-neutral-900-alpha: #1b171fb2;
   --color-base-blue-100: #e6ebf5;
+  --color-base-blue-100-alpha: #e6ebf5b2;
   --color-base-blue-300: #8eaadc;
+  --color-base-blue-300-alpha: #8eaadcb2;
   --color-base-blue-400: #2864dc;
+  --color-base-blue-400-alpha: #2864dcb2;
   --color-base-blue-500: #26417b;
+  --color-base-blue-500-alpha: #26417bb2;
   --color-base-blue-700: #192a52;
+  --color-base-blue-700-alpha: #192a52b2;
   --color-base-blue-900: #0f1a33;
+  --color-base-blue-900-alpha: #0f1a33b2;
   --color-base-orange-100: #fff4e6;
+  --color-base-orange-100-alpha: #fff4e6b2;
   --color-base-orange-300: #ffcf96;
+  --color-base-orange-300-alpha: #ffcf96b2;
   --color-base-orange-500: #ffb155;
+  --color-base-orange-500-alpha: #ffb155b2;
   --color-base-orange-700: #c77e24;
+  --color-base-orange-700-alpha: #c77e24b2;
   --color-base-orange-900: #824f11;
+  --color-base-orange-900-alpha: #824f11b2;
   --color-base-green-100: #e2f5ee;
+  --color-base-green-100-alpha: #e2f5eeb2;
   --color-base-green-300: #68c79f;
+  --color-base-green-300-alpha: #68c79fb2;
   --color-base-green-500: #177b51;
+  --color-base-green-500-alpha: #177b51b2;
   --color-base-green-700: #105237;
+  --color-base-green-700-alpha: #105237b2;
   --color-base-green-900: #0a3322;
+  --color-base-green-900-alpha: #0a3322b2;
   --color-base-purple-100: #f2e9f7;
+  --color-base-purple-100-alpha: #f2e9f7b2;
   --color-base-purple-300: #b08cc2;
+  --color-base-purple-300-alpha: #b08cc2b2;
   --color-base-purple-500: #6b358a;
+  --color-base-purple-500-alpha: #6b358ab2;
   --color-base-purple-700: #4a2161;
+  --color-base-purple-700-alpha: #4a2161b2;
   --color-base-purple-900: #2d103d;
+  --color-base-purple-900-alpha: #2d103db2;
   --color-base-red-100: #ffede9;
+  --color-base-red-100-alpha: #ffede9b2;
   --color-base-red-300: #fe9f87;
+  --color-base-red-300-alpha: #fe9f87b2;
   --color-base-red-500: #fd5d36;
+  --color-base-red-500-alpha: #fd5d36b2;
   --color-base-red-700: #c23815;
+  --color-base-red-700-alpha: #c23815b2;
   --color-base-red-900: #80230b;
+  --color-base-red-900-alpha: #80230bb2;
 
   /* THEME COLORS */
 
   /* theme: light */
   --color-light-background: var(--color-base-neutral-100);
+  --color-light-background-alpha: var(--color-base-neutral-100-alpha);
   --color-light-text: var(--color-base-neutral-700);
+  --color-light-text-alpha: var(--color-base-neutral-700-alpha);
   --color-light-headings: var(--color-base-blue-700);
+  --color-light-headings-alpha: var(--color-base-blue-700-alpha);
   --color-light-border: var(--color-base-neutral-500);
+  --color-light-border-alpha: var(--color-base-neutral-500-alpha);
   --color-light-cta-background: var(--color-base-blue-500);
+  --color-light-cta-background-alpha: var(--color-base-blue-500-alpha);
   --color-light-cta-text: var(--color-base-neutral-100);
+  --color-light-cta-text-alpha: var(--color-base-neutral-100-alpha);
   --color-light-accent-a: var(--color-base-blue-500);
+  --color-light-accent-a-alpha: var(--color-base-blue-500-alpha);
   --color-light-accent-b: var(--color-base-green-500);
+  --color-light-accent-b-alpha: var(--color-base-green-500-alpha);
   --color-light-accent-c: var(--color-base-purple-500);
+  --color-light-accent-c-alpha: var(--color-base-purple-500-alpha);
   --color-light-accent-d: var(--color-base-red-500);
+  --color-light-accent-d-alpha: var(--color-base-red-500-alpha);
   --color-light-link: var(--color-base-blue-400);
+  --color-light-link-alpha: var(--color-base-blue-400-alpha);
 
   /* theme: dark */
   --color-dark-background: var(--color-base-neutral-700);
+  --color-dark-background-alpha: var(--color-base-neutral-700-alpha);
   --color-dark-text: var(--color-base-neutral-100);
+  --color-dark-text-alpha: var(--color-base-neutral-100-alpha);
   --color-dark-headings: var(--color-base-orange-300);
+  --color-dark-headings-alpha: var(--color-base-orange-300-alpha);
   --color-dark-border: var(--color-base-neutral-300);
+  --color-dark-border-alpha: var(--color-base-neutral-300-alpha);
   --color-dark-cta-background: var(--color-base-orange-500);
+  --color-dark-cta-background-alpha: var(--color-base-orange-500-alpha);
   --color-dark-cta-text: var(--color-base-neutral-700);
+  --color-dark-cta-text-alpha: var(--color-base-neutral-700-alpha);
   --color-dark-accent-a: var(--color-base-blue-500);
+  --color-dark-accent-a-alpha: var(--color-base-blue-500-alpha);
   --color-dark-accent-b: var(--color-base-green-500);
+  --color-dark-accent-b-alpha: var(--color-base-green-500-alpha);
   --color-dark-accent-c: var(--color-base-purple-500);
+  --color-dark-accent-c-alpha: var(--color-base-purple-500-alpha);
   --color-dark-accent-d: var(--color-base-red-500);
+  --color-dark-accent-d-alpha: var(--color-base-red-500-alpha);
   --color-dark-link: var(--color-base-orange-500);
+  --color-dark-link-alpha: var(--color-base-orange-500-alpha);
 }
 /* APPLY VARIABLES LOCALLY */
 .theme-light {
   /* theme: light */
   --color-local-background: var(--color-light-background);
+  --color-local-background-alpha: var(--color-light-background-alpha);
   --color-local-text: var(--color-light-text);
+  --color-local-text-alpha: var(--color-light-text-alpha);
   --color-local-headings: var(--color-light-headings);
+  --color-local-headings-alpha: var(--color-light-headings-alpha);
   --color-local-border: var(--color-light-border);
+  --color-local-border-alpha: var(--color-light-border-alpha);
   --color-local-cta-background: var(--color-light-cta-background);
+  --color-local-cta-background-alpha: var(--color-light-cta-background-alpha);
   --color-local-cta-text: var(--color-light-cta-text);
+  --color-local-cta-text-alpha: var(--color-light-cta-text-alpha);
   --color-local-accent-a: var(--color-light-accent-a);
+  --color-local-accent-a-alpha: var(--color-light-accent-a-alpha);
   --color-local-accent-b: var(--color-light-accent-b);
+  --color-local-accent-b-alpha: var(--color-light-accent-b-alpha);
   --color-local-accent-c: var(--color-light-accent-c);
+  --color-local-accent-c-alpha: var(--color-light-accent-c-alpha);
   --color-local-accent-d: var(--color-light-accent-d);
+  --color-local-accent-d-alpha: var(--color-light-accent-d-alpha);
   --color-local-link: var(--color-light-link);
+  --color-local-link-alpha: var(--color-light-link-alpha);
 }
 .theme-dark {
   /* theme: dark */
   --color-local-background: var(--color-dark-background);
+  --color-local-background-alpha: var(--color-dark-background-alpha);
   --color-local-text: var(--color-dark-text);
+  --color-local-text-alpha: var(--color-dark-text-alpha);
   --color-local-headings: var(--color-dark-headings);
+  --color-local-headings-alpha: var(--color-dark-headings-alpha);
   --color-local-border: var(--color-dark-border);
+  --color-local-border-alpha: var(--color-dark-border-alpha);
   --color-local-cta-background: var(--color-dark-cta-background);
+  --color-local-cta-background-alpha: var(--color-dark-cta-background-alpha);
   --color-local-cta-text: var(--color-dark-cta-text);
+  --color-local-cta-text-alpha: var(--color-dark-cta-text-alpha);
   --color-local-accent-a: var(--color-dark-accent-a);
+  --color-local-accent-a-alpha: var(--color-dark-accent-a-alpha);
   --color-local-accent-b: var(--color-dark-accent-b);
+  --color-local-accent-b-alpha: var(--color-dark-accent-b-alpha);
   --color-local-accent-c: var(--color-dark-accent-c);
+  --color-local-accent-c-alpha: var(--color-dark-accent-c-alpha);
   --color-local-accent-d: var(--color-dark-accent-d);
+  --color-local-accent-d-alpha: var(--color-dark-accent-d-alpha);
   --color-local-link: var(--color-dark-link);
+  --color-local-link-alpha: var(--color-dark-link-alpha);
 }

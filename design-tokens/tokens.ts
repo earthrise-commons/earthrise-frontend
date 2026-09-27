@@ -1,6 +1,7 @@
 import fs from 'node:fs';
 import prettier from "prettier";
 
+const opacityValue = .7;
 
 const baseColors = {
   "neutral-100": "#fffefc",
@@ -55,6 +56,8 @@ type ThemeName = typeof themeNames[number];
 type ColorKey = keyof typeof baseColors;
 type ColorPalette = Record<string, Record<ThemeName, ColorKey>>
 
+const opacityString = Math.floor(opacityValue * 255).toString(16);
+
 const buildCSSString = (assignments: String[], comment: String) => {
   // console.log(assignments)
   return `
@@ -76,6 +79,8 @@ const generateCSS = () => {
   // build base values
   for (const [colorName, colorValue] of Object.entries(baseColors)) {
     baseValues.push(`--color-base-${colorName}: ${colorValue}`)
+    baseValues.push(`--color-base-${colorName}-alpha: ${colorValue}${opacityString}`)
+
   }
 
   // console.log(baseValues);
@@ -85,8 +90,11 @@ const generateCSS = () => {
       const varName = `color-${themeName}-${color}`;
       const targetVarName = `color-base-${themes[color][themeName]}`;
       const varAssignment = `--${varName}: var(--${targetVarName})`;
+      const varAssignmentAlpha = `--${varName}-alpha: var(--${targetVarName}-alpha)`;
       themeValues[themeName].push(varAssignment);
+      themeValues[themeName].push(varAssignmentAlpha);
       themeLocals[themeName].push(`--color-local-${color}: var(--${varName})`);
+      themeLocals[themeName].push(`--color-local-${color}-alpha: var(--${varName}-alpha)`);
     }
 
     // build CSS for theme color assignments
