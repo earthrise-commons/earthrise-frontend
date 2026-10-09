@@ -24,6 +24,8 @@ import planetsBG from "../assets/illustrations/planets-bg.svg";
 import EarthPinsPhoto from "../content/about/earth-pins.png";
 import PaddedContentContainer from "../components/layout/page/PaddedContentContainer.astro";
 import EarthrisePoem from "../content/about/earthrise-poem.md";
+import TagorePoem from "../content/about/tagore-poem.md";
+import { YouTube } from "astro-embed";
 ---
 
 <Layout title="About Us">
@@ -45,8 +47,10 @@ import EarthrisePoem from "../content/about/earthrise-poem.md";
       />
     </Fragment>
   </TwoCol>
-  <BGBlock suppressMargin="both">
-    <Accordion>
+  <BGBlock starCount={0} suppressMargin="both" suppressPadding="before">
+    <h3><em>Our Purpose in Poetry: Or, Earthrise</em> by Amanda Gorman</h3>
+    <YouTube id="https://www.youtube.com/watch?v=xwOvBv8RLmo" />
+    <Accordion title="Poem Text">
       <EarthrisePoem />
     </Accordion>
   </BGBlock>
@@ -98,6 +102,8 @@ import EarthrisePoem from "../content/about/earthrise-poem.md";
     <Accordion title="What We Hope to Do" group="why-this-work-matters">
       <WhatWeHopeToDo />
     </Accordion>
+    
+    <TagorePoem />
   </BGBlock>
   <PaddedContentContainer variant="top-only">
     <OurImpact />

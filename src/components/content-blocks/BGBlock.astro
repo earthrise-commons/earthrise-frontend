@@ -9,13 +9,14 @@ interface Props {
   starColors?: Array<ColorKey | "none">;
   imgSrc?: ImageMetadata;
   starCount?: number;
-  suppressMargin?:'before'|'after'|'both'
+  suppressMargin?:'before'|'after'|'both';
+  suppressPadding?:'before'|'after'|'both';
 }
 
 
 
 
-const { starColors = ["yellow-500"], imgSrc = null, starCount = 6, suppressMargin } = Astro.props;
+const { starColors = ["yellow-500"], imgSrc = null, starCount = 6, suppressMargin,suppressPadding } = Astro.props;
 
 const customCSSProps={}
 if (suppressMargin==="before" || suppressMargin==="both"){
@@ -24,6 +25,13 @@ customCSSProps.marginTop="0";
 if (suppressMargin==="after" || suppressMargin==="both"){
 customCSSProps.marginBottom="0"
 }
+if (suppressPadding==="before" || suppressPadding==="both"){
+customCSSProps.paddingTop="0";
+}
+if (suppressPadding==="after" || suppressPadding==="both"){
+customCSSProps.paddingBottom="0"
+}
+
 
 
 const getRandomSign = () => {

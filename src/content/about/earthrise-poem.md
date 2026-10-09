@@ -1,3 +1,8 @@
+Our Purpose in Poetry: or Earthrise \
+*by Amanda Gorman*
+
+---
+
 On Christmas Eve, 1968, astronaut Bill Anders  \
 Snapped a photo of the earth \
 As Apollo 8 orbited the moon.
