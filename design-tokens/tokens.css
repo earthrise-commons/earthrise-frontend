@@ -91,6 +91,8 @@
   --color-light-accent-d-alpha: var(--color-base-red-500-alpha);
   --color-light-link: var(--color-base-blue-400);
   --color-light-link-alpha: var(--color-base-blue-400-alpha);
+  --color-light-focus: var(--color-base-blue-400);
+  --color-light-focus-alpha: var(--color-base-blue-400-alpha);
 
   /* theme: dark */
   --color-dark-background: var(--color-base-neutral-700);
@@ -115,6 +117,8 @@
   --color-dark-accent-d-alpha: var(--color-base-red-500-alpha);
   --color-dark-link: var(--color-base-orange-500);
   --color-dark-link-alpha: var(--color-base-orange-500-alpha);
+  --color-dark-focus: var(--color-base-yellow-500);
+  --color-dark-focus-alpha: var(--color-base-yellow-500-alpha);
 }
 /* APPLY VARIABLES LOCALLY */
 .theme-light {
@@ -141,6 +145,8 @@
   --color-local-accent-d-alpha: var(--color-light-accent-d-alpha);
   --color-local-link: var(--color-light-link);
   --color-local-link-alpha: var(--color-light-link-alpha);
+  --color-local-focus: var(--color-light-focus);
+  --color-local-focus-alpha: var(--color-light-focus-alpha);
 }
 .theme-dark {
   /* theme: dark */
@@ -166,4 +172,6 @@
   --color-local-accent-d-alpha: var(--color-dark-accent-d-alpha);
   --color-local-link: var(--color-dark-link);
   --color-local-link-alpha: var(--color-dark-link-alpha);
+  --color-local-focus: var(--color-dark-focus);
+  --color-local-focus-alpha: var(--color-dark-focus-alpha);
 }
