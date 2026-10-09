@@ -49,7 +49,8 @@ const themes: ColorPalette = {
   'accent-b': { light: "green-500", dark: 'green-500' },
   'accent-c': { light: "purple-500", dark: 'purple-500' },
   'accent-d': { light: "red-500", dark: 'red-500' },
-  'link': { light: 'blue-400', dark: 'orange-500' }
+  'link': { light: 'blue-400', dark: 'orange-500' },
+  'focus': { light: 'blue-400', dark: 'yellow-500' }
 
 }
 

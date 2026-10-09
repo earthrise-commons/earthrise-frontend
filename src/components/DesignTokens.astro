@@ -232,3 +232,10 @@ import "./../../design-tokens/tokens.css";
     display: none;
   }
 </style>
+
+<style is:global>
+  *:focus-visible {
+    outline: 0.5rem solid var(--color-local-focus);
+    outline-offset: 0.125rem;
+  }
+</style>

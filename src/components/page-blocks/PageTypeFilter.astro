@@ -110,6 +110,17 @@ input:checked+.filter-label .filter-label-img{
  opacity:1;
 }
 
+.page-types-grid input:focus-visible + .filter-label {
+  outline: 0.5rem solid var(--color-local-focus);
+  outline-offset: 0.125rem;
+}
+.page-types-grid input:focus-visible + .filter-label .filter-label-img{
+  opacity: 1;
+}
+.page-types-grid input:focus-visible + .filter-label::after{
+  opacity:0.125
+}
+
 button{
   text-align: center;
   border-radius:.5rem;
@@ -154,6 +165,7 @@ button{
   grid-template-columns: 1fr 90px;
 
 }
+
 
 @media (min-width: 550px) {
  .page-types-grid{

@@ -170,6 +170,8 @@ import NavSubgroup from "./NavSubgroup.astro";
     display: flex;
     justify-content: center;
     align-items: center;
+    position: relative;
+    z-index: 9;
   }
   .nav-group-logo svg {
     color: var(--color-local-text);
@@ -196,6 +198,9 @@ import NavSubgroup from "./NavSubgroup.astro";
       flex-grow: 1;
       justify-content: space-between;
       padding-left: 4rem;
+    }
+    #menu-main-group {
+      background-color: transparent;
     }
     .nav-links-group {
       flex-direction: row;

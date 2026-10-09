@@ -12,7 +12,7 @@ const navItems = [
 <nav>
   <div class="nav-container">
     <div class="nav-group-logo">
-      <a href="/"><EcLogo /></a>
+      <a href="/" class="footer-brand-link"><EcLogo /></a>
     </div>
     <div class="nav-items-wrapper">
       <div class="nav-group-main">
@@ -71,8 +71,7 @@ const navItems = [
   }
   .nav-item:hover,
   .nav-item:focus-visible {
-    background-color: var(--color-text);
-    color: var(--color-background);
+    background-color: var(--color-base-orange-900-alpha);
   }
   .nav-item-inactive {
     opacity: 0.25;
@@ -99,5 +98,9 @@ const navItems = [
     .nav-items-wrapper {
       flex-grow: 1;
     }
+  }
+
+  .footer-brand-link {
+    display: block;
   }
 </style>

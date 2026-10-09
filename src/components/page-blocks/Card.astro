@@ -50,7 +50,6 @@ switch (cardType) {
           <h2>
             <a class="card-link" href={`/${pageData.id}`} data-astro-prefetch>
               {pageData.displayname}
-              {/* <span class="pronouns">({pageData.pronouns})</span> */}
             </a>
           </h2>
           {pageData.role && <p class="person-role">{pageData.role}</p>}
@@ -107,7 +106,6 @@ switch (cardType) {
       </Fragment>
     )
   }
-  <!-- <Code code={JSON.stringify(pageData, null, 2)} /> -->
 
   <style>
     p {
@@ -156,12 +154,17 @@ switch (cardType) {
       /* background-color: yellow; */
       /* z-index: -1; */
     }
-    .card:focus-within,
-    .card:hover {
-      border-color: var(--color-local-cta-background);
+    .card-link:focus-visible {
+      outline: none;
+      box-shadow: none;
     }
-  </style>
-  <style>
+    .card:focus-within {
+      outline: 0.5rem solid var(--color-local-focus);
+      background-color: var(--color-base-blue-100-alpha);
+    }
+    .card:hover {
+      background-color: var(--color-base-blue-100-alpha);
+    }
     .card-content-panel h2,
     .card-content-panel h2 a {
       /* font-size: 1rem; */
