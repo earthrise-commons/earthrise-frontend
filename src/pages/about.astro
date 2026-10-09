@@ -23,6 +23,7 @@ import ImageGroup from "../components/content-blocks/ImageGroup.astro";
 import planetsBG from "../assets/illustrations/planets-bg.svg";
 import EarthPinsPhoto from "../content/about/earth-pins.png";
 import PaddedContentContainer from "../components/layout/page/PaddedContentContainer.astro";
+import EarthrisePoem from "../content/about/earthrise-poem.md";
 ---
 
 <Layout title="About Us">
@@ -44,8 +45,13 @@ import PaddedContentContainer from "../components/layout/page/PaddedContentConta
       />
     </Fragment>
   </TwoCol>
+  <BGBlock suppressMargin="both">
+    <Accordion>
+      <EarthrisePoem />
+    </Accordion>
+  </BGBlock>
   <InPageNav
-    class="no-margin-before theme-dark"
+    class="no-margin-before theme-light"
     width="page"
     items={[
       { label: "What We’re Building", href: "#what-were-building" },
