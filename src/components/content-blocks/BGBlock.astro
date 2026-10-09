@@ -8,10 +8,32 @@ import type {ColorKey} from "../../../design-tokens/tokens.ts"
 interface Props {
   starColors?: Array<ColorKey | "none">;
   imgSrc?: ImageMetadata;
-  starCount?: number
+  starCount?: number;
+  suppressMargin?:'before'|'after'|'both';
+  suppressPadding?:'before'|'after'|'both';
 }
 
-const { starColors = ["yellow-500"], imgSrc = null, starCount = 6 } = Astro.props;
+
+
+
+const { starColors = ["yellow-500"], imgSrc = null, starCount = 6, suppressMargin,suppressPadding } = Astro.props;
+
+const customCSSProps={}
+if (suppressMargin==="before" || suppressMargin==="both"){
+customCSSProps.marginTop="0";
+}
+if (suppressMargin==="after" || suppressMargin==="both"){
+customCSSProps.marginBottom="0"
+}
+if (suppressPadding==="before" || suppressPadding==="both"){
+customCSSProps.paddingTop="0";
+}
+if (suppressPadding==="after" || suppressPadding==="both"){
+customCSSProps.paddingBottom="0"
+}
+
+
+
 const getRandomSign = () => {
   return Math.random() < 0.5 ? 1 : -1;
 };
@@ -39,7 +61,7 @@ for (let i = 0; i < starCount; i++) {
 }
 ---
 
-<div class="bg-block theme-dark">
+<div class="bg-block theme-dark" style={customCSSProps}>
   {imgSrc && <Image class={"bg-block-image"} src={imgSrc} alt="" />}
   <div class="bg-block-content padded-content-container">
     <slot />
