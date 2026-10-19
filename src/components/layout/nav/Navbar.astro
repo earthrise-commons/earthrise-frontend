@@ -1,5 +1,5 @@
 ---
-import EcLogo from "../../../assets/ec-logo-plain.svg";
+import EcLogo from "../../../assets/ec-logo-colorful.svg";
 const navItems = [
   { label: "Explore", href: "/explore" },
   {
@@ -79,6 +79,7 @@ import NavSubgroup from "./NavSubgroup.astro";
     display: flex;
     flex-direction: row;
     justify-content: space-between;
+    align-items: center;
     width: 100%;
     position: relative;
     text-align: center;
@@ -174,7 +175,8 @@ import NavSubgroup from "./NavSubgroup.astro";
     z-index: 9;
   }
   .nav-group-logo svg {
-    color: var(--color-local-text);
+    /* color: var(--color-local-text); */
+    height: 3rem;
   }
 
   @media screen and (min-width: 900px) {
