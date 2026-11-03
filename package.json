@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "@acab/reset.css": "^0.11.0",
-    "@astrojs/netlify": "^6.2.2",
+    "@astrojs/netlify": "^8.2.11",
     "@fontsource-variable/lexend": "^5.2.9",
     "@fontsource/poppins": "^5.2.6",
     "@iconify-json/fa7-brands": "^1.2.0",
