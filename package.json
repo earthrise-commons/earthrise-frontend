@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@acab/reset.css": "^0.11.0",
-    "@astrojs/netlify": "^6.5.9",
+    "@astrojs/netlify": "^6.2.2",
     "@fontsource-variable/lexend": "^5.2.9",
     "@fontsource/poppins": "^5.2.6",
     "@iconify-json/fa7-brands": "^1.2.0",
     "@iconify-json/fa7-solid": "^1.2.0",
-    "astro": "^5.13.0",
-    "astro-embed": "^0.9.0",
+    "astro": "^7.4.5",
+    "astro-embed": "^0.14.0",
     "astro-icon": "^1.1.5",
     "axios": "^1.11.0",
     "hash-it": "^6.0.0",
@@ -25,5 +25,11 @@
   },
   "devDependencies": {
     "prettier": "^3.9.8"
+  },
+  "allowScripts": {
+    "esbuild@0.28.1": true,
+    "esbuild@0.27.7": true,
+    "esbuild@0.25.12": true,
+    "sharp@0.34.5": true
   }
 }
