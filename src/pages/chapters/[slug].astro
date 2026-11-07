@@ -10,6 +10,8 @@ import BGBlockAlt from "../../components/content-blocks/BGBlockAlt.astro";
 import ChapterBG from "../../assets/graphic-hero/chapter-bg.png";
 import BlockResources from "../../components/page-blocks/blocks/BlockResources.astro";
 import HeroImage from "../../components/page-blocks/HeroImage.astro";
+import TagGroup from "../../components/page-blocks/TagGroup.astro";
+import { normalizeTagsJSON } from "../../cms/normalizeTags";
 
 export const getStaticPaths = async () => {
   const chapters = await loadFromCMS({ query: 'page("chapters").children' });
@@ -25,6 +27,8 @@ const rawData = await loadFromCMS({
   select: {
     content: true,
     uuid: true,
+    taxonomy: { query: "page.taxonomy.toObject" },
+
     author: {
       query: "page.content.author.toPage",
       select: {
@@ -58,7 +62,7 @@ const pageFiles = await loadFromCMS({
   <PageHero title={rawData.content.title}>
     <!-- TODO: map multiple authors to separate PersonBlock components -->
     <Fragment slot="left">
-      <!-- <TagGroup tags={normalizeTagsJSON(rawData.taxonomy)} /> -->
+      <TagGroup tags={normalizeTagsJSON(rawData.taxonomy)} />
       <PersonBlock
         personId={rawData.author.id}
         personName={rawData.author.displayname}

@@ -1,0 +1,170 @@
+---
+import { tagGroups } from "../../helpers/tagHelpers";
+
+const selectedTags = Astro.url.searchParams.getAll("tags");
+const query = Astro.url.searchParams.get("query") ?? "";
+const types = Astro.url.searchParams.getAll("type");
+const clearTagsParams = new URLSearchParams();
+if (query) clearTagsParams.set("query", query);
+types.forEach((type) => clearTagsParams.append("type", type));
+const clearTagsHref = `/explore?${clearTagsParams.toString()}`;
+---
+
+<form action="/explore">
+  <div class="filter-heading">
+    <h4>Filter Results</h4>
+    {selectedTags.length > 0 && (
+      <a class="clear-filter" href={clearTagsHref}>Clear filter</a>
+    )}
+  </div>
+  <input type="hidden" name="query" value={query} />
+  {types.map((type) => <input type="hidden" name="type" value={type} />)}
+  {
+    Object.entries(tagGroups).map(([categoryId, group]) => {
+      const selectedCount = Object.keys(group.tags).filter((tagId) =>
+        selectedTags.includes(`${categoryId}-${tagId}`),
+      ).length;
+
+      return (
+        <details class="tag-group" name="tag-group">
+          <summary>
+            <span>{group.label}</span>
+            <span
+              class="selected-count"
+              aria-label={`${selectedCount} selected`}
+              hidden={selectedCount === 0}
+            >
+              ({selectedCount})
+            </span>
+          </summary>
+          {group.description && (
+            <p class="tag-group-description">{group.description}</p>
+          )}
+          <div class="tag-options">
+            {Object.entries(group.tags).map(([tagId, tag]) => {
+              const value = `${categoryId}-${tagId}`;
+              const id = `tag-${value}`;
+
+              return (
+                <span class="tag-option">
+                  <input
+                    type="checkbox"
+                    id={id}
+                    name="tags"
+                    value={value}
+                    checked={selectedTags.includes(value)}
+                  />
+                  <label for={id}>{tag.label}</label>
+                </span>
+              );
+            })}
+          </div>
+        </details>
+      );
+    })
+  }
+  <button type="submit"
+    >Filter <span class="visually-hidden"> by tags</span></button
+  >
+</form>
+
+<script>
+  document.addEventListener("change", (event) => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || input.name !== "tags") return;
+
+    const group = input.closest(".tag-group");
+    const count = group?.querySelector(".selected-count");
+    if (!group || !(count instanceof HTMLElement)) return;
+
+    const selectedCount = group.querySelectorAll(
+      'input[name="tags"]:checked',
+    ).length;
+    count.textContent = "(" + String(selectedCount) + ")";
+    count.setAttribute("aria-label", `${selectedCount} selected`);
+    count.hidden = selectedCount === 0;
+  });
+</script>
+
+<style>
+  form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .filter-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .filter-heading h4 {
+    margin: 0;
+  }
+
+  .clear-filter {
+    color: var(--color-theme-accent-a);
+    font-size: 0.875rem;
+    text-decoration: underline;
+  }
+
+  .tag-group {
+  }
+
+  summary {
+    gap: 0.75rem;
+    cursor: pointer;
+    font-weight: 400;
+  }
+
+  .selected-count {
+    margin-left: 0.25rem;
+  }
+
+  .tag-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+  .tag-group-description {
+    font-size: 0.875rem;
+  }
+  .tag-option label {
+    display: inline-block;
+    border: 1px solid var(--color-local-border);
+    border-radius: 999px;
+    cursor: pointer;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
+  }
+
+  .tag-option input:checked + label {
+    background-color: var(--color-local-cta-background);
+    border-color: var(--color-local-cta-background);
+    color: var(--color-local-cta-text);
+  }
+
+  .tag-option input:focus-visible + label {
+    outline: 0.2rem solid var(--color-local-focus);
+    outline-offset: 0.125rem;
+  }
+
+  button {
+    justify-self: start;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-local-cta-background);
+    color: var(--color-local-cta-text);
+    font-weight: 500;
+  }
+</style>

@@ -3,13 +3,20 @@ interface Props {
   query: string;
   page: number;
   types: string[];
+  tags: string[];
 }
 const PAGINATION_SIZE = 12;
-const { query, page, types } = Astro.props;
+const { query, page, types, tags = [] } = Astro.props;
 import CardFeed from "./CardFeed.astro";
 import Pagination from "./Pagination.astro";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
+
+const tagFilters = tags
+  .map((tag) => {
+    return `.filterBy("taxonomy","*=","${tag}")`;
+  })
+  .join("");
 
 const cmsQuery = query ? `site.search('${query}')` : "site.index.children";
 const typeQuery =
@@ -17,7 +24,8 @@ const typeQuery =
     ? `.filterBy('intendedTemplate',"in",["${types.join(`", "`)}"])`
     : `.filterBy('intendedTemplate',"in",["article", "chapter", "lesson", "person"])`;
 console.log(typeQuery);
-const combinedQuery = cmsQuery + typeQuery + ".sortBy('modified','desc')";
+const combinedQuery =
+  cmsQuery + typeQuery + tagFilters + ".sortBy('modified','desc')";
 // console.log(combinedQuery);
 const pageParams = new URLSearchParams("");
 pageParams.append("query", query);
@@ -82,7 +90,8 @@ const resultsMsg = hasResults
 
 {query ? <h2>Results for: {query}</h2> : <h2>Explore Earthrise Commons:</h2>}
 <p>{resultsMsg}</p>
-
+<!-- <pre><code>
+  {combinedQuery}</code></pre> -->
 <!-- <pre>{JSON.stringify(pages,null,5)}</pre> -->
 <CardFeed pageData={unsortedPages} />
 {
