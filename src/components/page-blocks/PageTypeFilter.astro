@@ -5,6 +5,7 @@ interface Props extends SearchQueryType{}
 const {props}=Astro;
 import { Image } from 'astro:assets';
 
+const selectedTags = Astro.url.searchParams.getAll("tags");
 ---
 
 <script >
@@ -23,6 +24,7 @@ import { Image } from 'astro:assets';
      <div class="inline-heading-group"><h3>Filter by Page Type:</h3><button id="btn-clear-pt-filter">Clear filter</button></div> 
       
       <input hidden type="text" name="query" value={props.query ?? ""} />
+      {selectedTags.map((tag) => <input type="hidden" name="tags" value={tag} />)}
           <div class="page-types-filter-container">
  <div class="page-types-grid">
                     {
@@ -43,7 +45,7 @@ import { Image } from 'astro:assets';
         })
       }
                </div>
-<button type="submit">Filter</button>
+<button type="submit">Filter  <span class="visually-hidden"> by page type</span></button>
           </div>
            
    
@@ -181,4 +183,3 @@ button{
 }
 
     </style>
-

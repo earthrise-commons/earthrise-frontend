@@ -4,10 +4,19 @@ import { tagGroups } from "../../helpers/tagHelpers";
 const selectedTags = Astro.url.searchParams.getAll("tags");
 const query = Astro.url.searchParams.get("query") ?? "";
 const types = Astro.url.searchParams.getAll("type");
+const clearTagsParams = new URLSearchParams();
+if (query) clearTagsParams.set("query", query);
+types.forEach((type) => clearTagsParams.append("type", type));
+const clearTagsHref = `/explore?${clearTagsParams.toString()}`;
 ---
 
 <form action="/explore">
-  <h4>Filter Results</h4>
+  <div class="filter-heading">
+    <h4>Filter Results</h4>
+    {selectedTags.length > 0 && (
+      <a class="clear-filter" href={clearTagsHref}>Clear filter</a>
+    )}
+  </div>
   <input type="hidden" name="query" value={query} />
   {types.map((type) => <input type="hidden" name="type" value={type} />)}
   {
@@ -54,7 +63,9 @@ const types = Astro.url.searchParams.getAll("type");
       );
     })
   }
-  <button type="submit">Filter by tags</button>
+  <button type="submit"
+    >Filter <span class="visually-hidden"> by tags</span></button
+  >
 </form>
 
 <script>
@@ -79,6 +90,22 @@ const types = Astro.url.searchParams.getAll("type");
   form {
     display: grid;
     gap: 1rem;
+  }
+
+  .filter-heading {
+    display: flex;
+    align-items: baseline;
+    gap: 1rem;
+  }
+
+  .filter-heading h4 {
+    margin: 0;
+  }
+
+  .clear-filter {
+    color: var(--color-theme-accent-a);
+    font-size: 0.875rem;
+    text-decoration: underline;
   }
 
   .tag-group {
@@ -138,5 +165,6 @@ const types = Astro.url.searchParams.getAll("type");
     padding: 0.75rem 1rem;
     background-color: var(--color-local-cta-background);
     color: var(--color-local-cta-text);
+    font-weight: 500;
   }
 </style>
