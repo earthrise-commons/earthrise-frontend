@@ -6,7 +6,7 @@ const query = Astro.url.searchParams.get("query") ?? "";
 const types = Astro.url.searchParams.getAll("type");
 ---
 
-<form>
+<form action="/explore">
   <h4>Filter Results</h4>
   <input type="hidden" name="query" value={query} />
   {types.map((type) => <input type="hidden" name="type" value={type} />)}
