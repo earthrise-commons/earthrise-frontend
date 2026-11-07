@@ -1,0 +1,100 @@
+---
+import { tagGroups } from "../../helpers/tagHelpers";
+
+const selectedTags = Astro.url.searchParams.getAll("tags");
+const query = Astro.url.searchParams.get("query") ?? "";
+const types = Astro.url.searchParams.getAll("type");
+---
+<form>
+  <input type="hidden" name="query" value={query} />
+  {types.map((type) => <input type="hidden" name="type" value={type} />)}
+  {
+    Object.entries(tagGroups).map(([categoryId, group]) => (
+      <details class="tag-group">
+        <summary>{group.label}</summary>
+        {group.description && <p>{group.description}</p>}
+        <div class="tag-options">
+          {Object.entries(group.tags).map(([tagId, tag]) => {
+            const value = `${categoryId}-${tagId}`;
+            const id = `tag-${value}`;
+
+            return (
+              <span class="tag-option">
+                <input
+                  type="checkbox"
+                  id={id}
+                  name="tags"
+                  value={value}
+                  checked={selectedTags.includes(value)}
+                />
+                <label for={id}>{tag.label}</label>
+              </span>
+            );
+          })}
+        </div>
+      </details>
+    ))
+  }
+  <button type="submit">Filter by tags</button>
+</form>
+
+<style>
+  form {
+    display: grid;
+    gap: 1rem;
+  }
+
+  .tag-group {
+    border: 1px solid var(--color-local-border);
+    border-radius: 0.6rem;
+    padding: 1rem;
+  }
+
+  summary {
+    cursor: pointer;
+    font-weight: 700;
+  }
+
+  .tag-options {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .tag-option input {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+  }
+
+  .tag-option label {
+    display: inline-block;
+    border: 1px solid var(--color-local-border);
+    border-radius: 999px;
+    cursor: pointer;
+    padding: 0.375rem 0.75rem;
+  }
+
+  .tag-option input:checked + label {
+    background-color: var(--color-local-cta-background);
+    border-color: var(--color-local-cta-background);
+    color: var(--color-local-cta-text);
+  }
+
+  .tag-option input:focus-visible + label {
+    outline: 0.2rem solid var(--color-local-focus);
+    outline-offset: 0.125rem;
+  }
+
+  button {
+    justify-self: start;
+    border-radius: 0.5rem;
+    padding: 0.75rem 1rem;
+    background-color: var(--color-local-cta-background);
+    color: var(--color-local-cta-text);
+  }
+</style>

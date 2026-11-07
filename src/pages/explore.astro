@@ -2,12 +2,14 @@
 const query = Astro.url.searchParams.get("query") || "";
 const types = Astro.url.searchParams.getAll("type") || "";
 const pageStr = Astro.url.searchParams.get("page") || "1";
+const selectedTags = Astro.url.searchParams.getAll("tags");
 const page = parseInt(pageStr);
 import Layout from "../layouts/Layout.astro";
 import SearchQuery from "../components/page-blocks/SearchQuery.astro";
 import SearchHero from "../assets/graphic-hero/search-hero.png";
 import { Image } from "astro:assets";
 import PageTypeFilter from "../components/page-blocks/PageTypeFilter.astro";
+import SearchQueryFilter from "../components/page-blocks/SearchQueryFilter.astro";
 ---
 
 <Layout>
@@ -30,61 +32,100 @@ import PageTypeFilter from "../components/page-blocks/PageTypeFilter.astro";
   </div>
 
   <PageTypeFilter query={query} types={types} page={pageStr} />
+  <div class="search-results-layout">
+    <aside class="search-filters" aria-label="Filter search results">
+      <SearchQueryFilter />
+    </aside>
+    <section class="search-results" aria-label="Search results">
+      {
+        true && (
+          <SearchQuery
+            types={types}
+            query={query}
+            page={page}
+            tags={selectedTags}
+          />
+        )
+      }
+    </section>
+  </div>
 
-  {true && <SearchQuery types={types} query={query} page={page} />}
+  <style>
+    .search-results-layout {
+      display: grid;
+      gap: 2rem;
+    }
+
+    .search-filters {
+      min-width: 0;
+      padding: 1.25rem;
+      border: 1px solid var(--color-local-border);
+      border-radius: 0.75rem;
+      background-color: var(--color-light-background);
+    }
+
+    .search-results {
+      min-width: 0;
+    }
+
+    @media (min-width: 900px) {
+      .search-results-layout {
+        grid-template-columns: minmax(15rem, 18rem) minmax(0, 1fr);
+        align-items: start;
+      }
+    }
+
+    .search-box {
+      padding: 3rem 1rem;
+      background-color: transparent;
+      display: flex;
+      flex-direction: column;
+      position: relative;
+      width: 100%;
+      max-width: var(--size-padded-super);
+      align-items: center;
+    }
+
+    .search-box-content {
+      max-width: var(--size-padded-content);
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+      width: 100%;
+    }
+    h1,
+    p {
+      font-weight: 600;
+    }
+    .search-box form {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+    }
+    form input {
+      flex-grow: 1;
+      padding: 0.5rem;
+      font-size: 1rem;
+      font-weight: 400;
+      border-radius: 0.5rem 0rem 0 0.5rem;
+      color: var(--color-light-text);
+      background-color: var(--color-light-background);
+    }
+    form button {
+      border-radius: 0 0.5rem 0.5rem 0;
+      padding: 0.5rem 1rem;
+      background-color: var(--color-light-cta-background);
+      color: var(--color-light-cta-text);
+    }
+    .search-img {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      z-index: -100;
+      border-radius: 0.5rem;
+    }
+  </style>
 </Layout>
-
-<style>
-  .search-box {
-    padding: 3rem 1rem;
-    background-color: transparent;
-    display: flex;
-    flex-direction: column;
-    position: relative;
-    width: 100%;
-    max-width: var(--size-padded-super);
-    align-items: center;
-  }
-
-  .search-box-content {
-    max-width: var(--size-padded-content);
-    display: flex;
-    flex-direction: column;
-    gap: 2rem;
-    width: 100%;
-  }
-  h1,
-  p {
-    font-weight: 600;
-  }
-  .search-box form {
-    position: relative;
-    display: flex;
-    flex-direction: row;
-  }
-  form input {
-    flex-grow: 1;
-    padding: 0.5rem;
-    font-size: 1rem;
-    font-weight: 400;
-    border-radius: 0.5rem 0rem 0 0.5rem;
-    color: var(--color-light-text);
-    background-color: var(--color-light-background);
-  }
-  form button {
-    border-radius: 0 0.5rem 0.5rem 0;
-    padding: 0.5rem 1rem;
-    background-color: var(--color-light-cta-background);
-    color: var(--color-light-cta-text);
-  }
-  .search-img {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    z-index: -100;
-    border-radius: 0.5rem;
-  }
-</style>
