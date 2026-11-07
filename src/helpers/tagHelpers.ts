@@ -3,13 +3,13 @@ export type Tag = {
   description?: string
 }
 
-type TagCategory = {
+export type TagCategory = {
   label: string,
   description: string,
   tags: Record<string, Tag>
 }
 
-const tagGroups: Record<string, TagCategory> = {
+export const tagGroups: Record<string, TagCategory> = {
   lre: {
     label: 'Ikeda',
     description: '',
@@ -62,3 +62,4 @@ export const lookupTag = (tag: string): Tag => {
 
   return category.tags[tagId];
 };
+
