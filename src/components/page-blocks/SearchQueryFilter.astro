@@ -14,7 +14,9 @@ const types = Astro.url.searchParams.getAll("type");
     Object.entries(tagGroups).map(([categoryId, group]) => (
       <details class="tag-group">
         <summary>{group.label}</summary>
-        {group.description && <p>{group.description}</p>}
+        {group.description && (
+          <p class="tag-group-description">{group.description}</p>
+        )}
         <div class="tag-options">
           {Object.entries(group.tags).map(([tagId, tag]) => {
             const value = `${categoryId}-${tagId}`;
@@ -69,7 +71,9 @@ const types = Astro.url.searchParams.getAll("type");
     clip: rect(0, 0, 0, 0);
     white-space: nowrap;
   }
-
+  .tag-group-description {
+    font-size: 0.875rem;
+  }
   .tag-option label {
     display: inline-block;
     border: 1px solid var(--color-local-border);

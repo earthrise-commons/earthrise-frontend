@@ -11,8 +11,8 @@ export type TagCategory = {
 
 export const tagGroups: Record<string, TagCategory> = {
   lre: {
-    label: 'Ikeda',
-    description: '',
+    label: 'Ikeda Framework',
+    description: 'A three-point formula for sustainability education developed by Buddhist leader and educator Daisaku Ikeda.',
     tags: {
       learn: { label: 'Learn' },
       reflect: { label: 'Reflect' },
