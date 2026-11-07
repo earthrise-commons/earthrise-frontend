@@ -1,4 +1,5 @@
 ---
+import { lookupTag } from "../../helpers/tagHelpers";
 const { tags = [] }: { tags?: { label: string; value: string }[] } =
   Astro.props;
 ---
@@ -8,13 +9,26 @@ const { tags = [] }: { tags?: { label: string; value: string }[] } =
     <div class="tag-group">
       <p>Tags:</p>
       <ul>
-        {tags.map((tag) => (
-          <li>
-            <a class="tag" href={`/tags/${tag.value}`}>
-              {tag.label}
-            </a>
-          </li>
-        ))}
+        {tags.map((tag) => {
+          try {
+            const tagObj = lookupTag(tag.label);
+            return (
+              <li>
+                <a class="tag" href={`/tags/${tag.value}`}>
+                  {tagObj.label}
+                </a>
+              </li>
+            );
+          } catch {
+            return (
+              <li>
+                <a class="tag" href={`/tags/${tag.value}`}>
+                  {tag.label}
+                </a>
+              </li>
+            );
+          }
+        })}
       </ul>
     </div>
   )
