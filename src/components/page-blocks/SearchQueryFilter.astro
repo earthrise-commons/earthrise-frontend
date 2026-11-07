@@ -5,7 +5,9 @@ const selectedTags = Astro.url.searchParams.getAll("tags");
 const query = Astro.url.searchParams.get("query") ?? "";
 const types = Astro.url.searchParams.getAll("type");
 ---
+
 <form>
+  <h4>Filter Results</h4>
   <input type="hidden" name="query" value={query} />
   {types.map((type) => <input type="hidden" name="type" value={type} />)}
   {
@@ -45,14 +47,11 @@ const types = Astro.url.searchParams.getAll("type");
   }
 
   .tag-group {
-    border: 1px solid var(--color-local-border);
-    border-radius: 0.6rem;
-    padding: 1rem;
   }
 
   summary {
     cursor: pointer;
-    font-weight: 700;
+    font-weight: 400;
   }
 
   .tag-options {
@@ -76,7 +75,8 @@ const types = Astro.url.searchParams.getAll("type");
     border: 1px solid var(--color-local-border);
     border-radius: 999px;
     cursor: pointer;
-    padding: 0.375rem 0.75rem;
+    padding: 0.25rem 0.75rem;
+    font-size: 0.875rem;
   }
 
   .tag-option input:checked + label {
