@@ -11,36 +11,69 @@ const types = Astro.url.searchParams.getAll("type");
   <input type="hidden" name="query" value={query} />
   {types.map((type) => <input type="hidden" name="type" value={type} />)}
   {
-    Object.entries(tagGroups).map(([categoryId, group]) => (
-      <details class="tag-group">
-        <summary>{group.label}</summary>
-        {group.description && (
-          <p class="tag-group-description">{group.description}</p>
-        )}
-        <div class="tag-options">
-          {Object.entries(group.tags).map(([tagId, tag]) => {
-            const value = `${categoryId}-${tagId}`;
-            const id = `tag-${value}`;
+    Object.entries(tagGroups).map(([categoryId, group]) => {
+      const selectedCount = Object.keys(group.tags).filter((tagId) =>
+        selectedTags.includes(`${categoryId}-${tagId}`),
+      ).length;
 
-            return (
-              <span class="tag-option">
-                <input
-                  type="checkbox"
-                  id={id}
-                  name="tags"
-                  value={value}
-                  checked={selectedTags.includes(value)}
-                />
-                <label for={id}>{tag.label}</label>
-              </span>
-            );
-          })}
-        </div>
-      </details>
-    ))
+      return (
+        <details class="tag-group">
+          <summary>
+            <span>{group.label}</span>
+            <span
+              class="selected-count"
+              aria-label={`${selectedCount} selected`}
+              hidden={selectedCount === 0}
+            >
+              ({selectedCount})
+            </span>
+          </summary>
+          {group.description && (
+            <p class="tag-group-description">{group.description}</p>
+          )}
+          <div class="tag-options">
+            {Object.entries(group.tags).map(([tagId, tag]) => {
+              const value = `${categoryId}-${tagId}`;
+              const id = `tag-${value}`;
+
+              return (
+                <span class="tag-option">
+                  <input
+                    type="checkbox"
+                    id={id}
+                    name="tags"
+                    value={value}
+                    checked={selectedTags.includes(value)}
+                  />
+                  <label for={id}>{tag.label}</label>
+                </span>
+              );
+            })}
+          </div>
+        </details>
+      );
+    })
   }
   <button type="submit">Filter by tags</button>
 </form>
+
+<script>
+  document.addEventListener("change", (event) => {
+    const input = event.target;
+    if (!(input instanceof HTMLInputElement) || input.name !== "tags") return;
+
+    const group = input.closest(".tag-group");
+    const count = group?.querySelector(".selected-count");
+    if (!group || !(count instanceof HTMLElement)) return;
+
+    const selectedCount = group.querySelectorAll(
+      'input[name="tags"]:checked',
+    ).length;
+    count.textContent = "(" + String(selectedCount) + ")";
+    count.setAttribute("aria-label", `${selectedCount} selected`);
+    count.hidden = selectedCount === 0;
+  });
+</script>
 
 <style>
   form {
@@ -52,8 +85,13 @@ const types = Astro.url.searchParams.getAll("type");
   }
 
   summary {
+    gap: 0.75rem;
     cursor: pointer;
     font-weight: 400;
+  }
+
+  .selected-count {
+    margin-left: 0.25rem;
   }
 
   .tag-options {
