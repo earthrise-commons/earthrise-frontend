@@ -1,0 +1,8 @@
+---
+import { marked } from "marked";
+
+const { content } = Astro.props;
+const contentHTML = await marked.parse(content.text);
+---
+
+<Fragment set:html={contentHTML} />

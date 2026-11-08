@@ -9,6 +9,7 @@ import BlockHeading from "./blocks/BlockHeading.astro";
 import BlockImage from "./blocks/BlockImage.astro";
 import BlockList from "./blocks/BlockList.astro";
 import BlockVideo from "./blocks/BlockVideo.astro";
+import BlockMarkdown from "./blocks/BlockMarkdown.astro";
 const blockMapping = {
   accordion: BlockAccordion,
   resources: BlockResources,
@@ -18,14 +19,16 @@ const blockMapping = {
   image: BlockImage,
   list: BlockList,
   video: BlockVideo,
+  markdown: BlockMarkdown,
   // Add more block types here
 };
 
 const Component = blockMapping[blockData.type];
 ---
 
-<!-- <pre>{JSON.stringify(blockData, null, 2)}</pre> -->
-{Component && <Component content={blockData.content} pageFiles={pageFiles} />}
+<!-- <pre>{JSON.stringify(blockData, null, 2)}</pre> -->{
+  Component && <Component content={blockData.content} pageFiles={pageFiles} />
+}
 <div>
   {!Component && <h2>block not found: {blockData.type}</h2>}
 </div>
