@@ -25,7 +25,11 @@ const typeQuery =
     : `.filterBy('intendedTemplate',"in",["article", "chapter", "lesson", "person"])`;
 console.log(typeQuery);
 const combinedQuery =
-  cmsQuery + typeQuery + tagFilters + ".sortBy('modified','desc')";
+  cmsQuery +
+  typeQuery +
+  tagFilters +
+  ".filterBy('title','!*=','HIDDEN-TEST')" +
+  ".sortBy('modified','desc')";
 // console.log(combinedQuery);
 const pageParams = new URLSearchParams("");
 pageParams.append("query", query);
