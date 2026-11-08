@@ -4,11 +4,11 @@ import prettier from "prettier";
 const opacityValue = .7;
 
 const baseColors = {
-  "neutral-100": "#fffefc",
-  "neutral-300": "#d4d1cb",
-  "neutral-500": "#736b7a",
-  "neutral-700": "#28232c",
-  "neutral-900": "#1b171f",
+  "neutral-100": "#f5efe3",
+  "neutral-300": "#d2ccbf",
+  "neutral-500": "#747079",
+  "neutral-700": "#242733",
+  "neutral-900": "#0b1220",
   "blue-100": "#e6ebf5",
   "blue-300": "#8eaadc",
   "blue-400": "#2864dc",
@@ -70,8 +70,8 @@ const buildCSSString = (assignments: String[], comment: String) => {
 
 const generateCSS = () => {
   const baseValues = []
-  const themeValues: Record<ThemeName, String[]> = {}
-  const themeLocals: Record<ThemeName, String[]> = {}
+  const themeValues = {} as Record<ThemeName, String[]>;
+  const themeLocals = {} as Record<ThemeName, String[]>;
   // initialize themeValues
   for (const themeName of themeNames) {
     themeValues[themeName] = [];
