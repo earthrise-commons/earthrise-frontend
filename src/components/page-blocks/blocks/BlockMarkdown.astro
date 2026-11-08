@@ -1,9 +1,12 @@
 ---
 import { marked } from "marked";
-import sanitizeHtml from "sanitize-html";
+import { JSDOM } from "jsdom";
+import DOMPurify from "dompurify";
+const { window } = new JSDOM("");
+const windowPurify = DOMPurify(window);
 const { content } = Astro.props;
 const unsafeHTML = await marked.parse(content.text);
-const safeHTML = sanitizeHtml(unsafeHTML);
+const safeHTML = windowPurify.sanitize(unsafeHTML);
 ---
 
 <Fragment set:html={safeHTML} />
