@@ -1,10 +1,9 @@
 ---
 import { marked } from "marked";
-// import DOMPurify from "isomorphic-dompurify";
-
+import sanitizeHtml from "sanitize-html";
 const { content } = Astro.props;
 const unsafeHTML = await marked.parse(content.text);
-// const safeHTML = DOMPurify.sanitize(unsafeHTML);
+const safeHTML = sanitizeHtml(unsafeHTML);
 ---
 
-<Fragment set:html={unsafeHTML} />
+<Fragment set:html={safeHTML} />
