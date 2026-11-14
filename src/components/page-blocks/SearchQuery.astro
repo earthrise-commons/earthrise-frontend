@@ -9,8 +9,10 @@ const PAGINATION_SIZE = 12;
 const { query, page, types, tags = [] } = Astro.props;
 import CardFeed from "./CardFeed.astro";
 import Pagination from "./Pagination.astro";
+import { lookupTag } from "../../helpers/tagHelpers";
 import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
+import { Icon } from "astro-icon/components";
 
 const tagFilters = tags
   .map((tag) => {
@@ -93,6 +95,26 @@ const resultsMsg = hasResults
 ---
 
 {query ? <h2>Results for: {query}</h2> : <h2>Explore Earthrise Commons:</h2>}
+{
+  tags.length > 0 && (
+    <p>
+      Filtered by:{" "}
+      {tags.map((tag) => {
+        return (
+          <span class="inline-tag">
+            {lookupTag(tag).label}{" "}
+            <a class="inline-tag-link">
+              <span class="visually-hidden">
+                Remove tag {lookupTag(tag).label}
+              </span>
+              <Icon name="fa7-solid:close" class="uc-icon" />
+            </a>
+          </span>
+        );
+      })}
+    </p>
+  )
+}
 <p>{resultsMsg}</p>
 <!-- <pre><code>
   {combinedQuery}</code></pre> -->
@@ -108,3 +130,22 @@ const resultsMsg = hasResults
     />
   )
 }
+
+<style>
+  .inline-tag {
+    display: inline-block;
+    border: 1px solid var(--color-base-blue-700);
+    background-color: var(--color-base-blue-100);
+    padding: 0 0.5rem;
+    border-radius: 0.5rem;
+    display: inline-flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+  }
+  .inline-tag-link {
+    color: var(--color-local-text);
+    font-size: 0.75rem;
+  }
+</style>
