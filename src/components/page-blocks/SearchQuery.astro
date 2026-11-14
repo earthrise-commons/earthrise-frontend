@@ -14,6 +14,8 @@ import { loadFromCMS } from "../../cms/loadFromCMS";
 import { randomizeArray } from "../../helpers/randomizeArray";
 import { Icon } from "astro-icon/components";
 
+// helper function that generates a URL for the current search result page with a specific tag removed
+
 const getURLWithoutTag = (tag: string) => {
   const params = new URLSearchParams(Astro.url.searchParams);
   params.delete("tags");
@@ -24,9 +26,22 @@ const getURLWithoutTag = (tag: string) => {
   return `/explore?${params.toString()}`;
 };
 
-const tagFilters = tags
+// object that contains all the currently selected tags, grouped by tag category
+// this will allow for OR behavior within categories,
+// and AND behavior between categories
+const groupedTags: Record<string, string[]> = {};
+tags.forEach((tag) => {
+  const tagPrefix = tag.split("-")[0];
+  if (!groupedTags[tagPrefix]) {
+    groupedTags[tagPrefix] = [];
+  }
+
+  groupedTags[tagPrefix].push(tag);
+});
+
+const tagFilters = Object.values(groupedTags)
   .map((tag) => {
-    return `.filterBy("taxonomy","*=","${tag}")`;
+    return `.filterBy("taxonomy","in",${JSON.stringify(tag)},", ")`;
   })
   .join("");
 
@@ -35,14 +50,13 @@ const typeQuery =
   types.length > 0
     ? `.filterBy('intendedTemplate',"in",["${types.join(`", "`)}"])`
     : `.filterBy('intendedTemplate',"in",["article", "chapter", "lesson", "person"])`;
-console.log(typeQuery);
 const combinedQuery =
   cmsQuery +
   typeQuery +
   tagFilters +
   ".filterBy('title','!*=','HIDDEN-TEST')" +
   ".sortBy('modified','desc')";
-// console.log(combinedQuery);
+console.log(combinedQuery);
 const pageParams = new URLSearchParams("");
 pageParams.append("query", query);
 pageParams.append("page", (page + 1).toString());
