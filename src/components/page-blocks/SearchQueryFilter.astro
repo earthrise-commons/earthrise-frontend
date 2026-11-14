@@ -13,9 +13,13 @@ const clearTagsHref = `/explore?${clearTagsParams.toString()}`;
 <form action="/explore">
   <div class="filter-heading">
     <h4>Filter Results</h4>
-    {selectedTags.length > 0 && (
-      <a class="clear-filter" href={clearTagsHref}>Clear filter</a>
-    )}
+    {
+      selectedTags.length > 0 && (
+        <a class="clear-filter" href={clearTagsHref}>
+          Clear filter
+        </a>
+      )
+    }
   </div>
   <input type="hidden" name="query" value={query} />
   {types.map((type) => <input type="hidden" name="type" value={type} />)}
@@ -34,7 +38,7 @@ const clearTagsHref = `/explore?${clearTagsParams.toString()}`;
               aria-label={`${selectedCount} selected`}
               hidden={selectedCount === 0}
             >
-              ({selectedCount})
+              {selectedCount}
             </span>
           </summary>
           {group.description && (
@@ -80,7 +84,7 @@ const clearTagsHref = `/explore?${clearTagsParams.toString()}`;
     const selectedCount = group.querySelectorAll(
       'input[name="tags"]:checked',
     ).length;
-    count.textContent = "(" + String(selectedCount) + ")";
+    count.textContent = String(selectedCount);
     count.setAttribute("aria-label", `${selectedCount} selected`);
     count.hidden = selectedCount === 0;
   });
@@ -118,7 +122,12 @@ const clearTagsHref = `/explore?${clearTagsParams.toString()}`;
   }
 
   .selected-count {
-    margin-left: 0.25rem;
+    margin-left: 0.375rem;
+    display: inline-block;
+    background-color: var(--color-local-accent-c);
+    color: var(--color-local-background);
+    padding: 0 0.375rem;
+    border-radius: 0.5rem;
   }
 
   .tag-options {
