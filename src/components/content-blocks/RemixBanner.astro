@@ -1,0 +1,24 @@
+---
+import { Icon } from "astro-icon/components";
+import  Banner  from "./Banner.astro";
+---
+
+<div class="remix-banner">
+  <Icon name={"fa7-solid:arrows-rotate"} class={'remix-banner-icon'}/>  
+  <p>This content is yours to use. Download it, remix it, adapt it, share it—<br/>make it work for your community. </p>
+</div>
+
+<style>
+  .remix-banner{
+    border: 1px solid var(--color-base-green-300);
+    background-color: var(--color-base-green-100);
+    color: var(--color-base-green-900);
+    padding: 1rem 1.5rem;
+    border-radius: 1rem;
+    display: flex;
+    gap:1rem;
+  }
+  .remix-banner-icon{
+    font-size: 2rem;
+  }
+</style>
