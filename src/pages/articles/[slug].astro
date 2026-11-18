@@ -9,12 +9,14 @@ import HeroImage from "../../components/page-blocks/HeroImage.astro";
 
 import TagGroup from "../../components/page-blocks/TagGroup.astro";
 import { normalizeTagsJSON } from "../../cms/normalizeTags";
+import RemixBanner from "../../components/content-blocks/RemixBanner.astro";
 const { slug } = Astro.params;
 const rawData = await loadFromCMS({
   query: `page('articles/${slug}')`,
   select: {
     content: true,
     uuid: true,
+    showRemixBanner: true,
     taxonomy: { query: "page.taxonomy.toObject" },
     hero: {
       query: "page.hero.safeResize(1200)",
@@ -46,6 +48,7 @@ if (rawData == null) {
 
 // TODO: update query to be able to select multiple authors
 const blockData = parseYaml(rawData.content.text);
+const showRemixBanner = rawData.showRemixBanner;
 
 const pageFiles = await loadFromCMS({
   query: `page('articles/${slug}').files`,
@@ -70,6 +73,7 @@ const pageFiles = await loadFromCMS({
       <HeroImage data={rawData.hero} uuid={rawData.uuid} />
     </Fragment>
   </PageHero>
+    {showRemixBanner && <RemixBanner/>}
 
   <!-- <pre>{JSON.stringify(rawData, null, 2)}</pre> -->
   <BlockRenderer blockData={blockData} pageFiles={pageFiles} />
